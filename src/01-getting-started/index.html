@@ -17,6 +17,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>FSD</title>
+
+    <style>
+        /* Stolen from W3Schools */
+        #slab1 {
+            border-color: gray solid 2px;
+            /*border-collapse: collapse;*/
+            width: 100%;
+            font-size: 100%;
+            font-size-adjust: 0.6;
+        }
+
+        #slab1 td,
+        #slab1 th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #slab1 tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #slab1 tr:hover {
+            background-color: #ddd;
+        }
+
+        #slab1 th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: w3-center;
+            background-color: rgb(14, 111, 143);
+            color: white;
+
+        }
+    </style>
+
 </head>
 
 <body>
@@ -24,13 +59,15 @@
     <!-- Navbar (sit on top) -->
     <div class="w3-top">
         <div class="w3-bar" id="myNavbar">
-            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+                href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
                 <i class="fa fa-bars"></i>
             </a>
             <a href="#home" class="w3-bar-item w3-button">HOME</a>
             <a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT</a>
             <a href="#idSize" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> SIZE</a>
-            <a href="https://www.evolveu.ca" class="w3-bar-item w3-button w3-hide-small" target="_blank"><i class="fa fa-envelope"></i> CONTACT</a>
+            <a href="https://www.evolveu.ca" class="w3-bar-item w3-button w3-hide-small" target="_blank"><i
+                    class="fa fa-envelope"></i> CONTACT</a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
                 <i class="fa fa-search"></i>
             </a>
@@ -40,7 +77,8 @@
         <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
             <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
             <a href="#idSize" class="w3-bar-item w3-button" onclick="toggleFunction()">SIZE</a>
-            <a href="https://www.evolveu.ca" class="w3-bar-item w3-button" onclick="toggleFunction()" target="_blank">CONTACT</a>
+            <a href="https://www.evolveu.ca" class="w3-bar-item w3-button" onclick="toggleFunction()"
+                target="_blank">CONTACT</a>
             <a href="#" class="w3-bar-item w3-button">SEARCH</a>
         </div>
     </div>
@@ -60,23 +98,36 @@
     <div class="w3-content w3-container w3-padding-64 info-box" id="about">
         <h3 class="w3-center">ABOUT THE TOOLS & PRACTICES</h3>
         <p>
-            Here, we describe at a high level the basic tools of the trade and best practices in using the tools. We are a little nervous about using the term “Best Practices”. There are many great tools and practices out there and “Best Practices” is a matter of
-            opinion and are constantly changing. If you understand these tools and these practices, you are in a great position to continue your learning and finding better practices and better tools. You are just beginning a journey of learning that
+            Here, we describe at a high level the basic tools of the trade and best practices in using the tools. We are
+            a little nervous about using the term “Best Practices”. There are many great tools and practices out there
+            and “Best Practices” is a matter of
+            opinion and are constantly changing. If you understand these tools and these practices, you are in a great
+            position to continue your learning and finding better practices and better tools. You are just beginning a
+            journey of learning that
             will last as long as your professional development career.
         </p>
 
         <ol>
-            <li><b>Editor -</b> Where we spend all our time building. We suggest one of the two: <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> or <a href="https://www.sublimetext.com/" target="_blank">Sublime Text</a>.
+            <li><b>Editor -</b> Where we spend all our time building. We suggest one of the two: <a
+                    href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> or <a
+                    href="https://www.sublimetext.com/" target="_blank">Sublime Text</a>.
 
             </li>
-            <li><b>Source Code Management -</b> According to <a href="https://en.wikipedia.org/wiki/Git" target="_blank">Wikipedia</a> git is a distributed version-control system for tracking changes in source code during software development. It is designed
-                for coordinating work among programmers, and it can also be used to track changes in any set of files. Its goals include speed, data integrity, and support for distributed, non-linear workflows.
-                <p>There is a tool <a href="https://git-scm.com/" target="_blank">git</a> and a development platform called <a href="https://github.com" target="_blank">GitHub</a>. We will be using these extensively throughout the program.</p>
+            <li><b>Source Code Management -</b> According to <a href="https://en.wikipedia.org/wiki/Git"
+                    target="_blank">Wikipedia</a> git is a distributed version-control system for tracking changes in
+                source code during software development. It is designed
+                for coordinating work among programmers, and it can also be used to track changes in any set of files.
+                Its goals include speed, data integrity, and support for distributed, non-linear workflows.
+                <p>There is a tool <a href="https://git-scm.com/" target="_blank">git</a> and a development platform
+                    called <a href="https://github.com" target="_blank">GitHub</a>. We will be using these extensively
+                    throughout the program.</p>
             </li>
             <li><b>Code Organization -</b> How do we organize a project? How do we structure our files? </li>
-            <li><b>Modular Design</b> How do we structure our code such that it is easy to read, update, test, and maintain?
+            <li><b>Modular Design</b> How do we structure our code such that it is easy to read, update, test, and
+                maintain?
             </li>
-            <li><b>Developer Tools for Test Driven Development -</b> <a href="https://jestjs.io">Jest</a> is a delightful JavaScript Testing Framework with a focus on simplicity.</li>
+            <li><b>Developer Tools for Test Driven Development -</b> <a href="https://jestjs.io">Jest</a> is a
+                delightful JavaScript Testing Framework with a focus on simplicity.</li>
         </ol>
 
     </div>
@@ -96,6 +147,118 @@
         <p id="idNumberSizexx"></p>
     </div>
 
+    <!-- ---------- Calculator------------------ -->
+    <div style="background-color : lightblue" class="w3-content w3-container w3-padding-64 w3-center">
+        <h1>My Calculator</h1>
+
+
+
+        <h4> Display: <input type="text" name="Display" id="Display" oninput="sensor(event)" placeholder=0
+                style="text-align : right; width : 350px;" ;>
+            <span id="clear" input type="submit" 
+            onclick = ClearDisplay(Display)>Clear</span></h4>
+
+        <br>
+        <br>
+
+
+
+
+
+
+    </div>
+
+    <!-- ---------- Exercise - Canadian Taxes------------------ -->
+    <div id="canadianTaxes" ;>
+
+
+        <div class="w3-content w3-container w3-padding-64 w3-center" id="idTaxes" style=" background-color: gray;" ;>
+
+            class="w3-display-middle">
+            <span class="w3-xxlarge w3-text-white w3-wide">Canadian Tax Calculation </span>
+        </div>
+        <div class="w3-content w3-container w3-padding-64 info-box" id="about">
+            <h1 class="w3-center">Federal tax on taxable income manual calculation chart</h1>
+
+
+            <h3 class="w3-left"> If your taxable income is $47,630 or less.</h3>
+            <br>  <br> 
+            <div style="width:100%;
+                        outline: gray solid 2px;
+                        padding: 5px;
+                        margin: 2px;">
+                <table id="slab1">
+                    <tr>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Reference</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Enter your taxable income from line 260 of your return
+                        </td>
+                        <td> <input type="numeric" name="s1line1" id="s1line1"
+                         onfocusout = calcDisplays1line3() ></td>
+                        <td>Line 1</td>
+                    </tr>
+                    <tr>
+                        <td> Base amount
+
+                        </td>
+                        <td>
+                            <input type="numeric" name="s1line2" id="s1line2" value = 50 > </p>
+                        </td>
+                        <td>Line2 </td>
+                    </tr>
+
+                    <tr>
+                        <td> Line 1 minus line 2 (this amount cannot be negative)
+                        </td>
+                        <td><input type="numeric" name="s1line3" id="s1line3"></td>
+                        <td>Line 3 </td>
+                    </tr>
+                    <tr>
+                        <td> Federal tax rate × 15%
+                        </td>
+                        <td><input type="numeric" name="s1line4" id="s1line4" value=15% readonly></td>
+                        <td>Line 4</td>
+                    </tr>
+                    <tr>
+                        <td> Multiply the amount on line 3 by the tax rate on line 4
+                        </td>
+                        <td><input type="numeric" name="s1line5" id="s1line5"></td>
+                        <td>Line 5</td>
+                    </tr>
+                    <tr>
+                        <td>Tax on the amount from line 2
+                        </td>
+                        <td><input type="numeric" name="s1line6" id="s1line6"></td>
+                        <td>Line 6</td>
+                    </tr>
+                    <tr>
+                        <td> Add lines 5 and 6
+                        </td>
+                        <td><input type="numeric" name="s1line7" id="s1line7"></td>
+                        <td>Line 7</td>
+                    </tr>
+
+
+
+                </table>
+
+
+            </div>
+            <br>
+            <h3>If your taxable income is more than $47,630, but not more than $95,259. </h3></br>
+
+        </div>
+
+        <div>
+        </div>
+    </div>
+   
+  
+
     <!-- Footer -->
     <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
         <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
@@ -107,15 +270,22 @@
             <i class="fa fa-twitter w3-hover-opacity"></i>
             <i class="fa fa-linkedin w3-hover-opacity"></i>
         </div>
-        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
+                class="w3-hover-text-green">w3.css</a></p>
     </footer>
 
 
-    <script type="module" src="./scripts/main.js"></script>
+
+
+
+
+
+
+    <script type="module" src=".\scripts\main.js"></script>
 
     <script>
         // Change style of navbar on scroll
-        window.onscroll = function() {
+        window.onscroll = function () {
             myFunction()
         };
 
@@ -137,6 +307,132 @@
                 x.className = x.className.replace(" w3-show", "");
             }
         }
+
+
+
+    </script>
+    <!--  Script for CALCULATOR -->
+    <script>
+        // Initialize Set Calculator to zero
+        window.onload = function () {
+            ClearDisplay();
+            // console.log("loaded");
+        };
+
+        function ClearDisplay() {
+             document.getElementById("Display").value = "";
+           // console.log("Cleared from Click");
+        };
+        
+
+        function sensor(keystroke) {
+            let resetDisplay = "OFF";
+            let operands = ["/", "*", "-", "+"];
+
+            if (keystroke.data === "=") {
+                let str1 = document.getElementById("Display").value;
+                // strEval = str1;
+                let strEval = str1.slice(0, -1) // <-  Drops the "=" entered
+
+                document.getElementById("Display").value = strEval;
+                console.log("Inside if ", strEval);
+                //  let result = functions.expression(strEval);
+
+                // Optput  result to screen.
+                let result = expression(strEval);
+                document.getElementById("Display").value = result;
+                resetDisplay = "ON";
+
+            }
+            else {
+
+                if (resetDisplay === "OFF") {
+                    //     document.getElementById("Display").value = keystroke.data;
+                    //     resetDisplay = "OFF";
+
+                    console.log(resetDisplay, keystroke.data);
+                };
+            }
+
+
+        };
+
+        // Dithed this version
+        /*  function expression(exprn) {
+                 let operators = ["+", "-", "*", "/"];
+                 let strlen = exprn.length;
+     
+                 let exprnArr = [];
+     
+                 let count = 0;
+                 let toggle = "OFF";
+                 for (count in exprn) {
+     
+                     let char = exprn.charAt(count);
+                     var posOfOper =operators.indexOf(char);
+                     console.log(count, char, posOfOper);
+                     
+     
+                     
+                    
+                     switch (posOfOper) {
+                     
+                         case -1:
+                             if (toggle = "OFF"){
+                                 let startval = count;
+                             }   
+                             toggle = "ON";
+                             
+                             
+                             break;
+                     
+                         default:
+                             let endval = count-1;
+                             toggle = "OFF";
+                             num = exprn.substring(startval,endval)
+     
+                             break;
+                     }
+                 }
+     
+                 answer = eval(exprn);
+             console.log(answer);
+             console.log(typeof(answer));
+             return "ANSWER";//  eval(exprn);   // Answer
+ 
+ 
+         }; */
+
+        function expression(exprn) {
+
+            let answer = eval(exprn);
+            /* console.log(answer); */
+            //console.log("Inside exprn ", typeof (answer)); 
+
+
+            return answer;
+        }
+
+
+
+    </script>
+
+    <script>
+        // For Canadian Tax Calculation
+
+        function calcDisplays1line3(){
+            alert ("from calcDisplay")
+            
+           let vs1line3   = Number(document.getElementById("s1line1").value) - Number(document.getElementById("s1line2").value);
+
+           document.getElementById("s1line3").value = vs1line3;
+
+
+
+
+
+        }
+    
     </script>
 
 </body>
