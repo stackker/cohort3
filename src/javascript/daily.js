@@ -1,19 +1,19 @@
 
 const functions = {
-    
+
     size: () => {
         /* if (num < 0) return "Negative";
         if (num < 10) return "small";
         if (num < 20) return "medium"; */
 
 
-        return  ("Hello World");
+        return ("Hello World");
     },
 
-    makeEmailArr : (name) => {
-        if(name instanceof Array===true) {
-            let nameString =  name.map(changeCase);
-            let emailName =nameString.join(".");
+    makeEmailArr: (name) => {
+        if (name instanceof Array === true) {
+            let nameString = name.map(changeCase);
+            let emailName = nameString.join(".");
 
             let emailAdd = `${emailName}@evolveu.ca`;
             return emailAdd;
@@ -23,13 +23,25 @@ const functions = {
         }
 
 
+    },
+
+    makeEmailObj: (name) => {
+        let emailName = name.fname.toLowerCase() + "." + name.lname.toLowerCase();
+
+        let emailAddress = `${emailName}@evolveu.ca`;
+        return emailAddress;
+
     }
 
 
-    
+
+
 };
 function changeCase(text) {
     return text.toLowerCase();
-}
+};
+
+
+
 
 export default functions;
