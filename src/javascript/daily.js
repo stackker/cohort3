@@ -1,6 +1,111 @@
 
 const functions = {
 
+    // More Array Work - October 16-17
+
+    // https://3.basecamp.com/3951314/buckets/13806778/google_documents/2111087396
+
+    //slice()
+
+    doSlice: (origArray, begin, end) => {
+
+        let newArray = origArray.slice(begin, end);
+        return newArray;
+
+    },
+
+    //splice()
+    //CAUTION: Do not return the result of the splice func. it is a []. Splice actually modifies the orignial array U splice
+    doSplice: (origArray, begindx, numDelElem, newitem1) => {
+        origArray.splice(begindx, numDelElem, newitem1);
+        //console.log(origArray);
+        return origArray;
+
+
+    },
+
+    doForEachmult12: (origArray) => {
+
+        // Caution: for each in (obj) This has been depreciated
+
+        //The forEach() method calls a function once for each element in an array, in order.
+        let retvalue ;
+        let currentValue;
+        // let index ;
+        // let  arr ;
+        // let thisValue ;
+        //retvalue = origArray.forEach(mult12);
+        // console.log(currentValue);
+        origArray.forEach(mult12); //retvalue;
+
+            return retvalue
+        function mult12(retvalue) {
+            return currentValue * 12;
+        }
+
+
+    },
+
+    //map function
+    /* 
+        The keys of an Object are String and Symbol, whereas they can be any value for a Map, including functions, objects, and any primitive.
+    The keys in Map are ordered while keys added to object are not. Thus, when iterating over it, a Map object returns keys in order of insertion. */
+
+    /* The map() method creates a new array with the results of calling a function for every array element.
+    
+    The map() method calls the provided function once for each element in an array, in order.
+    
+    Note: map() does not execute the function for array elements without values.
+    
+    Note: this method does not change the original array.
+     */
+
+
+    domap: (origArray) => {
+        let curVal;
+        let retVal = origArray.map(sqr);
+        return retVal;
+
+        function sqr(indx) { return indx * indx }
+
+
+
+    },
+
+    doreduce: (origArray) => {
+        let accumulator = 0;
+        let initVal = 1;
+        let curVal, curIndx, arr, acc;
+        accumulator = origArray.reduce((acc, curVal) => { return acc * curVal; });
+
+        return accumulator;
+
+        // function mult(acc, curVal) {return  acc * curVal; }
+    },
+
+    doFilter: (origArray) => {
+        //The filter() method creates an array filled with all array elements that pass a test (provided as a function)
+        let newArray = origArray.filter(pass);
+        return newArray;
+
+        function pass(marks) {
+            return marks >= 50;
+        }
+    },
+
+    doSort: (origArray) => {
+        let newArray = origArray.sort();
+        return newArray;
+    },
+
+
+
+
+
+
+
+
+
 
     // Prepare for Array Work - October 15, 2019
 
@@ -33,7 +138,7 @@ const functions = {
     forin: (bio) => {
 
         var stringobj = "";
-        
+
         for (var char in bio) {
             stringobj += bio[char];
         }
@@ -42,10 +147,10 @@ const functions = {
     },
 
     forof: (arr) => {
-        let arr1 =[];
-        let output =[];
-        for (const entry of arr ) {
-           // console.log("entry: ",entry)
+        let arr1 = [];
+        let output = [];
+        for (const entry of arr) {
+            // console.log("entry: ",entry)
             arr1[0] = entry;
             output.push([arr1[0]]);
         }
