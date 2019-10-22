@@ -1,6 +1,35 @@
 
 const functions = {
 
+
+    // loopStaff - October 21, 2019
+    loopStaff: (objName) => {
+        // console.log("loopStaff : ",objName);
+
+        //let  zmailAddress = objName.forEach((arrEntry) =>{console.log("array: ",arrEntry)} );
+        let staffEmail = [];
+        let dummyvar;
+        dummyvar = objName.forEach((arrEntry, indx) => {
+            staffEmail[indx] = functions.makeEmailObj(arrEntry);
+            console.log(staffEmail[indx]);
+            return staffEmail[indx];
+        });
+
+
+        return staffEmail;
+
+
+
+    },
+
+
+
+
+
+
+
+
+
     // More Array Work - October 16-17
 
     // https://3.basecamp.com/3951314/buckets/13806778/google_documents/2111087396
@@ -29,7 +58,7 @@ const functions = {
         // Caution: for each in (obj) This has been depreciated
 
         //The forEach() method calls a function once for each element in an array, in order.
-        let retvalue ;
+        let retvalue;
         let currentValue;
         // let index ;
         // let  arr ;
@@ -38,7 +67,7 @@ const functions = {
         // console.log(currentValue);
         origArray.forEach(mult12); //retvalue;
 
-            return retvalue
+        return retvalue;
         function mult12(retvalue) {
             return currentValue * 12;
         }
@@ -188,20 +217,24 @@ const functions = {
     },
 
     makeEmailObj: (name) => {
+        // console.log(name);
         let emailName = name.fname.toLowerCase() + "." + name.lname.toLowerCase();
 
         let emailAddress = `${emailName}@evolveu.ca`;
+        //console.log(emailAddress);
         return emailAddress;
 
-    }
+    },
 
 
 
 
 };
+
 function changeCase(text) {
     return text.toLowerCase();
 };
+
 
 
 
