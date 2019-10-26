@@ -1,21 +1,56 @@
 
 const functions = {
 
+    // loopStaff each / map - October 25, 2019
+    loopStaffForEach: (objName) => {
+
+        let staffEmail = [];
+    
+        objName.forEach((arrEntry, indx) => {
+            staffEmail.push(functions.makeEmailObj(arrEntry));
+            //console.log(staffEmail[indx]);
+            // return staffEmail[indx];
+        });
+        return staffEmail;
+    },
+
+    loopStaffMap: (objName) => {
+
+        let staffEmail = [];
+    
+        objName.forEach((arrEntry, indx) => {
+            staffEmail.push(functions.makeEmailObj(arrEntry));
+            //console.log(staffEmail[indx]);
+            // return staffEmail[indx];
+        });
+        return staffEmail;
+    },
+
+
+
+    // loopStaff: in / of - October 24, 2019
+
+    loopStaffIn: (objname) => {
+        let staffEmail = [];
+        for (let x in objname) {
+            staffEmail[x] = functions.makeEmailObj(objname[x]);
+        }
+        return staffEmail;
+
+    },
+
+
 
     // loopStaff - October 21, 2019
     loopStaff: (objName) => {
-        // console.log("loopStaff : ",objName);
 
-        //let  zmailAddress = objName.forEach((arrEntry) =>{console.log("array: ",arrEntry)} );
         let staffEmail = [];
         let dummyvar;
         dummyvar = objName.forEach((arrEntry, indx) => {
             staffEmail[indx] = functions.makeEmailObj(arrEntry);
-            console.log(staffEmail[indx]);
-            return staffEmail[indx];
+            //console.log(staffEmail[indx]);
+            // return staffEmail[indx];
         });
-
-
         return staffEmail;
 
 
