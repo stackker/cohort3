@@ -16,7 +16,27 @@ test('test helloWorld', () => {
     console.log("test helloWorld")
 });
 
-test('sumd', () => {
-
-    console.log("test sum")
-});
+test("Does that add function work?", () => {
+    expect(functions.sum(1, 2)).toBe(3);
+    expect(functions.sum(101, 202)).toBe(303);
+  });
+  
+  test("Does that subtract  function work?", () => {
+    expect(functions.sub(1, 2)).toBe(-1);
+    expect(functions.sub(201, 20)).toBe(181);
+  });
+  
+  test("Does that multiply  function work?", () => {
+    expect(functions.mult(1, 2)).toBe(2);
+    expect(functions.mult(201, 20)).toBe(4020);
+  
+  });
+  
+  test("Does that divide  function work?", () => {
+    expect(functions.div(1, 2)).toBe(0.5);
+    expect(functions.div(201, 0)).toBe("ERROR");
+    expect(functions.div(0, 45)). toBe(0);
+    
+  });
+  
+ 
