@@ -36,14 +36,14 @@ const functions = {
         return outString;
     },
 
-    expression: (strExpn)=> {
+    expression: (exprn)=> {
 
-        return "Answer";
+            let answer = eval(exprn);
+            /* console.log(answer); */
+            //console.log("Inside exprn ", typeof (answer)); 
 
-    
-    
 
-
+            return answer;
 
     }
 

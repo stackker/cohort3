@@ -117,7 +117,7 @@
                     target="_blank">Wikipedia</a> git is a distributed version-control system for tracking changes in
                 source code during software development. It is designed
                 for coordinating work among programmers, and it can also be used to track changes in any set of files.
-                Its goals include speed, data integrity, and support for distributed, non-linear workflows.
+                Its goals include speed, data integrity, and support for distributed, -linear workflows.
                 <p>There is a tool <a href="https://git-scm.com/" target="_blank">git</a> and a development platform
                     called <a href="https://github.com" target="_blank">GitHub</a>. We will be using these extensively
                     throughout the program.</p>
@@ -155,8 +155,7 @@
 
         <h4> Display: <input type="text" name="Display" id="Display" oninput="sensor(event)" placeholder=0
                 style="text-align : right; width : 350px;" ;>
-            <span id="clear" input type="submit" 
-            onclick = ClearDisplay(Display)>Clear</span></h4>
+            <span id="clear" input type="submit" onclick=ClearDisplay(Display.value)>Clear</span></h4>
 
         <br>
         <br>
@@ -181,8 +180,8 @@
             <h1 class="w3-center">Federal tax on taxable income manual calculation chart</h1>
 
 
-            <h3 class="w3-left"> If your taxable income is $47,630 or less.</h3>
-            <br>  <br> 
+
+            <br> <br>
             <div style="width:100%;
                         outline: gray solid 2px;
                         padding: 5px;
@@ -190,74 +189,109 @@
                 <table id="slab1">
                     <tr>
                         <th>Description</th>
-                        <th>Amount</th>
+                        <th>Federal Tax Rate</th>
+                        <th>Calc Amt.</th>
+                        <th>Tax Amount</th>
                         <th>Reference</th>
                     </tr>
                     <tr>
                         <td>
                             Enter your taxable income from line 260 of your return
                         </td>
-                        <td> <input type="numeric" name="s1line1" id="s1line1"
-                         onfocusout = calcDisplays1line3() ></td>
+                        <td></td>
+                        <td> <input type="numeric" name="s1line1" id="s1line1" onfocusout=calcDisplays1line()>
+                        </td>
+                        <td></td>
                         <td>Line 1</td>
                     </tr>
                     <tr>
-                        <td> Base amount
+                        <td> Base amount: $47,630 or less
+                        </td>
+                        <td id=s1rate1>15%</td>
+                        <td>
+                            <input type="numeric" name="s1line2" id="camounts1line2" value=0>
+                        </td>
+
+                        <td> <input type="numeric" name="s1line2" id="Tamounts1line2" value=0> </td>
+                        <td>Line2 </td>
+                    </tr>
+                    <tr>
+                        <td> Base amount: Over 47,630 up to $95,259
+                        </td>
+
+                        <td id=s2rate1>20.5%</td>
+                        <td>
+                            <input type="numeric" name="s1line2" id="camounts2line2" value=0>
+                        </td>
+
+                        <td> <input type="numeric" name="s1line2" id="Tamounts2line2" value=0> </td>
+                        <td>Line2 </td>
+                    </tr>
+                    <tr>
+                        <td> Base amount: Over $95,259 to $147,667
 
                         </td>
+                        <td id=s3rate1>26%</td>
                         <td>
-                            <input type="numeric" name="s1line2" id="s1line2" value = 50 > </p>
+                            <input type="numeric" name="s1line2" id="camounts3line2" value=0>
                         </td>
+
+                        <td><input type="numeric" name="s1line2" id="Tamounts3line2" value=0> </td>
                         <td>Line2 </td>
                     </tr>
 
                     <tr>
-                        <td> Line 1 minus line 2 (this amount cannot be negative)
+                        <td> Base amount: Over 147,667 to $210,371
                         </td>
-                        <td><input type="numeric" name="s1line3" id="s1line3"></td>
-                        <td>Line 3 </td>
+                        <td id=s3rate1>29%</td>
+                        <td>
+                            <input type="numeric" name="s1line2" id="camounts4line2" value=0>
+                        </td>
+
+                        <td><input type="numeric" name="s1line2" id="Tamounts4line2" value=0> </td>
+                        <td>Line2 </td>
                     </tr>
+
                     <tr>
-                        <td> Federal tax rate × 15%
+                        <td> Base amount: Over $210,371
                         </td>
-                        <td><input type="numeric" name="s1line4" id="s1line4" value=15% readonly></td>
-                        <td>Line 4</td>
+                        <td id=s3rate1>33%</td>
+                        <td>
+                            <input type="numeric" name="s1line2" id="camounts5line2" value=0>
+                        </td>
+
+                        <td>
+                            <input type="numeric" name="s1line2" id="Tamounts5line2" value=0>
+                        </td>
+                        <td>Line2 </td>
                     </tr>
+
+
+
                     <tr>
-                        <td> Multiply the amount on line 3 by the tax rate on line 4
+                        <td>Total Tax on the amount from line 2
                         </td>
-                        <td><input type="numeric" name="s1line5" id="s1line5"></td>
-                        <td>Line 5</td>
-                    </tr>
-                    <tr>
-                        <td>Tax on the amount from line 2
-                        </td>
-                        <td><input type="numeric" name="s1line6" id="s1line6"></td>
+
+                        <td></td>
+                        <td></td>
+                        <td><input type="numeric" name="s1line6" id="totTaxAmt"></td>
                         <td>Line 6</td>
                     </tr>
-                    <tr>
-                        <td> Add lines 5 and 6
-                        </td>
-                        <td><input type="numeric" name="s1line7" id="s1line7"></td>
-                        <td>Line 7</td>
-                    </tr>
-
-
 
                 </table>
 
 
             </div>
             <br>
-            <h3>If your taxable income is more than $47,630, but not more than $95,259. </h3></br>
+
 
         </div>
 
         <div>
         </div>
     </div>
-   
-  
+
+
 
     <!-- Footer -->
     <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
@@ -315,15 +349,16 @@
     <script>
         // Initialize Set Calculator to zero
         window.onload = function () {
-            ClearDisplay();
+            document.getElementById("Display").value = "";
             // console.log("loaded");
         };
 
         function ClearDisplay() {
-             document.getElementById("Display").value = "";
-           // console.log("Cleared from Click");
+            document.getElementById("Display").value = "";
+
+            // console.log("Cleared from Click");
         };
-        
+
 
         function sensor(keystroke) {
             let resetDisplay = "OFF";
@@ -420,19 +455,120 @@
     <script>
         // For Canadian Tax Calculation
 
-        function calcDisplays1line3(){
-            alert ("from calcDisplay")
-            
-           let vs1line3   = Number(document.getElementById("s1line1").value) - Number(document.getElementById("s1line2").value);
+        function calcDisplays1line() {
+            alert("from calcDisplay");
+            var arrSlab = [0, 47630, 95259, 147667, 210371]
+            var ratepcent = [15, 20.5, 26, 29, 33];
 
-           document.getElementById("s1line3").value = vs1line3;
+            // Anount Slab fields
+            let arrId = ["camounts1line2", "camounts2line2", "camounts3line2", "camounts4line2", "camounts5line2"]
+
+            // Tax Amt Slab fields
+            let taxid = ["Tamounts1line2", "Tamounts2line2", , "Tamounts4line2", "Tamounts5line2"];
+
+            // Total Tax due field
+
+
+            var income260 = Number(document.getElementById("s1line1").value)
+
+            totTaxAmt.value = calcFederalTax(income260, arrSlab, arrId, taxid, ratepcent);
+
+
+
+        };
+
+        function calcFederalTax(income, ArrSlab, arrId, taxid, ratepcent) {
+            let cAmtSlab = [];
+            let islastSlab = false;
+            let tAmtSlab = [];
+
+            noOfSlabs = ArrSlab.length;
+
+            let remIncome = income;
+
+            for (i = 0; i < noOfSlabs; i++) {
+                remIncome = income - ArrSlab[i];
+                if (i === (noOfSlabs - 1)) {
+                    islastSlab = true;
+                };
+                console.log("loop:", i, remIncome, ArrSlab[i], income, islastSlab);
+
+                cAmtSlab[i] = calcSlab(remIncome, ArrSlab[i], ArrSlab[i + 1], islastSlab);
+
+                console.log("cAmtSlab :", cAmtSlab[i], ArrSlab[i], ArrSlab[i + 1]);
+
+
+                // add calcTax fn here
+                tAmtSlab[i] = (cAmtSlab[i] * ratepcent[i] / 100);
+
+
+                //"camounts1line2" - calculated income slabs in display
+                cAmountsxline2 = `camounts${(i + 1)}line2`;
+                console.log("cAmountsxline2: ", cAmountsxline2);
+                document.getElementById(cAmountsxline2).value = cAmtSlab[i].toFixed(2);
+
+                // "Tamounts1line2" -  calculated Tax Amounts for slabs in display
+                tAmtsxline2 = `Tamounts${(i + 1)}line2`;
+                console.log(" tAmtsxline2 = ", tAmtsxline2);
+                document.getElementById(tAmtsxline2).value = tAmtSlab[i].toFixed(2);
+
+
+            }
+            return idtotTaxAmt = tAmtSlab.reduce((totTaxAmt, taxAmt) => {
+                return (Number(totTaxAmt) + Number(taxAmt)).toFixed(2);
+            });
+        };
 
 
 
 
+        function calcSlab(slabincome, slab, nextslab, last) {
+            let calcDiff = 0;
+            let cAmtSlab = 0;
 
-        }
-    
+            let thisSlabAmt = nextslab - slab;
+            // Takes vales from Arrrays and processes them idividually)
+            console.log("calcSlab begin", slabincome, slab, nextslab, last, thisSlabAmt)
+            if (last === true) {
+                console.log("in if ", slabincome, slab, nextslab, last, thisSlabAmt);
+                if (slabincome <= 0) {
+                    cAmtSlab = 0;
+                    return cAmtSlab;
+                } else {
+                    cAmtSlab = slabincome;
+                    return cAmtSlab;
+                }
+
+
+
+            }
+
+
+            else {
+                console.log("Else", slabincome, slab, nextslab, last, thisSlabAmt)
+                calcDiff = slabincome;
+
+                if ((0 < slabincome) && (slabincome < thisSlabAmt)) {
+                    console.log("SlI", slabincome, slab, nextslab, last, thisSlabAmt);
+                    cAmtSlab = slabincome;
+                    return cAmtSlab;
+                }
+
+                else if (slabincome >= thisSlabAmt) {
+                    cAmtSlab = nextslab - slab;
+                    console.log("i>=sl", slabincome, slab, nextslab, thisSlabAmt, cAmtSlab);
+                    return cAmtSlab;
+                }
+
+                else {
+                    cAmtSlab = 0;
+                    return cAmtSlab;
+                }
+
+            }
+            // return cAmtSlab;
+
+        };
     </script>
 
 </body>
