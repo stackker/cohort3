@@ -196,7 +196,7 @@
                     </tr>
                     <tr>
                         <td>
-                            Enter your taxable income from line 260 of your return
+                            Enter your taxable income from line 260 of your return. <span><strong>Click Elsewere to calculate</span></strong>
                         </td>
                         <td></td>
                         <td> <input type="numeric" name="s1line1" id="s1line1" onfocusout=calcDisplays1line()>
@@ -209,10 +209,10 @@
                         </td>
                         <td id=s1rate1>15%</td>
                         <td>
-                            <input type="numeric" name="s1line2" id="camounts1line2" value=0>
+                            <input type="numeric" name="s1line2" id="camounts1line2" value=0 readonly>
                         </td>
 
-                        <td> <input type="numeric" name="s1line2" id="Tamounts1line2" value=0> </td>
+                        <td> <input type="numeric" name="s1line2" id="Tamounts1line2" value=0 readonly> </td>
                         <td>Line2 </td>
                     </tr>
                     <tr>
@@ -221,10 +221,10 @@
 
                         <td id=s2rate1>20.5%</td>
                         <td>
-                            <input type="numeric" name="s1line2" id="camounts2line2" value=0>
+                            <input type="numeric" name="s1line2" id="camounts2line2" value=0 readonly>
                         </td>
 
-                        <td> <input type="numeric" name="s1line2" id="Tamounts2line2" value=0> </td>
+                        <td> <input type="numeric" name="s1line2" id="Tamounts2line2" value=0 readonly>  </td>
                         <td>Line2 </td>
                     </tr>
                     <tr>
@@ -233,10 +233,10 @@
                         </td>
                         <td id=s3rate1>26%</td>
                         <td>
-                            <input type="numeric" name="s1line2" id="camounts3line2" value=0>
+                            <input type="numeric" name="s1line2" id="camounts3line2" value=0 readonly>
                         </td>
 
-                        <td><input type="numeric" name="s1line2" id="Tamounts3line2" value=0> </td>
+                        <td><input type="numeric" name="s1line2" id="Tamounts3line2" value=0 readonly> </td>
                         <td>Line2 </td>
                     </tr>
 
@@ -245,10 +245,10 @@
                         </td>
                         <td id=s3rate1>29%</td>
                         <td>
-                            <input type="numeric" name="s1line2" id="camounts4line2" value=0>
+                            <input type="numeric" name="s1line2" id="camounts4line2" value=0 readonly>
                         </td>
 
-                        <td><input type="numeric" name="s1line2" id="Tamounts4line2" value=0> </td>
+                        <td><input type="numeric" name="s1line2" id="Tamounts4line2" value=0 readonly> </td>
                         <td>Line2 </td>
                     </tr>
 
@@ -257,11 +257,11 @@
                         </td>
                         <td id=s3rate1>33%</td>
                         <td>
-                            <input type="numeric" name="s1line2" id="camounts5line2" value=0>
+                            <input type="numeric" name="s1line2" id="camounts5line2" value=0 readonly>
                         </td>
 
                         <td>
-                            <input type="numeric" name="s1line2" id="Tamounts5line2" value=0>
+                            <input type="numeric" name="s1line2" id="Tamounts5line2" value=0 readonly>
                         </td>
                         <td>Line2 </td>
                     </tr>
@@ -274,7 +274,7 @@
 
                         <td></td>
                         <td></td>
-                        <td><input type="numeric" name="s1line6" id="totTaxAmt"></td>
+                        <td><input type="numeric" name="s1line6" id="totTaxAmt" readonly></td>
                         <td>Line 6</td>
                     </tr>
 
@@ -392,51 +392,7 @@
 
         };
 
-        // Dithed this version
-        /*  function expression(exprn) {
-                 let operators = ["+", "-", "*", "/"];
-                 let strlen = exprn.length;
-     
-                 let exprnArr = [];
-     
-                 let count = 0;
-                 let toggle = "OFF";
-                 for (count in exprn) {
-     
-                     let char = exprn.charAt(count);
-                     var posOfOper =operators.indexOf(char);
-                     console.log(count, char, posOfOper);
-                     
-     
-                     
-                    
-                     switch (posOfOper) {
-                     
-                         case -1:
-                             if (toggle = "OFF"){
-                                 let startval = count;
-                             }   
-                             toggle = "ON";
-                             
-                             
-                             break;
-                     
-                         default:
-                             let endval = count-1;
-                             toggle = "OFF";
-                             num = exprn.substring(startval,endval)
-     
-                             break;
-                     }
-                 }
-     
-                 answer = eval(exprn);
-             console.log(answer);
-             console.log(typeof(answer));
-             return "ANSWER";//  eval(exprn);   // Answer
- 
- 
-         }; */
+       
 
         function expression(exprn) {
 
@@ -456,7 +412,7 @@
         // For Canadian Tax Calculation
 
         function calcDisplays1line() {
-            alert("from calcDisplay");
+           // alert("from calcDisplay");
             var arrSlab = [0, 47630, 95259, 147667, 210371]
             var ratepcent = [15, 20.5, 26, 29, 33];
 
@@ -528,9 +484,9 @@
 
             let thisSlabAmt = nextslab - slab;
             // Takes vales from Arrrays and processes them idividually)
-            console.log("calcSlab begin", slabincome, slab, nextslab, last, thisSlabAmt)
+            // console.log("calcSlab begin", slabincome, slab, nextslab, last, thisSlabAmt)
             if (last === true) {
-                console.log("in if ", slabincome, slab, nextslab, last, thisSlabAmt);
+                // console.log("in if ", slabincome, slab, nextslab, last, thisSlabAmt);
                 if (slabincome <= 0) {
                     cAmtSlab = 0;
                     return cAmtSlab;
@@ -545,18 +501,18 @@
 
 
             else {
-                console.log("Else", slabincome, slab, nextslab, last, thisSlabAmt)
+                // console.log("Else", slabincome, slab, nextslab, last, thisSlabAmt)
                 calcDiff = slabincome;
 
                 if ((0 < slabincome) && (slabincome < thisSlabAmt)) {
-                    console.log("SlI", slabincome, slab, nextslab, last, thisSlabAmt);
+                    // console.log("SlI", slabincome, slab, nextslab, last, thisSlabAmt);
                     cAmtSlab = slabincome;
                     return cAmtSlab;
                 }
 
                 else if (slabincome >= thisSlabAmt) {
                     cAmtSlab = nextslab - slab;
-                    console.log("i>=sl", slabincome, slab, nextslab, thisSlabAmt, cAmtSlab);
+                    // console.log("i>=sl", slabincome, slab, nextslab, thisSlabAmt, cAmtSlab);
                     return cAmtSlab;
                 }
 
