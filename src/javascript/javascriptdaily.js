@@ -26,9 +26,9 @@ const functions = {
                 let param2 = `p2-->${p2}`;
                 const myComment = "*** the two values are not the same:";
         
-                console.log(myComment);
-                console.log(param1);
-                console.log(param2);
+                // console.log(myComment);
+                // console.log(param1);
+                // console.log(param2);
 
                 return false;
                 break;
