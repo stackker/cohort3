@@ -19,7 +19,21 @@ const data = {
     city: "Calgary",
     prov: "Alberta"
 }
-let staffEmail = functions.loopStaffIn(data.staff);
+const staffEmail = functions.loopStaffIn(data.staff);
+// ___________________________________________________________________________
+
+// More Array Exercises - October 29, 2019
+test("sumBalance Test", () => {
+    expect(functions.sumBalance(data.staff)).toEqual(3823)
+})
+
+test("avgBalance Test", () => {
+    expect(functions.avgBalance(data.staff)).toEqual("546.143")
+})
+
+
+
+
 
 // loopStaff each / map - October 25, 2019
 
@@ -32,9 +46,9 @@ test("email builder using forEach", () => {
         .toEqual("olivia.notly@evolveu.ca");
     expect(staffEmail2[6])
         .toEqual("benjamin.amis@evolveu.ca");
-    
+
 });
-let staffEmail3 = functions.loopStaffMap(data.staff)
+const staffEmail3 = functions.loopStaffMap(data.staff)
 test("email builder using map", () => {
     expect(staffEmail3[0])
         .toEqual("jane.smith@evolveu.ca");
@@ -42,17 +56,17 @@ test("email builder using map", () => {
         .toEqual("olivia.notly@evolveu.ca");
     expect(staffEmail3[6])
         .toEqual("benjamin.amis@evolveu.ca");
-    
+
 });
 
 
 
 // loopStaff: in / of - October 24, 2019
 
- 
+
 // // Write your tests here
 
- 
+
 
 
 test('email builder using forLoopin', () => {
@@ -90,7 +104,7 @@ test('email builder for company', () => {
     expect(staffEmail[6])
         .toEqual("benjamin.amis@evolveu.ca");
 });
- 
+
 
 
 

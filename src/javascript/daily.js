@@ -1,11 +1,51 @@
 
 const functions = {
 
+
+
+    // More Array Exercises - October 29, 2019
+
+    sumBalance: (objList) => {
+        let arrBal =[];
+        let sum =0;
+
+
+         for (let line of objList){
+
+           let count = arrBal.push(line.balance);
+           // console.log(line.balance, arrBal, count);
+
+         };
+         sum =  arrBal.reduce(function (total,balVal,indx)  {
+             return  total + balVal;
+
+         });
+        //  console.log(sum, arrBal);
+         return  sum;
+     },
+
+     avgBalance: (objList) =>{
+         let sum = functions.sumBalance(objList);
+         let count =Number(objList.length);
+         console.log(sum, count);
+         return (sum / count).toFixed(3);
+         
+     },
+    
+
+
+
+
+
+
+
+
+
     // loopStaff each / map - October 25, 2019
     loopStaffForEach: (objName) => {
 
         let staffEmail = [];
-    
+
         objName.forEach((arrEntry, indx) => {
             staffEmail.push(functions.makeEmailObj(arrEntry));
             //console.log(staffEmail[indx]);
@@ -253,11 +293,11 @@ const functions = {
     },
 
     makeEmailObj: (name) => {
-        //  console.log(name);
+        // console.log(name);
         let emailName = name.fname.toLowerCase() + "." + name.lname.toLowerCase();
 
         let emailAddress = `${emailName}@evolveu.ca`;
-        // console.log(emailAddress);
+        //console.log(emailAddress);
         return emailAddress;
 
     },
