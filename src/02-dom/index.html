@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+
+</head>
+
+<body>
+    <div id="main-div">
+        <h1>Basic DOM</h1>
+        <p>This is a list of stuff</p>
+        <ol id="list-cont">
+            <li class="list">Item 1</li>
+            <li class="list">Item 2</li>
+            <li class="list">Item 3</li>
+
+        </ol>
+        <input id="inpt" type="text" placeholder="Add an item to list">
+        <button type="button" id="add"> Add </button>
+        <button type="button" id="delete">Delete</button>
+        <button type="button" id="show">Show</button>
+
+        <div id="showDiv">
+
+        </div>
+    </div>
+// Working with Cards
+    <section id="cards">
+        <h2> Working with Cards </h2>
+        <div id="idLeftPanel" class="leftPanel">Left Panel
+                <button class = "addCard", id = "idAddCard">Add Card</button>
+            <div class ="card", count = 0, id ="card0">Card 0
+            <br>
+
+            <button class = "addBef", id = "idAddBef">Add Before</button>
+            <button class = "addAft", id = "idAddAft">Add After</button>
+           
+            <button class = "del", id = "idDelCard">Delete Card</button>
+        </div> 
+
+
+        </div>
+
+
+        </div>
+        <div id="idRightPanel" class="rightPanel"> Right Panel</div>
+    </section>
+
+
+    <script type="module" src="./scripts/main.js"></script>
+</body>
+
+</html>
