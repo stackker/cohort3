@@ -60,18 +60,18 @@ idLeftPanel.addEventListener("click", (event) => {
             //console.log("addBef Case :", event.target.parentElement.);
 
             let parentposition = elClicked.parentElement;
-            // position = "beforebegin";  property of the method           
             const newCard  =  functions.positionCard(parentposition,"afterend");
             break;
+        
         }
 
         case "del": {
-            //console.log("inDel :", event.target.parentElement);
+            console.log("inDel :", event.target.parentElement);
             let parentposition = elClicked.parentElement;
-            //const newCard  =  functions.positionCard(parentposition,"afterend")
-            const newCard = functions.delCard;
+            const newCard = functions.delCard(parentposition);
             break;
         }
+            
 
         default: {
             console.log("Not Programmed for :", event.target);
