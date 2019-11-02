@@ -70,10 +70,25 @@ const functions = {
     },
     delCard:(parentCard)=>{
         parentCard.remove();
-        return;
-
+        return functions.resultArray(idLeftPanel, "div", "count");
+    },
+    resultArray:(parent, elLabel,searchAttib) => {
+         // Returns an Array of Resulting nodes for testing after manipulation
+         let contentArr = [];
+         
+         for (let itemColln of parent.getElementsByTagName(elLabel)) {
+             contentArr.push(itemColln.getAttribute(searchAttib));
+         };
+        
+          console.log("contentArray",contentArr);
+          return contentArr;
 
     }
+
+       
+
+
+
 
 };
 

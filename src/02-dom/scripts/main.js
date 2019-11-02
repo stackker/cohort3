@@ -69,9 +69,9 @@ idLeftPanel.addEventListener("click", (event) => {
             console.log("inDel :", event.target.parentElement);
             let parentposition = elClicked.parentElement;
             const newCard = functions.delCard(parentposition);
-            break;
+            //console.log("in del newCard",newCard);
+          break;
         }
-            
 
         default: {
             console.log("Not Programmed for :", event.target);
