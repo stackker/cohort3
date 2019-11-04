@@ -10,7 +10,7 @@ const showCont = showDiv;
 addBtn.addEventListener("click", () => {
     if (inpt.value.length > 1) {
 
-        functions.addListItem(inpt.value);
+        functions.addListItem(inpt.value, ordList);
         inpt.value = "";
 
     }

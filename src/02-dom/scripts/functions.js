@@ -2,11 +2,12 @@ const functions = {
 
 
 
-    addListItem: (inputVal) => {
-        const ordList = document.querySelector("#list-cont");
+    addListItem: (inputVal,parentDiv) => {
+        const ordList = parentDiv;
         const li = document.createElement("li");
         const text = document.createTextNode(inputVal);
         li.appendChild(text);
+        //console.log("from addListItems: ", ordList.id,inputVal )
         ordList.appendChild(li);
     },
 

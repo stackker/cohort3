@@ -1,41 +1,46 @@
 import functions from './functions.js';
 
+test("test setup", () => {
+    console.log("Hello from functions.test.js");
+}),
 
 
+    test('check Add ', () => {
 
-test('check Add ', () => {
- 
+        const ol = document.createElement("ol");
+        ol.id = "list-cont";
+        let listCount = ol.childElementCount;
+
+        functions.addListItem("star", ol);
+        // console.log(listCount,  ol.childElementCount);
+        functions.addListItem("cat", ol);
+        // console.log(listCount,  ol.childElementCount);
+
+        expect(ol.childElementCount).toEqual(listCount + 2);
+
+
+    });
+
+
+test.only('check Show ', () => {
+   
     const ol = document.createElement("ol");
-    document.body.appendChild(ol);
     ol.id = "list-cont";
     let listCount = ol.childElementCount;
-
-
-    functions.addListItem("star");
+   
+    functions.addListItem("star", ol);
     // console.log(listCount,  ol.childElementCount);
-    functions.addListItem("cat");
-   // console.log(listCount,  ol.childElementCount);
-
+    functions.addListItem("cat", ol);
+    // console.log(listCount,  ol.childElementCount);
+    
     expect(ol.childElementCount).toEqual(listCount + 2);
+    console.log(listCount,  ol.textContent);
+    expect(ol.textContent).toEqual("starcat")
+    
+    });
 
 
-});
 
 
-test('check Show ', () => {
- 
-//     const ol = document.createElement("ol");
-//     document.body.appendChild(ol);
-//     ol.id = "list-cont";
-//     let listCount = ol.childElementCount;
 
 
-//     functions.addListItem("star");
-//     // console.log(listCount,  ol.childElementCount);
-//     functions.addListItem("cat");
-//    // console.log(listCount,  ol.childElementCount);
-
-//     expect(ol.childElementCount).toEqual(listCount + 2);
-
-
-});
