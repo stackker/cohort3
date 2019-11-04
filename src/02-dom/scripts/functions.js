@@ -61,11 +61,11 @@ const functions = {
         parentDiv.appendChild(cardInGrp);
 
 
-        return;
+        return functions.resultArray(idLeftPanel, "div", "count");
     },
     positionCard: (parentCard,position) => {
         parentCard.insertAdjacentElement(position ,  functions.createCard());
-       return;
+        return functions.resultArray(idLeftPanel, "div", "count");
 
     },
     delCard:(parentCard)=>{
