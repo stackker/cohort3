@@ -22,7 +22,7 @@ test("test setup", () => {
     });
 
 
-test.only('check Show ', () => {
+test('check Show ', () => {
    
     const ol = document.createElement("ol");
     ol.id = "list-cont";
@@ -32,9 +32,10 @@ test.only('check Show ', () => {
     // console.log(listCount,  ol.childElementCount);
     functions.addListItem("cat", ol);
     // console.log(listCount,  ol.childElementCount);
-    
+
     expect(ol.childElementCount).toEqual(listCount + 2);
     console.log(listCount,  ol.textContent);
+    functions. showItems(ol, ol)
     expect(ol.textContent).toEqual("starcat")
     
     });
