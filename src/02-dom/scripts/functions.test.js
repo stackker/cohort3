@@ -35,10 +35,31 @@ test('check Show ', () => {
 
     expect(ol.childElementCount).toEqual(listCount + 2);
     console.log(listCount,  ol.textContent);
-    functions. showItems(ol, ol)
+    functions. showItems(ol, ol);
     expect(ol.textContent).toEqual("starcat")
     
     });
+
+
+    test('check Delete ', () => {
+   
+        const ol = document.createElement("ol");
+        ol.id = "list-cont";
+        let listCount = ol.childElementCount;
+       
+        functions.addListItem("star", ol);
+        // console.log(listCount,  ol.childElementCount);
+        functions.addListItem("cat", ol);
+        // console.log(listCount,  ol.childElementCount);
+    
+        expect(ol.childElementCount).toEqual(listCount + 2);
+        console.log(listCount,  ol.textContent);
+
+    // Delete the last item 
+        functions. deleteItem(ol);
+        expect(ol.textContent).toEqual("star")
+        
+        });
 
 
 
