@@ -2,36 +2,44 @@
 const functions = {
 
 
+    // More Array Exercises (Really) - November 6, 2019
+    BalanceGE1000: (personArr) => {
+       
+        return personArr.filter((person) => {
+            return person.balance >=1000
+        })
+    },
+
 
     // More Array Exercises - October 29, 2019
 
     sumBalance: (objList) => {
-        let arrBal =[];
-        let sum =0;
+        let arrBal = [];
+        let sum = 0;
 
 
-         for (let line of objList){
+        for (let line of objList) {
 
-           let count = arrBal.push(line.balance);
-           // console.log(line.balance, arrBal, count);
+            let count = arrBal.push(line.balance);
+            // console.log(line.balance, arrBal, count);
 
-         };
-         sum =  arrBal.reduce(function (total,balVal,indx)  {
-             return  total + balVal;
+        };
+        sum = arrBal.reduce(function (total, balVal, indx) {
+            return total + balVal;
 
-         });
+        });
         //  console.log(sum, arrBal);
-         return  sum;
-     },
+        return sum;
+    },
 
-     avgBalance: (objList) =>{
-         let sum = functions.sumBalance(objList);
-         let count =Number(objList.length);
-         console.log(sum, count);
-         return (sum / count).toFixed(3);
-         
-     },
-    
+    avgBalance: (objList) => {
+        let sum = functions.sumBalance(objList);
+        let count = Number(objList.length);
+        console.log(sum, count);
+        return (sum / count).toFixed(3);
+
+    },
+
 
 
 
@@ -55,15 +63,15 @@ const functions = {
     },
 
     loopStaffMap: (objName) => {
-        let staffEmail=[];
+        let staffEmail = [];
 
         //console.log(objName);
 
-        staffEmail = objName.map((name) =>{
+        staffEmail = objName.map((name) => {
             return functions.makeEmailObj(name);
             // console.log(name);
         });
-           
+
         return staffEmail;
     },
 

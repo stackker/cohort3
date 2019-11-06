@@ -22,6 +22,15 @@ const data = {
 const staffEmail = functions.loopStaffIn(data.staff);
 // ___________________________________________________________________________
 
+// More Array Exercises (Really) - November 6, 2019
+
+test.only("Data lines with Balances >=1000 Test", () => {
+    expect(functions.BalanceGE1000(data.staff)).toEqual([{ fname: "Liam", lname: "Henry", balance: 1000 },
+    { fname: "Emma", lname: "Jones", balance: 1330 }])
+})
+
+
+
 // More Array Exercises - October 29, 2019
 test("sumBalance Test", () => {
     expect(functions.sumBalance(data.staff)).toEqual(3823)
