@@ -68,7 +68,8 @@ idLeftPanel.addEventListener("click", (event) => {
         case "del": {
             console.log("inDel :", event.target.parentElement);
             let parentposition = elClicked.parentElement;
-            const newCard = functions.delCard(parentposition);
+            let grandparent = parentposition.parentElement;
+            const newCard = functions.delCard(parentposition, grandparent);
             //console.log("in del newCard",newCard);
           break;
         }

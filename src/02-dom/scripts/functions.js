@@ -2,7 +2,7 @@ const functions = {
 
 
 
-    addListItem: (inputVal,parentDiv) => {
+    addListItem: (inputVal, parentDiv) => {
         const ordList = parentDiv;
         const li = document.createElement("li");
         const text = document.createTextNode(inputVal);
@@ -56,37 +56,39 @@ const functions = {
     },
 
     addCard: (parentDiv) => {
-        console.log("addCard-Parent: ", parentDiv);
+       // console.log("addCard-Parent: ", parentDiv);
         let cardInGrp = functions.createCard();
-
         parentDiv.appendChild(cardInGrp);
-
-
-        return functions.resultArray(idLeftPanel, "div", "count");
+        return functions.resultArray(parentDiv, "div", "count");
     },
-    positionCard: (parentCard,position) => {
-        parentCard.insertAdjacentElement(position ,  functions.createCard());
-        return functions.resultArray(idLeftPanel, "div", "count");
+
+
+
+    positionCard: (parentCard, position) => {
+        parentCard.insertAdjacentElement(position, functions.createCard());
+        return functions.resultArray(parentDiv, "div", "count");
 
     },
-    delCard:(parentCard)=>{
+    delCard: (parentCard,parentDiv) => {
+       // console.log("delCard parentDiv", parentDiv);
         parentCard.remove();
-        return functions.resultArray(idLeftPanel, "div", "count");
+        return functions.resultArray(parentDiv, "div", "count");
     },
-    resultArray:(parent, elLabel,searchAttib) => {
-         // Returns an Array of Resulting nodes for testing after manipulation
-         let contentArr = [];
-         
-         for (let itemColln of parent.getElementsByTagName(elLabel)) {
-             contentArr.push(itemColln.getAttribute(searchAttib));
-         };
-        
-          console.log("contentArray",contentArr);
-          return contentArr;
+
+    resultArray: (parent, elLabel, searchAttib) => {
+        // Returns an Array of Resulting nodes for testing after manipulation
+        let contentArr = [];
+        //console.log("contentArray parent", parent);
+        for (let itemColln of parent.getElementsByTagName(elLabel)) {
+            contentArr.push(itemColln.getAttribute(searchAttib));
+        };
+
+        console.log("contentArray", contentArr);
+        return contentArr;
 
     }
 
-       
+
 
 
 
