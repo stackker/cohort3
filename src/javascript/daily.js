@@ -1,12 +1,46 @@
 
 const functions = {
 
+    // Callback Exercise (Part 1) - November 8, 
+
+    processPeopleFromProvince: (personArr, province, callBackFn) => {
+        // Multiple provinces passed in the test Environment
+        // drawback is that it creates a seerate run for each province and testing has to be done inside an If Condition.
+        // CallBack Fn needs to be provided which proceses an Array inthe first Level
+        let arrPeopleByProvince = personArr.filter((person) => {
+            return (person.province == province);
+        })
+        return callBackFn(arrPeopleByProvince);
+    },
+
+
+    fullName: (arrList) => {
+        //console.log(arrList);
+        let name_arrList = arrList.map((objkt) => {
+            objkt["name"] = `${objkt.fname} ${objkt.lname}`;
+            // console.log(objkt);
+            return objkt;
+        });
+        // console.log(name_arrList);
+        return name_arrList;
+    },
+
+
+
+
+
+
+
+
+
+
+
 
     // More Array Exercises (Really) - November 6, 2019
     BalanceGE1000: (personArr) => {
-       
+
         return personArr.filter((person) => {
-            return person.balance >=1000
+            return person.balance >= 1000
         })
     },
 
