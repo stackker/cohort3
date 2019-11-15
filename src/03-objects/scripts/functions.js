@@ -2,22 +2,22 @@ const functions = {
 
 
 
-	addListItem: (inputVal, parentDiv) => {
-		const ordList = parentDiv;
-		const li = document.createElement("li");
-		const text = document.createTextNode(inputVal);
-		li.appendChild(text);
-		//console.log("from addListItems: ", ordList.id,inputVal )
-		ordList.appendChild(li);
-	},
+	// addListItem: (inputVal, parentDiv) => {
+	// 	const ordList = parentDiv;
+	// 	const li = document.createElement("li");
+	// 	const text = document.createTextNode(inputVal);
+	// 	li.appendChild(text);
+	// 	//console.log("from addListItems: ", ordList.id,inputVal )
+	// 	ordList.appendChild(li);
+	// },
 
-	showItems: (ol, showDiv) => {
-		showDiv.textContent = ol.textContent;
-	},
+	// showItems: (ol, showDiv) => {
+	// 	showDiv.textContent = ol.textContent;
+	// },
 
-	deleteItem: (ol) => {
-		ol.lastElementChild.remove();
-	},
+	// deleteItem: (ol) => {
+	// 	ol.lastElementChild.remove();
+	// },
 
 	// Exercise 2:
 
@@ -36,24 +36,30 @@ const functions = {
 						formDiv.className = "card";
 // Input for Account Name]
 				let acctName = document.createElement("input");
+				
 						acctName.setAttribute("placeholder", "Account Name");
 						acctName.setAttribute("type", "text");
+						acctName.setAttribute("required", "true");
 						acctName.className = "formData";
+						acctName.id = "idAcctName";
 				formDiv .appendChild(acctName);
 // Input for Account BAlance
 				let acctBal = document.createElement("input");
 						acctBal.setAttribute("placeholder", "Initial Balance");
 						acctBal.setAttribute("type", "number");
+						acctBal.setAttribute("min", "0");
 						acctBal.className = "formData";
+						acctBal.id = "idAcctBal";
 				formDiv.appendChild(acctBal);
 				formDiv.appendChild(document.createElement("br"));
 				// Buttobs Add and Cancel
 				let addActBut = document.createElement("button");
-						addActBut.className = "add";
-						addActBut.innerHTML = "Add Account"
+						addActBut.className = "addAccount";
+						// addActBut.id = "idaddCard";
+						addActBut.textContent = "Add Account"
 				let cancelActBut = document.createElement("button");
 						cancelActBut.className = "del";
-						cancelActBut.innerHTML = "Cancel"
+						cancelActBut.textContent = "Cancel"
 				formDiv.appendChild(addActBut);
 				// formDiv.appendChild(document.createElement("span"));
 				formDiv.appendChild(cancelActBut);
@@ -71,18 +77,7 @@ const functions = {
 			
 
 
-			
-
-
-
-
-
-
-
-
-
-
-	createCard: () => {
+	createCard: (acctName,acctBal) => {
 
 		functions.counter++;
 		// console.log("from createCard: Hello World");
@@ -90,7 +85,17 @@ const functions = {
 		div.setAttribute("count", functions.counter);
 		div.className = "card";
 		div.textContent = `Account ${functions.counter}`;
-		let inputAcctName = document.createElement("input"); // idFormAcctName to be 
+		let readOnlyAcctName = document.createElement("input"); 
+				readOnlyAcctName .value = acctName;
+				readOnlyAcctName .setAttribute ("readonly", true)
+				div.appendChild(readOnlyAcctName);
+		let readOnlyAcctBal = document.createElement("input"); 
+				readOnlyAcctBal.value = acctBal;
+				readOnlyAcctBal.setAttribute ("justified", "right");
+				readOnlyAcctBal.setAttribute ("readonly", true);
+				div.appendChild(readOnlyAcctBal);
+		
+
 
 
 		let lBreak = document.createElement("br");
@@ -117,10 +122,10 @@ const functions = {
 
 	},
 
-	addCard: (parentDiv) => {
-		// console.log("addCard-Parent: ", parentDiv);
-		let cardInGrp = functions.createCard();
-		parentDiv.appendChild(cardInGrp);
+	addAccount: (parentDiv,acctName, acctBal) => {
+		console.log("addCard-Parent: ", parentDiv, acctName, acctBal);
+		let displayAcctCard = functions.createCard(acctName, acctBal);
+		parentDiv.appendChild(displayAcctCard);
 		return functions.resultArray(parentDiv, "div", "count");
 	},
 

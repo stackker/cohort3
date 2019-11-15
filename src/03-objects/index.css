@@ -68,6 +68,11 @@ section {
     background-color: rgb(143, 183, 209);
 }
 
+/* Selects any required <input> */
+input:required {
+  border: 1px dashed red;
+}
+
 #idPanelContainer {
 	display: flex
 }

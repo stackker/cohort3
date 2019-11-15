@@ -45,12 +45,12 @@ class AccountController {
     this.account = new Accounts(accName, bal);
     // let account.accName = accName;
     // let account.bal = bal;
-    this.accountList.push(this.account);
+    return this.accountList.push(this.account);
   }
 
   removeAccount(accName) {
     this.accountList = this.accountList.filter(account => {
-      return account.accName !== accName
+      return account.accName !== accName;
     });
   }
 
@@ -97,10 +97,10 @@ class AccountController {
 
 
 
-const functions = {
-  // nothing in here as of yet
-}
-export { Accounts, AccountController, functions };
+// const functions = {
+//   // nothing in here as of yet
+// }
+export { Accounts, AccountController };
 
 
 
