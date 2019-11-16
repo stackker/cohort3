@@ -23,27 +23,29 @@ const functions = {
 
 	counter: 0,
 
-	createForm: (parentID, buttonClickd) => {
+	createForm: (returnToID, buttonClickd,acctName) => {
 		console.log("createForm.buttonClick: ", buttonClickd)
+
+
 		switch (buttonClickd.className) {
 			case "createAccount": {
 
-				// console.log("parentID Add: ", parentID)
+				// console.log("fromID Add: ", fromID)
 
 				console.log("createForm.addCard case: ", buttonClickd);
-//Create a Div to hold contents of the form
+				//Create a Div to hold contents of the form
 				let formDiv = document.createElement("form");
 						formDiv.className = "card";
-// Input for Account Name]
-				let acctName = document.createElement("input");
-				
-						acctName.setAttribute("placeholder", "Account Name");
-						acctName.setAttribute("type", "text");
-						acctName.setAttribute("required", "true");
-						acctName.className = "formData";
-						acctName.id = "idAcctName";
-				formDiv .appendChild(acctName);
-// Input for Account BAlance
+				// Input for Account Name
+				let acctNamein = document.createElement("input");
+
+						acctNamein.setAttribute("placeholder", "Account Name");
+						acctNamein.setAttribute("type", "text");
+						acctNamein.setAttribute("required", "true");
+						acctNamein.className = "formData";
+						acctNamein.id = "idAcctNamein";
+				formDiv.appendChild(acctNamein);
+				// Input for Account BAlance
 				let acctBal = document.createElement("input");
 						acctBal.setAttribute("placeholder", "Initial Balance");
 						acctBal.setAttribute("type", "number");
@@ -51,33 +53,77 @@ const functions = {
 						acctBal.className = "formData";
 						acctBal.id = "idAcctBal";
 				formDiv.appendChild(acctBal);
-				formDiv.appendChild(document.createElement("br"));
+				formDiv.appendChild(document.createElement("br"));  	
 				// Buttobs Add and Cancel
-				let addActBut = document.createElement("button");
-						addActBut.className = "addAccount";
-						// addActBut.id = "idaddCard";
-						addActBut.textContent = "Add Account"
+				let addDepBut = document.createElement("button");
+				addDepBut.className = "addAccount";
+				// addDepBut.id = "idaddCard";
+				addDepBut.textContent = "Add Account"
 				let cancelActBut = document.createElement("button");
-						cancelActBut.className = "del";
-						cancelActBut.textContent = "Cancel"
-				formDiv.appendChild(addActBut);
+				cancelActBut.className = "del";
+				cancelActBut.textContent = "Cancel"
+				formDiv.appendChild(addDepBut);
 				// formDiv.appendChild(document.createElement("span"));
 				formDiv.appendChild(cancelActBut);
 
 
-				parentID.appendChild(formDiv);
+				returnToID.appendChild(formDiv);
 				break;
 			}
+			case "createDep": {
+				console.log("fromfunc.addBef: Hello World");
+			
+				//Create a Div to hold contents of the form
+				let formDiv = document.createElement("form");
+				formDiv.className = "card";
+				formDiv.textContent = "Account";
+
+				let acctNameHolder = document.createElement("input");
+						acctNameHolder.id = "idDepAcctName";
+						acctNameHolder.setAttribute ("readonly", true);
+						acctNameHolder.value =acctName;
+						formDiv.appendChild(acctNameHolder);
 				
+
+				let deposit = document.createElement("input");
+						
+						deposit.id  = "idInputDeposit"
+						deposit.setAttribute("placeholder", "Enter Deposit Amount");
+						deposit.setAttribute("type", "number");
+						deposit.setAttribute("min", "0");
+						deposit.setAttribute("required", "true");
+						deposit.className = "formData";
+					
+				formDiv.appendChild(deposit);
+				formDiv.appendChild(document.createElement("br"));
+				// Buttobs Add and Cancel
+				let addDepBut = document.createElement("button");
+						addDepBut.className = "addDeposit";
+						addDepBut.textContent = "Add Deposit"
+						
+				let cancelBut = document.createElement("button");
+						cancelBut.className = "del";
+						cancelBut.textContent = "Cancel"
+				
+				formDiv.appendChild(addDepBut);
+				formDiv.appendChild(cancelBut);
+
+				idInputForm.appendChild(formDiv);
+				break;
+			}
+
 			default: { console.log("createForm.buttonClick: ", "NOT PROGRAMMED") }
 		}
-		return parentID;
+		return idInputForm;
 	},
 
-			
 
 
-	createCard: (acctName,acctBal) => {
+
+
+
+
+	createCard: (acctNamein, acctBal) => {
 
 		functions.counter++;
 		// console.log("from createCard: Hello World");
@@ -85,16 +131,17 @@ const functions = {
 		div.setAttribute("count", functions.counter);
 		div.className = "card";
 		div.textContent = `Account ${functions.counter}`;
-		let readOnlyAcctName = document.createElement("input"); 
-				readOnlyAcctName .value = acctName;
-				readOnlyAcctName .setAttribute ("readonly", true)
-				div.appendChild(readOnlyAcctName);
-		let readOnlyAcctBal = document.createElement("input"); 
-				readOnlyAcctBal.value = acctBal;
-				readOnlyAcctBal.setAttribute ("justified", "right");
-				readOnlyAcctBal.setAttribute ("readonly", true);
-				div.appendChild(readOnlyAcctBal);
-		
+		let readOnlyAcctName = document.createElement("input");
+		readOnlyAcctName.id = "idAN:" + acctNamein;
+		readOnlyAcctName.value = acctNamein;
+		readOnlyAcctName.setAttribute("readonly", true)
+		div.appendChild(readOnlyAcctName);
+		let readOnlyAcctBal = document.createElement("input");
+		readOnlyAcctBal.value = acctBal;
+		readOnlyAcctBal.id = "idAB:" + acctNamein;
+		readOnlyAcctBal.setAttribute("readonly", true);
+		div.appendChild(readOnlyAcctBal);
+
 
 
 
@@ -104,13 +151,16 @@ const functions = {
 
 		//Create the buttons on the card
 		const btnBefore = document.createElement('button');
-		btnBefore.className = 'addBef';
+		btnBefore.className = 'createDep';
 		btnBefore.textContent = 'Depost';
+		btnBefore.id = "idDp:"+ acctNamein ;
+
 		div.appendChild(btnBefore);
 
 		const btnAfter = document.createElement('button');
 		btnAfter.className = 'addAft';
 		btnAfter.textContent = 'Withdraw';
+		btnAfter.id	= "idWd:"+ acctNamein;
 		div.appendChild(btnAfter);
 
 		const delBtn = document.createElement('button');
@@ -122,11 +172,16 @@ const functions = {
 
 	},
 
-	addAccount: (parentDiv,acctName, acctBal) => {
-		console.log("addCard-Parent: ", parentDiv, acctName, acctBal);
-		let displayAcctCard = functions.createCard(acctName, acctBal);
+	addAccount: (parentDiv, acctNamein, acctBal) => {
+		console.log("addCard-Parent: ", parentDiv, acctNamein, acctBal);
+		let displayAcctCard = functions.createCard(acctNamein, acctBal);
 		parentDiv.appendChild(displayAcctCard);
 		return functions.resultArray(parentDiv, "div", "count");
+	},
+
+	addDeposit: (parentDiv, acctNamein, acctBal) =>{
+		console.log("addDeposit: ", parentDiv, acctNamein, acctBal);
+		
 	},
 
 
@@ -162,5 +217,14 @@ const functions = {
 
 };
 
+const utils = {
+	 recoverAccName(eventTarget) {
+		let str = eventTarget.id;
+		return str.slice(6);
+		
+	}
 
-export default functions;
+};
+
+ 
+export  {utils,functions};

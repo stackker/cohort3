@@ -1,13 +1,14 @@
-import functions from './functions.js';
-import{Accounts,AccountController} from "/accounts.js";
+import { utils, functions } from './functions.js';
+import { Accounts, AccountController } from "/accounts.js";
+
 
 const instAccountController = new AccountController;
 
-// Accounts
+// Accounts - Transactions
 
 idAccountSec.addEventListener("click", (event) => {
 	event.preventDefault();
-// idLeftPanel.addEventListener("click", (event) => {
+
 	console.log("Ex2Click:", event.target);
 	let idLeftClick = event.target.id;
 	console.log("leftClick:", idLeftClick);
@@ -16,7 +17,7 @@ idAccountSec.addEventListener("click", (event) => {
 	let elClicked = event.target;
 	let parentposition = elClicked.parentElement;
 	let grandparent = parentposition.parentElement;
-	
+
 
 	switch (elClicked.className) {
 
@@ -26,21 +27,35 @@ idAccountSec.addEventListener("click", (event) => {
 			break;
 		}
 		case "addAccount": {
-				console.log("inaddAccount Case :", event.target, idAcctName.value);
-				const newAcctList = instAccountController.createAccount(idAcctName.value, idAcctBal.value);
-				console.log("inaddAccount Case :",  instAccountController.accountList);
-				// Delete the input form after updating accountList thro instAccountController.
-				
-				 const newCard = functions.addAccount(idLeftPanel, idAcctName.value, idAcctBal.value);
-				 const varDelCard = functions.delCard(parentposition, grandparent);
-		    break;
+			console.log("inaddAccount Case :", event.target, idAcctNamein.value);
+			const newAcctList = instAccountController.createAccount(idAcctNamein.value, idAcctBal.value);
+			console.log("inaddAccount Case :", instAccountController.accountList);
+			// Delete the input form after updating accountList thro instAccountController.
+
+			const newCard = functions.addAccount(idLeftPanel, idAcctNamein.value, idAcctBal.value);
+			const varDelCard = functions.delCard(parentposition, grandparent);
+			break;
 		}
-		case "addBef": {
+		case "createDep": {
 			//console.log("addBef Case :", event.target.parentElement.);
 
-			let parentposition = elClicked.parentElement;
-			// position = "beforebegin";  property of the method           
-			const newCard = functions.positionCard(parentposition, "beforebegin")
+			let acctName = utils.recoverAccName(event.target)
+			// let acctName = idAcctName.value;  
+			const newCard = functions.createForm(parentposition, event.target, acctName) // idInputForm)
+			break;
+		}
+		case "addDeposit": {
+			console.log("addDeposit Case :", event.target.parentElement);
+			console.log("addDeposit amt Case :", idDepAcctName.value, idInputDeposit.value);
+			for (let aName of instAccountController.accountList) {
+				console.log("in for :", aName, idDepAcctName.value)
+				if (aName.accName === idDepAcctName.value) {
+					console.log("TRUE");
+
+				}
+			};
+			//const updateedDeposit  = instAccountController.account.deposit(idDepAcctName.value, Number(idInputDeposit.value));
+			console.log("inaddAccount Case :", instAccountController.accountList);
 			break;
 		}
 		case "addAft": {
@@ -61,7 +76,7 @@ idAccountSec.addEventListener("click", (event) => {
 			break;
 		}
 
-		
+
 		default: {
 			console.log("Not Programmed for :", event.target);
 			break;

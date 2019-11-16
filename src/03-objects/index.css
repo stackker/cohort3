@@ -2,7 +2,8 @@ body {
 
     padding : 0px;
     margin: 0px;
-    box-sizing: border-box;
+		box-sizing: border-box;
+		border-block-color: blue;
 }
 
 #main-div {
@@ -66,6 +67,9 @@ button {
 
 section {
     background-color: rgb(143, 183, 209);
+}
+input{
+	margin:5px;
 }
 
 /* Selects any required <input> */

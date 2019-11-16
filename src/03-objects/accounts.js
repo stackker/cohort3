@@ -33,30 +33,31 @@ class Accounts {
   }
 }
 
-class AccountController {
+class AccountController  {
 
   constructor() {
+		// super(accName, bal)
     this.accountList = [];
 
   }
 
   createAccount(accName, bal) {
     // console.log("accName: ", accName, "bal: ", bal);
-    this.account = new Accounts(accName, bal);
+    this.Account = new Accounts(accName, bal);
     // let account.accName = accName;
     // let account.bal = bal;
-    return this.accountList.push(this.account);
+    return this.accountList.push(this.Account);
   }
 
   removeAccount(accName) {
-    this.accountList = this.accountList.filter(account => {
-      return account.accName !== accName;
+    this.accountList = this.accountList.filter(Account => {
+      return Account.accName !== accName;
     });
   }
 
   totalAccounts() {
     // console.log("accountList :", this.accountList)
-    return this.accountList.reduce(((acc, account) => acc + account.bal), 0);
+    return this.accountList.reduce(((acc, Account) => acc + Account.bal), 0);
   }
 
   highestAccount() {
