@@ -70,14 +70,23 @@ describe('Account Controller Tests', () => {
     });
         
 
-    test('Check Account with Highest bal', () => {
+    test('Check Account with Lowest bal', () => {
         let accountManager = new oo.AccountController();
         accountManager.createAccount("Checking Account1", 10);
         accountManager.createAccount("Checking Account", 1000);
         accountManager.createAccount("Savings Account1", 200);
         // console.log("Begin Lowest ", accountManager.accountList)
         expect(accountManager.lowestAccount()).toEqual({ "accName": "Checking Account1", "bal": 10 });
-    });
+		});
+		
+		test.only('Check createDeposit ', () => {
+			let accountManager = new oo.AccountController();
+        accountManager.createAccount("Checking Account1", 10);
+        accountManager.createAccount("Checking Account", 1000);
+				accountManager.createAccount("Savings Account1", 200);
+				expect(accountManager.postDeposit("Checking Account1",2000)).toEqual({ "accName": "Checking Account1", "bal": 2010 });
+		});
+				
 
 });
 

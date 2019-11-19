@@ -39,42 +39,70 @@ idAccountSec.addEventListener("click", (event) => {
 		case "createDep": {
 			//console.log("addBef Case :", event.target.parentElement.);
 
-			let acctName = utils.recoverAccName(event.target)
+			let acctName = utils.recoverAccName(event.target.id)
 			// let acctName = idAcctName.value;  
 			const newCard = functions.createForm(parentposition, event.target, acctName) // idInputForm)
 			break;
 		}
 		case "addDeposit": {
-			console.log("addDeposit Case :", event.target.parentElement);
-			console.log("addDeposit amt Case :", idDepAcctName.value, idInputDeposit.value);
-			for (let aName of instAccountController.accountList) {
-				console.log("in for :", aName, idDepAcctName.value)
-				if (aName.accName === idDepAcctName.value) {
-					console.log("TRUE");
-
+			// console.log("addDeposit Case :", event.target.parentElement);
+			// console.log("addDeposit amt Case :", idDepAcctName.value, idInputDeposit.value);
+			let depAccount = idDepAcctName.value,
+					depAmount = idInputDeposit.value;
+			let postedAccount = instAccountController.postDeposit(depAccount, depAmount);
+					console.log("inaddDeposit Case :", postedAccount, instAccountController.accountList);
+					let postBalanceID = utils.recreateIDforBalance(postedAccount);
+					console.log("addDeposit amt Case :", postBalanceID);
+					// parentposition = postBalanceID.parentElement;
+					// console.log("parentposition: assDeposit Case :", parentposition);
+					document.getElementById(postBalanceID).value = postedAccount.bal;
+					
+					const varDelCard = functions.delCard(parentposition, grandparent);
+					break;
 				}
-			};
-			//const updateedDeposit  = instAccountController.account.deposit(idDepAcctName.value, Number(idInputDeposit.value));
-			console.log("inaddAccount Case :", instAccountController.accountList);
-			break;
-		}
-		case "addAft": {
-			//console.log("addBef Case :", event.target.parentElement.);
 
-			let parentposition = elClicked.parentElement;
-			const newCard = functions.positionCard(parentposition, "afterend");
+
+		case "createWDr": {
+			
+			let acctName = utils.recoverAccName(event.target.id)
+			// let acctName = idAcctName.value;  
+			const newCard = functions.createForm(parentposition, event.target, acctName) // idInputForm)
 			break;
 
+	}
+		case "postWithdraw": {
+			// alert("posting Withdrawal");
+			let WdrawAccount = idWdrAcctName.value,
+					WdrawAmount = idInputWithdraw.value;
+			let postedAccount = instAccountController.postWithdrawal(WdrawAccount, WdrawAmount);
+			console.log("inpostWithdraw Case :", postedAccount, instAccountController.accountList);
+			let postBalanceID = utils.recreateIDforBalance(postedAccount);
+			console.log("inpostWithdraw amt Case :", postBalanceID);
+			document.getElementById(postBalanceID).value = postedAccount.bal;
+					
+			const varDelCard = functions.delCard(parentposition, grandparent);
+			break;
 		}
-
 		case "del": {
 			console.log("inDel :", event.target.parentElement);
 			let parentposition = elClicked.parentElement;
 			let grandparent = parentposition.parentElement;
+			if ( elClicked.id.slice(0, 5) == "idDL:") {
+				console.log("inDel  is deleteAccount :", true);
+				let acctName = utils.recoverAccName(event.target.id);
+				let newAcctList = instAccountController.removeAccount(acctName);
+				console.log("in del afterDelete",newAcctList);
+			}
+				
+
+
 			const newCard = functions.delCard(parentposition, grandparent);
 			//console.log("in del newCard",newCard);
 			break;
 		}
+
+
+
 
 
 		default: {
@@ -85,3 +113,5 @@ idAccountSec.addEventListener("click", (event) => {
 
 
 });
+		
+
