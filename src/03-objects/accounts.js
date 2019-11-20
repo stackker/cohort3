@@ -25,7 +25,7 @@ class Accounts {
 			return error;
 		}
 		else {
-			debugger;
+			
 			let originalBal = this.bal;
 			this.bal -= Number(withdrawAmt);
 			if (this.bal < 0) {

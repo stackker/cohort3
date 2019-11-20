@@ -253,6 +253,20 @@ const functions = {
 		return functions.resultArray(parentDiv, "div", "count");
 	},
 
+	updateStatistics: (loctag,acctController) =>{
+		 
+		let maxAccount = acctController.highestAccount();
+		let minAccount = acctController.lowestAccount();
+		let totBalance = acctController.totalAccounts();
+		
+				loctag.innerHTML = 
+												`<p> The Total Balamce of Accounts:'$' ${totBalance}
+												<p>The Account with the Highest Balance is : ${maxAccount.accName} / '$' ${maxAccount.bal}</p> 
+												<p>The Account with the Lowest Balance is : ${minAccount.accName} / '$' ${minAccount.bal}</p>`;
+											},
+		
+
+
 	resultArray: (parent, elLabel, searchAttib) => {
 		// Returns an Array of Resulting nodes for testing after manipulation
 		let contentArr = [];

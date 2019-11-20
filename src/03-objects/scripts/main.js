@@ -34,6 +34,8 @@ idAccountSec.addEventListener("click", (event) => {
 
 			const newCard = functions.addAccount(idLeftPanel, idAcctNamein.value, idAcctBal.value);
 			const varDelCard = functions.delCard(parentposition, grandparent);
+			// const messageid = idMessage;
+			let statistics1 = functions.updateStatistics(idStatusPanel, instAccountController)
 			break;
 		}
 		case "createDep": {
@@ -58,6 +60,7 @@ idAccountSec.addEventListener("click", (event) => {
 					document.getElementById(postBalanceID).value = postedAccount.bal;
 					
 					const varDelCard = functions.delCard(parentposition, grandparent);
+					let statistics1 = functions.updateStatistics(idStatusPanel, instAccountController);
 					break;
 				}
 
@@ -81,6 +84,7 @@ idAccountSec.addEventListener("click", (event) => {
 			document.getElementById(postBalanceID).value = postedAccount.bal;
 					
 			const varDelCard = functions.delCard(parentposition, grandparent);
+			let statistics1 = functions.updateStatistics(idStatusPanel, instAccountController);
 			break;
 		}
 		case "del": {
@@ -91,6 +95,7 @@ idAccountSec.addEventListener("click", (event) => {
 				console.log("inDel  is deleteAccount :", true);
 				let acctName = utils.recoverAccName(event.target.id);
 				let newAcctList = instAccountController.removeAccount(acctName);
+				let statistics1 = functions.updateStatistics(idStatusPanel, instAccountController);
 				console.log("in del afterDelete",newAcctList);
 			}
 				

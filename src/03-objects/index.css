@@ -104,7 +104,20 @@ input:required {
    margin : 5px;
    padding:10px;
    box-sizing: border-box;
-   text-align: center;
+	 text-align: center;
+	 
+
+}
+#idStatusPanel{
+	flex: 1;
+ min-height : 100px;
+ border: 2px solid rgb(77, 74, 74);
+ background-color: rgb(220,220,220);
+ margin : 5px;
+ margin : 5px;
+ padding:10px;
+ box-sizing: border-box;
+ text-align: center;
 
 }
 .card {
