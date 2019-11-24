@@ -1,5 +1,59 @@
 import functions from './daily'
 
+//_________________________________________________________________
+let myArray = [
+	{ num: 5, str: "apples", origin: "BC" },
+	{ num: 7, str: "oranges", origin: "Florida" },
+	{ num: 2, str: "lemons", origin: "Mexico" },
+	{ num: 8, str: "bananas", origin: "Ecuador" },
+	{ num: 6, str: "avocados", origin: "Mexico" },
+	{ num: 4, str: "pineapple", origin: "Brazil" },
+	{ num: 3, str: "blueberries", origin: "Chile" },
+	{ num: 9, str: "pears", origin: "Oregon" },
+	{ num: 1, str: "cantaloupe", origin: "California" }
+];
+//November 22, 2019 - Three ways of functions
+// Do the statements below 3 times, one for each type of function
+//
+
+//By number ascending, using anonymous function
+console.log(myArray.sort(function (a, b) { return parseFloat(a.num) - parseFloat(b.num) }));
+
+
+// By fruit alphabetic, using named function
+function sortByKey(objArray, key) {
+	let sortedArray = objArray.sort((a, b) => {
+		if (a[key] < b[key]) {
+			return -1
+		}
+		else if (a[key] > b[key]) {
+			return 1
+		}
+		else { return 0 }
+	})
+	return sortedArray;
+}
+console.log(sortByKey(myArray, "str"));
+
+// By origin reverse alphabetic, using arrow function
+let sortedArray = ((objArray, key) => {
+	let decendSortedArray = objArray.sort((a, b) => {
+		if (a[key] < b[key]) {
+			return 1
+		}
+		else if (a[key] > b[key]) {
+			return -1
+		}
+		else { return 0 }
+	})
+	return decendSortedArray;
+})
+
+console.log(sortedArray(myArray,"origin"));
+
+//______________________________________________________
+
+
 
 const people = [
 	{ fname: "Alex", lname: "Smith", province: "BC", age: 33 },
