@@ -1,6 +1,29 @@
 import functions from './daily'
 
-//_________________________________________________________________
+// Destructuring-assignment - November 26, 
+test("Destructuring Example", () => {
+	let city = {cityKey:25, 
+							cityName :"Edmonton",
+							cityPopulation : 2000000,
+							cityLatitude : -164.254,
+							cityLongitude: 154
+							}	
+	
+			let {cityKey, cityName , cityPopulation, cityLatitude, cityLongitude} = city
+
+
+	expect(cityKey).toBe(25);
+	expect(cityName).toBe("Edmonton");
+	
+} )
+
+
+
+
+
+
+
+// ______________________________________________________
 let myArray = [
 	{ num: 5, str: "apples", origin: "BC" },
 	{ num: 7, str: "oranges", origin: "Florida" },
