@@ -2,20 +2,21 @@ import functions from './daily'
 
 // Destructuring-assignment - November 26, 
 test("Destructuring Example", () => {
-	let city = {cityKey:25, 
-							cityName :"Edmonton",
-							cityPopulation : 2000000,
-							cityLatitude : -164.254,
-							cityLongitude: 154
-							}	
-	
-			let {cityKey, cityName , cityPopulation, cityLatitude, cityLongitude} = city
+	let city = {
+		cityKey: 25,
+		cityName: "Edmonton",
+		cityPopulation: 2000000,
+		cityLatitude: -164.254,
+		cityLongitude: 154
+	}
+
+	let { cityKey, cityName, cityPopulation, cityLatitude, cityLongitude } = city
 
 
 	expect(cityKey).toBe(25);
 	expect(cityName).toBe("Edmonton");
-	
-} )
+
+})
 
 
 
@@ -72,7 +73,7 @@ let sortedArray = ((objArray, key) => {
 	return decendSortedArray;
 })
 
-console.log(sortedArray(myArray,"origin"));
+console.log(sortedArray(myArray, "origin"));
 
 //______________________________________________________
 
