@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+		<head>
+				<meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta http-equiv="X-UA-Compatible" content="ie=edge">
+				<title>03-Working with Objects</title>
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			
+				<link rel="stylesheet" type="text/css" href="../index.css">
+			
+			</head>
+<body>
+
+		<div class="topnav" id="myTopnav">
+				<a href="#home" class="active">Home</a>
+				<a href=".././index.html#idAccountSec">Account Management</a>
+				<a href="./Cities.html">MetroData</a>
+				<a href="#about">About</a>
+				<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+					<i class="fa fa-bars"></i>
+				</a>
+			</div>
+		<section id="idMetroSec" class="MetroData">
+				<h1 style="text-align: center;"> Metro Data </h1>
+				<div id="idCityContainer">
+					<div id="idCityPanel" class="leftPanel">Cities
+						<button class="createCity" , id="idcreateCity">Create City</button>
+		
+					</div>
+		
+		
+					<div id="idDataPanel" class="rightPanel"> Data & Status Panel
+		
+						<div id="idCityInputForm" class="clInputForm"></div>
+		
+						<div id="idCityStatusPanel" class="bottomPanel">Status
+		
+						</div>
+		
+					</div>
+		
+		
+				</div>
+		
+			</section>
+			<script type="module" src="../Cities/citymain.js"></script>
+			<script>
+				function myFunction() {
+					var x = document.getElementById("myTopnav");
+					if (x.className === "topnav") {
+						x.className += " responsive";
+					} else {
+						x.className = "topnav";
+					}
+				}
+			</script>		
+	
+</body>
+</html>

@@ -110,19 +110,24 @@ class AccountController {
 	}
 
 	highestAccount() {
-		let maxAccount;
-		let i = 0;
-		let maxVal = this.accountList[0].bal;
-		this.accountList.forEach((account, indx) => {
-			//console.log(account.bal, indx);
-			if (maxVal <= account.bal) {
-				maxVal = account.bal;
-				maxAccount = account;
-			}
-			// console.log(maxVal, account.bal, indx, maxAccount);
-		});
-		return maxAccount;
+		
+			let maxAccount;
+			let i = 0;
+			let maxVal = this.accountList[0].bal;
+		
+			this.accountList.forEach((account, indx) => {
+				//console.log(account.bal, indx);
+				if (maxVal <= account.bal) {
+					maxVal = account.bal;
+					maxAccount = account;
+				}
+				// console.log(maxVal, account.bal, indx, maxAccount);
+			});
+			return maxAccount;
+		
 	}
+			
+
 
 
 	lowestAccount() {
