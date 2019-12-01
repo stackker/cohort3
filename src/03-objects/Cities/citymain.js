@@ -1,10 +1,19 @@
 import { cutils, cfunctions } from '../Cities/cityfunctions.js';
 // import { Accounts, AccountController } from "/accounts.js";
 import { City, Community } from "./city.js";
-import { createServCity } from "./servCom.js";
+import *  as server from "./servCom.js";
 
-const MetroDataInst = new Community;
-// City & Metro Data
+// Instanitate City & Metro Data
+const MetroDataInst = new Community();
+
+// Sync Server data to WebApp
+debugger;
+let syncData  = server.syncServerCities();
+console.log ("cityData: ", MetroDataInst.cityData);
+for  (cityCard of syncData){
+	let newCard = newCard = cfunctions.addCity(panelId, cityCard);
+}
+  
 
 idMetroSec.addEventListener("click", (event) => {
 	event.preventDefault();
@@ -49,8 +58,8 @@ idMetroSec.addEventListener("click", (event) => {
 			debugger;
 			try {
 
-				// const data = await postData(url + 'delete', { key: 1 });
-				const fetchAdd =  createServCity(cityCard);
+				
+				const fetchAdd =  server.createServCity(cityCard);
 				// throw (error);
 
 

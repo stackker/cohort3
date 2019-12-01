@@ -61,7 +61,7 @@ class City {
 class Community {
 	constructor() {
 		this.cityData = [];
-		this.cityKey = Number(this.cityKey);
+		this.cityKey = Number(this.cityData.cityKey);
 	}
 	postDeposit(accName, depAmount) {
 		let postedAccount;
@@ -88,7 +88,7 @@ class Community {
 			// debugger;
 			if (accName === account.aname) {
 				console.log("in postWithdrawal Meth:", true);
-				account.movedOut(Number(withdrawAmount));
+				account.movedOut  (Number(withdrawAmount));
 				postedAccount = account;
 				break;
 			};

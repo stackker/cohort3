@@ -26,12 +26,20 @@ const url = 'http://localhost:5000/';
 
 async function createServCity(city) {
 	let data = await postData(url + 'add', city);
-	data = await postData(url + 'all');
+	
 	return data;
 };
+
+async function syncServerCities() {
+	let cityControl = await postData(url + 'all');
+	
+	return cityControl;
+};
+
+
 	
 
 
-export { createServCity };
+export {createServCity, syncServerCities};
 
 
