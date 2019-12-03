@@ -290,7 +290,7 @@ const cutils = {
 		console.log("key: ", key, key.length);
 		let city1 = cityData.filter(function (city) {
 			console.log(city.key);
-			return city.key == key;
+			return Number(city.key) === Number(key);
 		});
 		console.log(city1);
 		return city1[0];

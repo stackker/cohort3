@@ -43,6 +43,11 @@ async function updateServCity(city) {
 	catch{console.log(error) }
 
 }
+ 
+async function deleteServCity(key) {
+let 	data = await postData(url + 'delete', {"key":key});
+return data;
+}
 
 
 async function createServCity(city) {
@@ -83,6 +88,6 @@ async function syncServerCities(panelId, CommunityArr) {
 
 
 
-export { createServCity, syncServerCities , updateServCity};
+export { createServCity, syncServerCities , updateServCity, deleteServCity};
 
 

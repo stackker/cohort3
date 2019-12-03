@@ -184,8 +184,10 @@ idMetroSec.addEventListener("click", async (event) => {
 			let grandparent = parentposition.parentElement;
 			if (elClicked.id.slice(0, 5) == "idDL:") {
 				console.log("inDel  is deleteAccount :", true);
-				let acctName = cutils.recoverAccName(event.target.id);
-				let newAcctList = MetroDataInst.removeAccount(cityName);
+				debugger;
+				let delCity = cutils.recoverAccName(event.target.id,MetroDataInst.cityData);
+				let delResponse =  await server.deleteServCity(Number(delCity.key) );
+				let newAcctList = MetroDataInst.deleteCity(delCity.city);
 				let statistics1 = cfunctions.updateStatistics(idCityStatusPanel, MetroDataInst);
 				console.log("in del afterDelete", newAcctList);
 			}
