@@ -1,3 +1,5 @@
+import { City, Community } from "./city.js";
+
 const cfunctions = {
 
 
@@ -84,12 +86,14 @@ const cfunctions = {
 				//Create a Div to hold contents of the form
 				let formDiv = document.createElement("form");
 				formDiv.className = "card";
-				formDiv.textContent = "City";
+				formDiv.textContent = `Key: ${acctName.key},"City"`;
+				formDiv.setAttribute("key", acctName.key);
+
 
 				let acctNameHolder = document.createElement("input");
 				acctNameHolder.id = "idDepAcctName";
 				acctNameHolder.setAttribute("readonly", true);
-				acctNameHolder.value = acctName;
+				acctNameHolder.value = acctName.city;
 				formDiv.appendChild(acctNameHolder);
 
 
@@ -107,6 +111,7 @@ const cfunctions = {
 				// Buttons Add and Cancel
 				let addDepBut = document.createElement("button");
 				addDepBut.className = "addMoveIns";
+				addDepBut.id = `idMI:${acctName.key}`;
 				addDepBut.textContent = "Add MovedIns"
 
 				let cancelBut = document.createElement("button");
@@ -126,12 +131,13 @@ const cfunctions = {
 				//Create a Div to hold contents of the form
 				let formDiv = document.createElement("form");
 						formDiv.className = "card";
-						formDiv.textContent = "Account";
+						formDiv.textContent = `Key: ${acctName.key},"City"`;
+				formDiv.setAttribute("key", acctName.key);
 
 				let acctNameHolder = document.createElement("input");
 						acctNameHolder.id = "idWdrAcctName";
 						acctNameHolder.setAttribute("readonly", true);
-						acctNameHolder.value = acctName;
+						acctNameHolder.value = acctName.city;
 						formDiv.appendChild(acctNameHolder);
 
 
@@ -149,6 +155,7 @@ const cfunctions = {
 				// Buttons Add and Cancel
 				let addWDrBut = document.createElement("button");
 						addWDrBut.className = "postWithdraw";
+						addWDrBut.id = `idMO:${acctName.key}`;
 						addWDrBut.textContent = "Post MovedOut"
 
 				let cancelBut = document.createElement("button");
@@ -174,8 +181,8 @@ const cfunctions = {
 
 		// functions.counter++;
 		// debugger;
-		let lat = cityCard.latitude;
-		let long = cityCard.longitude;
+		let lat = cityCard.lat;
+		let long = cityCard.long;
 		let cType = cityCard.howBig();
 		let cText = ` Lat: ${lat}, Long: ${long}, Type: ${cType}`;
 
@@ -185,13 +192,13 @@ const cfunctions = {
 		div.className = "card";
 		div.textContent = `Key ${cityCard.key}` + cText;
 		let roCityName = document.createElement("input");
-		roCityName.id = "idAN:" + cityCard.aname;
-		roCityName.value = cityCard.aname;
+		roCityName.id = "idAN:" + cityCard.city;
+		roCityName.value = cityCard.city;
 		roCityName.setAttribute("readonly", true)
 		div.appendChild(roCityName);
 		let roCityPop = document.createElement("input");
 		roCityPop.value = cityCard.population;
-		roCityPop.id = "idAB:" + cityCard.aname;
+		roCityPop.id = "idAB:" + cityCard.city;
 		roCityPop.setAttribute("readonly", true);
 		div.appendChild(roCityPop);
 
@@ -249,8 +256,8 @@ const cfunctions = {
 
 		loctag.innerHTML =
 			`<p> The Total Population: ${totPop}
-												<p>The Northern most city  is : ${maxPop.aname} /  ${maxPop.population}</p> 
-												<p>The Southern most city is : ${minPop.aname} /  ${minPop.population}</p>`;
+												<p>The Northern most city  is : ${maxPop.city} /  ${maxPop.population}</p> 
+												<p>The Southern most city is : ${minPop.city} /  ${minPop.population}</p>`;
 	},
 
 	resultArray: (parent, elLabel, searchAttib) => {
@@ -276,21 +283,21 @@ const cfunctions = {
 
 const cutils = {
 	recoverAccName(eventTargetID, cityData) {
-		// debugger;
+		debugger;
 		//let str = eventTarget.id;
 		console.log(eventTargetID);
 		let key = eventTargetID.slice(5);
 		console.log("key: ", key, key.length);
 		let city1 = cityData.filter(function (city) {
 			console.log(city.key);
-			return city.key == key
+			return city.key == key;
 		});
 		console.log(city1);
-		return city1[0].aname;
+		return city1[0];
 	},
 
 	recreateIDforBalance(city) {
-		let balanceID = "idAB:" + city["aname"];
+		let balanceID = "idAB:" + city["city"];
 		return balanceID;
 	}
 

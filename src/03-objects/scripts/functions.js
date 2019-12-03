@@ -423,7 +423,7 @@ const functions = {
 		div.textContent = `Key ${cityCard.key}`;
 		let roCityName = document.createElement("input");
 		roCityName.id = "idCN:" + cityCard.cityKey;
-		roCityName.value = cityCard.aname;
+		roCityName.value = cityCard.city;
 		roCityName.setAttribute("readonly", true)
 		div.appendChild(roCityName);
 		let roCityPop = document.createElement("input");

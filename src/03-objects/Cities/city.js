@@ -1,17 +1,17 @@
 class City {
-	constructor(cityKey, aname,  population, latitude, longitude) {
+	constructor(cityKey, city,  population, lat, long) {
 		this.key = Number(cityKey);
-		this.aname = aname;
+		this.city = city;
 		this.population = Number(population);
-		this.latitude = Number(latitude);
-		this.longitude = Number(longitude);
+		this.lat = Number(lat);
+		this.long = Number(long);
 		
 	}
 	show() {
-		return `${this.aname}, ${this.latitude}, ${this.longitude}, ${this.population}`;
+		return `${this.city}, ${this.lat}, ${this.long}, ${this.population}`;
 	}
 	movedin(movedInVal) {
-		return this.population += movedInVal;
+		return this.population += Number(movedInVal);
 	}
 
 	movedOut(movedOutVal) {
@@ -42,6 +42,8 @@ class City {
 
 	}
 
+
+
 	howBig() {
 		let pop = this.population;
 		if ((pop >= 1) && (pop <= 100)) {
@@ -69,7 +71,7 @@ class Community {
 		for (let account of this.cityData) {
 			// console.log("inCreateDep Meth:", this.accountList);
 			// debugger;
-			if (accName === account.aname) {
+			if (accName === account.city) {
 				console.log("inCreateDep Meth:", true);
 				account.movedin(Number(depAmount));
 				postedAccount = account;
@@ -86,7 +88,7 @@ class Community {
 		for (let account of this.cityData) {
 			// console.log("inCreateDep Meth:", this.accountList);
 			// debugger;
-			if (accName === account.aname) {
+			if (accName === account.city) {
 				console.log("in postWithdrawal Meth:", true);
 				account.movedOut  (Number(withdrawAmount));
 				postedAccount = account;
@@ -108,7 +110,7 @@ class Community {
 
 	deleteCity(cityName) {
 		this.cityData = this.cityData.filter(City => {
-			return City.aname !== cityName;
+			return City.city !== cityName;
 		})
 		return this.cityData;
 	}
@@ -119,13 +121,13 @@ class Community {
 
 	getMostSouthern() {
 
-		let sortResults = this.cityData.sort((a, b) => parseFloat(a.longitude) - parseFloat(b.longitude));
+		let sortResults = this.cityData.sort((a, b) => parseFloat(a.long) - parseFloat(b.long));
 		return sortResults[0];
 	}
 
 	getMostNorthern() {
 
-		let sortResults = this.cityData.sort((a, b) => parseFloat(b.longitude) - parseFloat(a.longitude));
+		let sortResults = this.cityData.sort((a, b) => parseFloat(b.long) - parseFloat(a.long));
 		return sortResults[0];
 	}
 
@@ -135,7 +137,13 @@ class Community {
 			return city.key === key
 		})
 		//[0] as it is always a one element array
-		return (parseFloat(myCity[0].longitude) >= 0) ? "Northern Hemisphere" : "Southern Hemisphere";
+		return (parseFloat(myCity[0].long) >= 0) ? "Northern Hemisphere" : "Southern Hemisphere";
+	}
+
+	getCityInfo(cityKey) {
+		// no need for return statement when {} not used
+		return this.cityData.filter((city) => Number(city.key) === Number(cityKey));
+
 	}
 
 

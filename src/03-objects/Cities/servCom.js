@@ -1,4 +1,9 @@
 
+import { cutils, cfunctions } from '../Cities/cityfunctions.js';
+// import { Accounts, AccountController } from "/accounts.js";
+import { City, Community } from "./city.js";
+
+
 async function postData(url = '', data = {}) {
 	// Default options are marked with *
 	const response = await fetch(url, {
@@ -24,22 +29,60 @@ async function postData(url = '', data = {}) {
 
 const url = 'http://localhost:5000/';
 
+async function updateServCity(city) {
+
+	try {
+		let data = await postData(url + 'update', city);
+		if (data.status !== 200){
+			throw "Server not updated"
+		}else {
+			console.log(`Success:  ${city.key} updated`)
+		}
+		return data;
+	}
+	catch{console.log(error) }
+
+}
+
+
 async function createServCity(city) {
 	let data = await postData(url + 'add', city);
-	
+
 	return data;
 };
 
-async function syncServerCities() {
-	let cityControl = await postData(url + 'all');
-	
-	return cityControl;
+async function syncServerCities(panelId, CommunityArr) {
+	let serverCity = await postData(url + 'all');
+	console.log("syncServerCities :", serverCity)
+
+	// sort ascending , so that the highest key is avln in the city Array
+	let sortedServerCity = serverCity.sort((a, b) => Number(a.key) - Number(b.key));
+	console.log("syncServerCities sorted :", sortedServerCity);
+
+	for (let card of sortedServerCity) {
+		let cityCard = new City(card.key,
+			card.city,
+			card.population,
+			card.lat,
+			card.long);
+		// Add to Controller Array
+		CommunityArr.cityData.push(cityCard);
+		CommunityArr.cityKey = cityCard.key;
+
+		// Add to HTML Display 
+		let newCard = cfunctions.addCity(panelId, cityCard);
+	}
+
+	return CommunityArr;
 };
 
 
-	
 
 
-export {createServCity, syncServerCities};
+
+
+
+
+export { createServCity, syncServerCities , updateServCity};
 
 

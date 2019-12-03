@@ -58,16 +58,16 @@ test("Community:  createCity Method", () => {
 		([
 			{
 				"key": 1,
-				"aname": "MyVillage",
-				"latitude": 21.245,
-				"longitude": -55.25,
+				"city": "MyVillage",
+				"lat": 21.245,
+				"long": -55.25,
 				"population": 100
 			},
 			{
 				"key": 2,
-				"aname": "MyTown",
-				"latitude": 121.245,
-				"longitude": -65.25,
+				"city": "MyTown",
+				"lat": 121.245,
+				"long": -65.25,
 				"population": 1020
 			}
 		]);
@@ -82,17 +82,16 @@ test("Community: deleteCity Method", () => {
 	expect(MetroData.deleteCity("MyTown")).toEqual([
 		{
 			key: 1,
-			aname: 'MyVillage',
-			latitude: 21.245,
-			longitude: -55.25,
+			city: 'MyVillage',
+			lat: 21.245,
+			long: -55.25,
 			population: 100
 		},
 		{
 			key: 3,
-			aname: 'MyCity',
-			latitude: 121.245,
-			longitude: -25.25,
-
+			city: 'MyCity',
+			lat: 121.245,
+			long: -25.25,
 			population: 10200
 		}]);
 
@@ -116,7 +115,7 @@ test("check getMostSouthern() method", () => {
 	MetroData.createCity(3, "MyCity", 121.245, -25.250, 10000);
 	MetroData.createCity(4, "NewYork", 80.245, 25.250, 100000);
 	MetroData.createCity(5, "Inuktituk", 80.245, 68.250, 100000);
-	expect(MetroData.getMostSouthern().aname).toEqual("MyTown");
+	expect(MetroData.getMostSouthern().city).toEqual("MyTown");
 })
 
 test("check getMostNorthern() method", () => {
@@ -127,7 +126,7 @@ test("check getMostNorthern() method", () => {
 	MetroData.createCity(3, "MyCity", 121.245, -25.250, 10000);
 	MetroData.createCity(4, "NewYork", 80.245, 25.250, 100000);
 	MetroData.createCity(5, "Inuktituk", 80.245, 68.250, 100000);
-	expect(MetroData.getMostNorthern().aname).toEqual("Inuktituk");
+	expect(MetroData.getMostNorthern().city).toEqual("Inuktituk");
 })
 
 
