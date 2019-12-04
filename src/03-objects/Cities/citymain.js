@@ -39,8 +39,6 @@ idMetroSec.addEventListener("click", async (event) => {
 			break;
 		}
 		case "addCity": {
-
-			debugger;
 			console.log(MetroDataInst);
 			if (isNaN(MetroDataInst.cityKey)) { //If Data exists on Server it is not NaN;
 				MetroDataInst.cityKey = 0;
@@ -63,7 +61,7 @@ idMetroSec.addEventListener("click", async (event) => {
 			console.log("inaddCity Case :", MetroDataInst.cityData);
 
 			// Delete the input form after updating accountList thro instAccountController.
-			debugger;
+
 			try {
 
 
@@ -94,14 +92,14 @@ idMetroSec.addEventListener("click", async (event) => {
 			break;
 		}
 		case "addMoveIns": {
-		
+
 			let cardKey = Number((cutils.recoverAccName(event.target.id, MetroDataInst.cityData).key));
 			console.log("cardKey", cardKey);
 			let depAccount = idDepAcctName.value;
 			let depAmount = Number(idInputDeposit.value);
 
 			//Need to pass all city info for the update
-			
+
 			let c = (MetroDataInst.getCityInfo(cardKey))[0];
 			// create a temp city to use 
 			console.log("tempCity  c ", c);
@@ -112,28 +110,28 @@ idMetroSec.addEventListener("click", async (event) => {
 			console.log("tempCity updated ", tempCity);
 
 			// try {
-				
-				let updateServerData = await server.updateServCity(tempCity)
-				let postedAccount = MetroDataInst.postDeposit(depAccount, depAmount);
-				console.log("inaddDeposit Case :", postedAccount, MetroDataInst.cityData);
 
-				let postBalanceID = cutils.recreateIDforBalance(postedAccount);
-				console.log("addDeposit amt Case :", postBalanceID);
-				// parentposition = postBalanceID.parentElement;
-				// console.log("parentposition: assDeposit Case :", parentposition);
-				document.getElementById(postBalanceID).value = postedAccount.population;
+			let updateServerData = await server.updateServCity(tempCity)
+			let postedAccount = MetroDataInst.postDeposit(depAccount, depAmount);
+			console.log("inaddDeposit Case :", postedAccount, MetroDataInst.cityData);
 
-				const varDelCard = cfunctions.delCard(parentposition, grandparent);
-				let statistics1 = cfunctions.updateStatistics(idCityStatusPanel, MetroDataInst);
-				break;
+			let postBalanceID = cutils.recreateIDforBalance(postedAccount);
+			console.log("addDeposit amt Case :", postBalanceID);
+			// parentposition = postBalanceID.parentElement;
+			// console.log("parentposition: assDeposit Case :", parentposition);
+			document.getElementById(postBalanceID).value = postedAccount.population;
+
+			const varDelCard = cfunctions.delCard(parentposition, grandparent);
+			let statistics1 = cfunctions.updateStatistics(idCityStatusPanel, MetroDataInst);
+			break;
 			// }
 			// catch(error){
 			// 	console.log(error)
 			// 	break;
 			// }
 		}
-				
-				
+
+
 
 		case "createOut": {
 			// debugger;
@@ -151,21 +149,21 @@ idMetroSec.addEventListener("click", async (event) => {
 			let WdrawAccount = idWdrAcctName.value,
 				WdrawAmount = idInputWithdraw.value;
 
-				//Need to pass all city info for the update
-				
-				let c = (MetroDataInst.getCityInfo(cardKey))[0];
-				// create a temp city to use 
-				console.log("tempCity  c ", c);
-				let tempCity = new City(c.key, c.city, c.population, c.lat, c.long);
-				// calculate updated population
-				let currentPop = tempCity.movedOut(WdrawAmount);
-				tempCity.population = currentPop;
-				console.log("tempCity updated ", tempCity);
-	
-				// try {
+			//Need to pass all city info for the update
 
- // use the same fn to update server as movedIns
-				
+			let c = (MetroDataInst.getCityInfo(cardKey))[0];
+			// create a temp city to use 
+			console.log("tempCity  c ", c);
+			let tempCity = new City(c.key, c.city, c.population, c.lat, c.long);
+			// calculate updated population
+			let currentPop = tempCity.movedOut(WdrawAmount);
+			tempCity.population = currentPop;
+			console.log("tempCity updated ", tempCity);
+
+			// try {
+
+			// use the same fn to update server as movedIns
+
 			let updateServerData = await server.updateServCity(tempCity)
 			let postedAccount = MetroDataInst.postWithdrawal(WdrawAccount, WdrawAmount);
 			console.log("inpostWithdraw Case :", postedAccount, MetroDataInst.cityData);
@@ -184,9 +182,9 @@ idMetroSec.addEventListener("click", async (event) => {
 			let grandparent = parentposition.parentElement;
 			if (elClicked.id.slice(0, 5) == "idDL:") {
 				console.log("inDel  is deleteAccount :", true);
-				debugger;
-				let delCity = cutils.recoverAccName(event.target.id,MetroDataInst.cityData);
-				let delResponse =  await server.deleteServCity(Number(delCity.key) );
+
+				let delCity = cutils.recoverAccName(event.target.id, MetroDataInst.cityData);
+				let delResponse = await server.deleteServCity(Number(delCity.key));
 				let newAcctList = MetroDataInst.deleteCity(delCity.city);
 				let statistics1 = cfunctions.updateStatistics(idCityStatusPanel, MetroDataInst);
 				console.log("in del afterDelete", newAcctList);
