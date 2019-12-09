@@ -5,6 +5,8 @@
 .App-logo {
   height: 10vmin;
   pointer-events: auto;
+  margin-bottom: 0px;
+  margin-right: 5px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -46,21 +48,31 @@
   }
 }
 .Icon {
-  height: 5vmax;
+  height: 6vmax;
   /* max-height: 100px; */
 
   display: flex;
   flex-direction: row;
+  position: bottom;
   justify-content: center;
+  margin-right: 5px;
+  margin-bottom: 0px;
 }
 .App-logo:hover {
   background-color: #282c34;
   fill: blue;
   animation: App-logo-noSpin;
+  stroke: white;
 }
-.App-logo:active {
+.App-logo-selected {
   color: blue;
+
+  height: 10vmin;
+  pointer-events: auto;
+  margin-bottom: 0px;
+  margin-right: 5px;
   background-color: #282c34;
-  fill: blue;
+  stroke: white;
+
   animation: App-logo-noSpin;
 }
