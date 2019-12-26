@@ -6,7 +6,7 @@
   height: 10vmin;
   pointer-events: auto;
   margin-bottom: 0px;
-  margin-right: 5px;
+  margin-right: 45px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -48,8 +48,8 @@
   }
 }
 .Icon {
-  height: 6vmax;
-  /* max-height: 100px; */
+  /* height: 6vmax; */
+  max-height: 100px;
 
   display: flex;
   flex-direction: row;
