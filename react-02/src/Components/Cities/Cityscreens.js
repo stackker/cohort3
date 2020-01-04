@@ -3,7 +3,13 @@ import React from "react";
 class CityInputScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.cityInfo = {};
   }
+
+  makeObject = event => {
+    this.cityInfo[event.target.name] = event.target.value;
+    // console.log(this.cityInfo);
+  };
 
   render() {
     return (
@@ -11,21 +17,43 @@ class CityInputScreen extends React.Component {
         <fieldset className="card">
           <legend>City Information</legend>
           City Name :
-          <input type="text" placeholder="City Name" name="cityName" value="" />
+          <input
+            type="text"
+            placeholder="City Name"
+            id="idcityName"
+            name="cityName"
+            onBlur={this.makeObject}
+          />
           <br />
           City Population:
-          <input type="text" placeholder="Opening Balance" name="cityPop" />
+          <input
+            type="text"
+            placeholder="Opening Balance"
+            name="cityPop"
+            onBlur={this.makeObject}
+          />
           <br />
           Latitude :
-          <input type="number" placeholder="Number" name="cityLat" /> <br />
+          <input
+            type="number"
+            placeholder="Number"
+            name="cityLat"
+            onBlur={this.makeObject}
+          />
+          <br />
           Longitude :
-          <input type="number" placeholder="Number" name="cityLong" />
+          <input
+            type="number"
+            placeholder="Number"
+            name="cityLong"
+            onBlur={this.makeObject}
+          />
           <br />
           <button
             className="add"
+            value="Add City"
             onClick={() => {
-              
-              this.props.addCityButn();
+              this.props.addCityButn(this.cityInfo);
             }}
           >
             Add City

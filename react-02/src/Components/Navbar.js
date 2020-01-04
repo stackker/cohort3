@@ -5,9 +5,6 @@ import accounts from "../Icons/piggy-bank-svgrepo-com.svg";
 import cities from "../Icons/building-svgrepo-com.svg";
 import linklist from "../Icons/link-building-svgrepo-com.svg";
 
-import bluetooth from "../Icons/bluetooth.svg";
-import coffee from "../Icons/coffee.svg";
-
 import Home from "./Home.js";
 import Game from "./TicTac/Game.js";
 import Cities from "./Cities/Cities.js";
@@ -43,14 +40,12 @@ class Navbar extends React.Component {
       return <Game />;
     }
     if (this.state.selApp === "idCities") {
-      console.log("Execution chk Cities", this.state.selApp);
+      // console.log("Execution chk Cities", this.state.selApp);
       return <Cities />;
     }
   };
 
   render() {
-    console.log("App state: ", this.showApp());
-
     return (
       <div className="App">
         <div

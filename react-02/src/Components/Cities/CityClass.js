@@ -14,20 +14,23 @@ class City {
   }
 
   movedOut(movedOutVal) {
-    debugger;
+    // debugger;
     if (Number(movedOutVal) <= 0) {
-      let error = "Moved Out Numbers must be Zero or greater";
+      let error = "Moved Out Numbers must be greater than Zero";
+      alert(error);
       console.log(error);
       // throw (error);
       return this.population;
     } else {
       let originalpopulation = this.population;
       this.population -= Number(movedOutVal);
+
       if (this.population < 0) {
         // alert(`Residents remaining cannot be less than Zero. Balance: ${this.population}`);
-        let error = "Balance must be greater than 0";
+        let error = "Balance cannot not be less than 0";
+        alert(error);
         console.log(error);
-        this.population = originalpopulation;
+        this.population = originalpopulation; // restore previous state
         // throw (error)
         return this.population;
       } else {
@@ -57,49 +60,54 @@ class Community {
     this.cityData = [];
     this.cityKey = Number(this.cityData.cityKey);
   }
-  postDeposit(accName, depAmount) {
-    let postedAccount;
 
-    for (let account of this.cityData) {
-      // console.log("inCreateDep Meth:", this.accountList);
+  postDeposit(key, changeQty) {
+    let postedCity;
+
+    for (let eachCity of this.cityData) {
+      console.log("inCreateDep Meth:", eachCity);
+      console.log("inCreateDep inputs :", key, changeQty);
       // debugger;
-      if (accName === account.city) {
+      if (key === eachCity.key) {
         console.log("inCreateDep Meth:", true);
-        account.movedin(Number(depAmount));
-        postedAccount = account;
+        eachCity.movedin(Number(changeQty));
+        postedCity = eachCity;
         break;
       }
-      console.log("inCreateDep Meth:", postedAccount);
+      console.log("inCreateDep Meth:", postedCity);
     }
-    return postedAccount;
+    return postedCity;
   }
 
-  postWithdrawal(accName, withdrawAmount) {
-    let postedAccount;
-    for (let account of this.cityData) {
-      // console.log("inCreateDep Meth:", this.accountList);
+  postWithdrawal(key, changeQty) {
+    let postedCity;
+    for (let eachCity of this.cityData) {
+      // console.log("inCreateDep Meth:", key, changeQty);
       // debugger;
-      if (accName === account.city) {
-        console.log("in postWithdrawal Meth:", true);
-        account.movedOut(Number(withdrawAmount));
-        postedAccount = account;
+      if (key === eachCity.key) {
+        console.log("in postWithdrawal Meth:", "Key found");
+        eachCity.movedOut(Number(changeQty));
+        postedCity = eachCity;
         break;
       }
-      console.log("inCreateDep Meth:", postedAccount);
+      console.log("inCreateDep Meth:", postedCity);
     }
-    return postedAccount;
+    return postedCity;
   }
 
-  createCity(cityKey, cityName, cityLat, cityLong, citypop) {
-    let ACity = new City(cityKey, cityName, cityLat, cityLong, citypop);
+  createCity(cityKey, cityName, cityLat, cityLong, cityPop) {
+    console.log("from method createCity");
+    let ACity = new City(cityKey, cityName, cityPop, cityLat, cityLong);
     this.cityData.push(ACity);
+    this.cityKey = cityKey; // added for react  code. else  the key is not allocated
     return this.cityData;
   }
 
-  deleteCity(cityName) {
+  deleteCity(cityKey) {
     this.cityData = this.cityData.filter(City => {
-      return City.city !== cityName;
+      return City.key !== cityKey;
     });
+    console.log("Instance :", this.citiesData);
     return this.cityData;
   }
 
@@ -135,9 +143,6 @@ class Community {
   getCityInfo(cityKey) {
     // no need for return statement when {} not used
     return this.cityData.filter(city => Number(city.key) === Number(cityKey));
-  }
-  returnHello() {
-    return "Hello! from Community";
   }
 }
 

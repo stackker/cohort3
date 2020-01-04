@@ -8,15 +8,10 @@ import "./App.css";
 import Navbar from "./Components/Navbar.js";
 
 class App extends React.Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div className="App">
         <Navbar />
-        {/* <Home /> */}
       </div>
     );
   }

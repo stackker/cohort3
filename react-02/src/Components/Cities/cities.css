@@ -34,7 +34,6 @@ button {
   border-radius: 10px;
   margin-bottom: 25px;
   margin: 10px 20px;
-  
 }
 
 .add {
@@ -207,15 +206,17 @@ input:required {
 
 #idCityContainer {
   display: flex;
+  width: 100%;
+  height: 100%;
 }
 #idCityPanel {
-  flex: 1;
+  flex: 2;
   min-height: 500px;
-  height: auto;
+  max-height: 500px;
   border: 2px solid rgb(77, 74, 74);
   background-color: rgb(220, 220, 220);
   margin: 5px;
-
+  overflow: auto;
   padding: 10px;
   box-sizing: border-box;
   text-align: center;
@@ -227,7 +228,7 @@ input:required {
   border: 2px solid rgb(77, 74, 74);
   background-color: rgb(220, 220, 220);
   margin: 5px;
-
+  overflow: scroll;
   padding: 10px;
   box-sizing: border-box;
   text-align: center;
@@ -257,3 +258,44 @@ input:required {
   box-sizing: border-box;
   text-align: center;
 }
+
+/* Table Display */
+
+/* Stolen from W3Schools */
+#slab1 {
+  border-color: gray solid 2px;
+  /*border-collapse: collapse;*/
+  width: 100%;
+  font-size: 100%;
+  font-size-adjust: 0.6;
+  max-height: 100%;
+}
+
+#slab1 td,
+#slab1 th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#slab1 td {
+  height: 1rem;
+}
+
+#slab1 tr:nth-child(even) {
+  background-color: #e9d9d9e1;
+}
+
+#slab1 tr:hover {
+  background-color: #ddd;
+}
+
+#slab1 th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgb(14, 111, 143);
+  color: white;
+
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
