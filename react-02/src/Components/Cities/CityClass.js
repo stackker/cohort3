@@ -76,7 +76,7 @@ class Community {
       }
       console.log("inCreateDep Meth:", postedCity);
     }
-    return postedCity;
+    return this.cityData;
   }
 
   postWithdrawal(key, changeQty) {
@@ -92,7 +92,7 @@ class Community {
       }
       console.log("inCreateDep Meth:", postedCity);
     }
-    return postedCity;
+    return this.cityData;
   }
 
   createCity(cityKey, cityName, cityLat, cityLong, cityPop) {
@@ -116,16 +116,20 @@ class Community {
   }
 
   getMostSouthern() {
+    // /Sort Latitude ascending
     let sortResults = this.cityData.sort(
-      (a, b) => parseFloat(a.long) - parseFloat(b.long)
+      (a, b) => parseFloat(Number(a.lat)) - parseFloat(Number(b.lat))
     );
     return sortResults[0];
   }
 
   getMostNorthern() {
+    // /Sort Latitude descending
+
     let sortResults = this.cityData.sort(
-      (a, b) => parseFloat(b.long) - parseFloat(a.long)
+      (a, b) => parseFloat(Number(b.lat)) - parseFloat(Number(a.lat))
     );
+    let sortCity = sortResults[0];
     return sortResults[0];
   }
 

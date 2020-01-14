@@ -78,7 +78,7 @@ async function syncServerCities(panelId, CommunityArr) {
     // Add to HTML Display
     // let newCard = cfunctions.addCity(panelId, cityCard);
   }
-
+  console.log("syncServerCities returned :", CommunityArr);
   return CommunityArr;
 }
 

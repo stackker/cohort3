@@ -8,11 +8,11 @@ class CitiesDisplay extends React.Component {
       entry: ""
     };
   }
-
   render() {
     return (
       // if there are entries in the Community Instance , Display it.
-      this.props.MetroData.cityData.length !== 0 && (
+
+      this.props.MetroData.length !== 0 && (
         <section>
           <table id="slab1">
             <thead>
@@ -30,7 +30,8 @@ class CitiesDisplay extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.MetroData.cityData.map((city, index) => {
+              {console.log("tbody", this.props.MetroData, this.MetroDataInst)}
+              {this.props.MetroData.map((city, index) => {
                 return (
                   /*  The items should be seperate component as they need to be selected */
                   /*  it seems city  = city  can be written as city, as per ES4 standards  */
@@ -102,9 +103,9 @@ class CitiesDisplayItems extends React.Component {
         </td>
         <td>
           <button
-            onClick={() => {
-              this.props.deleteCityBut(this.props.city.key);
-            }}
+            onClick={this.props.deleteCityBut}
+            // this.props.deleteCityBut(this.props.city.key);
+            // }}
           >
             Delete
           </button>

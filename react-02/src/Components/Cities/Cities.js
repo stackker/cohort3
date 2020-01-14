@@ -5,25 +5,29 @@ import "./cities.css";
 import CityInputScreen from "./Cityscreens.js";
 import CitiesDisplay from "./CitiesDisplay.js";
 import { City, Community } from "./CityClass";
-import * as server from "./servCom.js"
+import * as server from "./servCom.js";
 
 class CitiesData extends React.Component {
   constructor() {
     super();
     this.cityKey = null;
+    this.MetroDataInst = new Community();
 
     this.state = {
       serveScreenNum: 0,
-      MetroDataInst: new Community(),
+      // this.MetroDataInst = new Community();
+      MetroDataState: this.MetroDataInst.cityData,
       City: new City()
     };
   }
   addCityFn = cityInfo => {
-    console.log(this.state.MetroDataInst);
-    console.log(cityInfo);
-    if (isNaN(this.state.MetroDataInst.cityKey)) {
+    console.log(this.MetroDataInst);
+    console.log("CKey", cityInfo, this.MetroDataInst.cityKey);
+    if (isNaN(this.MetroDataInst.cityKey)) {
       //If Data exists on Server it is not NaN;
       this.cityKey = 0;
+    } else {
+      this.cityKey = this.MetroDataInst.cityKey;
     }
 
     this.cityKey += 1;
@@ -32,18 +36,31 @@ class CitiesData extends React.Component {
 
     console.log(cityName, cityLat, cityLong, cityPop, this.cityKey);
     // createCity adds the city to the MetroDataInst of community
-    this.setState(
-      this.state.MetroDataInst.createCity(
-        this.cityKey,
-        cityName,
-        cityLat,
-        cityLong,
-        cityPop
-      )
+
+    const metroDataCopy = this.MetroDataInst.createCity(
+      this.cityKey,
+      cityName,
+      cityLat,
+      cityLong,
+      cityPop
     );
 
-    // this.setState({ serveScreenNum: 0 });
+    this.setState({
+      MetroDataState: metroDataCopy
+    });
+
+    this.setState({ serveScreenNum: 0 });
   };
+
+  // componentDidMount() {
+  //   // Sync Server Data into state
+
+  //   this.setState({
+  //     MetroDataState: server.syncServerCities(
+  //       "idcreateCity",
+  //       this.MetroDataInst
+  //     )
+  //   });
 
   cancelScreenFn = () => {
     this.setState({ serveScreenNum: 0 });
@@ -54,6 +71,21 @@ class CitiesData extends React.Component {
     this.setState({ serveScreenNum: num });
 
     // console.log("createCityScreen", this.state.serveScreenNum);
+  };
+
+  renderStats = () => {
+    if (this.MetroDataInst.cityData.length !== 0) {
+      return (
+        <div>
+          <p>
+            Total Population:
+            {this.MetroDataInst.getPopulation()}
+          </p>
+          <p>Most Northern City: {this.MetroDataInst.getMostNorthern().city}</p>
+          <p>Most Southern City: {this.MetroDataInst.getMostSouthern().city}</p>
+        </div>
+      );
+    }
   };
 
   render() {
@@ -77,19 +109,27 @@ class CitiesData extends React.Component {
               </button>
               <div>
                 <CitiesDisplay
-                  MetroData={this.state.MetroDataInst}
+                  MetroData={this.state.MetroDataState}
                   setNewPopulationIn={(cityKey, movedQty) => {
-                    this.setState(
-                      this.state.MetroDataInst.postDeposit(cityKey, movedQty)
-                    );
+                    this.setState({
+                      MetroDataState: this.MetroDataInst.postDeposit(
+                        cityKey,
+                        movedQty
+                      )
+                    });
                   }}
                   setNewPopulationOut={(cityKey, movedQty) => {
-                    this.setState(
-                      this.state.MetroDataInst.postWithdrawal(cityKey, movedQty)
-                    );
+                    this.setState({
+                      MetroDataState: this.MetroDataInst.postWithdrawal(
+                        cityKey,
+                        movedQty
+                      )
+                    });
                   }}
                   deleteCityFn={cityKey => {
-                    this.setState(this.state.MetroDataInst.deleteCity(cityKey));
+                    this.setState({
+                      MetroDataState: this.MetroDataInst.deleteCity(cityKey)
+                    });
                   }}
                 />
               </div>
@@ -111,6 +151,7 @@ class CitiesData extends React.Component {
               <div id="idCityStatusPanel" className="bottomPanel">
                 Status
                 <p> Screen:{this.state.serveScreenNum}</p>
+                {this.renderStats()}
               </div>
             </div>
           </div>
