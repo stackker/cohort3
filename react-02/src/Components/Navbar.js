@@ -8,13 +8,14 @@ import linklist from "../Icons/link-building-svgrepo-com.svg";
 import Home from "./Home.js";
 import Game from "./TicTac/Game.js";
 import Cities from "./Cities/Cities.js";
+import LList from "./Linklist/Linklist.js";
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selApp: "idCities" //home
+      selApp: "idLinkedList" //home
     };
 
     // NOT REQD as they are defined as arrow Functons.. Just FYI
@@ -42,6 +43,10 @@ class Navbar extends React.Component {
     if (this.state.selApp === "idCities") {
       // console.log("Execution chk Cities", this.state.selApp);
       return <Cities />;
+    }
+    if (this.state.selApp === "idLinkedList") {
+      // console.log("Execution chk Cities", this.state.selApp);
+      return <LList />;
     }
   };
 
@@ -93,7 +98,7 @@ class Navbar extends React.Component {
           />
           <img
             src={linklist}
-            id="idcoffee"
+            id="idLinkedList"
             alt="logo"
             className={
               this.state.selApp === "idLinkedList"
