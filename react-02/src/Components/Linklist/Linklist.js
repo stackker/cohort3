@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import "./LList.css";
 
 import Button from "react-bootstrap/Button";
@@ -24,108 +24,80 @@ function LList() {
       subject !== "" && amount !== ""
         ? handleAdd()
         : alert("Subject and Amt Fields cannot be empty ");
+      // document.getElementById(subject).focus();
     }
   };
 
   const handleAdd = () => {
     LLInst.add(subject, amount);
     setCurrent(LLInst.current);
-    LLInst.showList();
+    // LLInst.showList();
 
     setSubject("");
     setAmount("");
   };
 
-  const handleControlClick = e => {
-    // `{e.target.name}()`;
-  };
   const handleFirst = e => {
     console.log("Target: ", e.target.name);
-    LLInst.first();
+    // LLInst.first();
     setCurrent(LLInst.first());
+    console.log("First/Current ", LLInst.current);
   };
 
   const handlePrevious = e => {
     console.log("Target: ", e.target.name);
-  };
-
-  const handleInsert = e => {
-    console.log("Target: ", e.target.name);
+    setCurrent(LLInst.prev());
+    console.log("Prev/Current ", LLInst.current);
   };
 
   const handleDelete = e => {
     console.log("Target: ", e.target.name);
+    setCurrent(LLInst.delete());
   };
 
   const handleNext = e => {
     console.log("Target: ", e.target.name);
+    setCurrent(LLInst.next());
+    console.log("Next: ", LLInst.current);
   };
 
   const handleLast = e => {
     console.log("Target: ", e.target.name);
+    setCurrent(LLInst.last());
   };
 
   const renderNodes = () => {
-    const markCurent = {
+    const markCurrent = {
       color: "blue",
       fontWeight: "bold",
       backgroundColor: "white"
     };
     // let nodes = [];
     while (LLInst.current) {
-      console.log("showlist: ", LLInst.showList());
+      // console.log("showlist: ", LLInst.showList());
       let llistArr = [];
       llistArr = LLInst.showList();
       // console.log("llistArr", LLInst.current);
 
       return llistArr.map(nodes => {
-        console.log("llistArr curr", LLInst.current);
-        console.log("llistArr head", LLInst.headNode);
-        console.log("nodes", nodes);
+        // console.log("llistArr curr", LLInst.current);
+        // console.log("llistArr head", LLInst.headNode);
+        // console.log("nodes", nodes);
 
-        return nodes[0] === LLInst.current.subject ? (
-          <div>
-            <p
-              key={nodes[0] + nodes[1]}
-              style={{
-                color: "blue",
-                fontWeight: "bold",
-                backgroundColor: "white"
-              }}
-            >
+        return nodes[0] === current.subject ? (
+          <Fragment key={nodes[0] + nodes[1]}>
+            <p key={nodes[0] + nodes[1]} style={markCurrent}>
               {nodes[0]}, {nodes[1]},{nodes[2]}
             </p>
-          </div>
+          </Fragment>
         ) : (
-          <div>
+          <Fragment key={nodes[0] + nodes[1]}>
             <p key={nodes[0] + nodes[1]}>
               {nodes[0]}, {nodes[1]},{nodes[2]}
             </p>
-          </div>
+          </Fragment>
         );
       });
-
-      // return (
-      //   <div>
-      //     llistArr.map((nodes) =>
-      //     {nodes === LLInst.current ? (
-      //       <p
-      //         key={nodes.subject + nodes.amount}
-      //         style={{
-      //           color: "blue",
-      //           fontWeight: "bold",
-      //           backgroundColor: "white"
-      //         }}
-      //       >
-      //         {nodes.subject}, {nodes.amount},{nodes.nextNode}
-      //       </p>
-      //     ) : (
-      //       <p key={nodes.subject + nodes.amount}>
-      //         {nodes.subject}, {nodes.amount},{nodes.nextNode}
-      //       </p>
-      //     )}
-      //   </div>
-      // );
     }
   };
 
@@ -143,6 +115,7 @@ function LList() {
               type="text"
               className="left-input"
               placeholder="Enter Subject"
+              autoFocus={true}
               value={subject}
               onChange={subjectInputChange}
             />
@@ -160,50 +133,48 @@ function LList() {
               onKeyPress={pressEnter}
             />
             <br />
-            <button
-              type="button"
-              className="btn btn-secondary"
+            <Button
+              // type="button"
+              // className="btn btn-secondary"
+              variant="primary"
               name="enterButton"
               onClick={pressEnter}
             >
               Enter
-            </button>
+            </Button>
           </fieldset>
           <br />
-          <button
+          <Button
             onClick={handleFirst}
             id="reset"
             variant="primary"
             name="first"
           >
-            Sel. First
-          </button>
-          <button
+            First
+          </Button>
+          <Button
             onClick={handlePrevious}
             id="reset"
             variant="primary"
             name="prev"
           >
             Previous
-          </button>
-          {/*  I dont need this, as I always insert at current postion */}
-          {/* <Button onClick={handleInsert} id="reset" variant="primary">
-            <b style={{ color: "white" }}>{"[Add @ Current]"}</b>
-          </Button> */}
-          <button
+          </Button>
+
+          <Button
             onClick={handleDelete}
             id="reset"
             variant="primary"
             name="delete"
           >
-            Delete Current
-          </button>
-          <button onClick={handleNext} id="reset" variant="primary" name="next">
-            "Next"
-          </button>
-          <button onClick={handleLast} id="reset" variant="primary" name="last">
-            Sel. Last
-          </button>
+            Delete
+          </Button>
+          <Button onClick={handleNext} variant="primary" name="next">
+            Next
+          </Button>
+          <Button onClick={handleLast} id="reset" variant="primary" name="last">
+            Last
+          </Button>
         </div>
 
         <div id="idRightPanel">{renderNodes()}</div>
