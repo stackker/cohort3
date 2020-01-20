@@ -5,7 +5,7 @@ import "./cities.css";
 import CityInputScreen from "./Cityscreens.js";
 import CitiesDisplay from "./CitiesDisplay.js";
 import { City, Community } from "./CityClass";
-import * as server from "./servCom.js";
+// import * as server from "./servCom.js";
 
 class CitiesData extends React.Component {
   constructor() {
@@ -150,7 +150,7 @@ class CitiesData extends React.Component {
 
               <div id="idCityStatusPanel" className="bottomPanel">
                 Status
-                <p> Screen:{this.state.serveScreenNum}</p>
+                {/* <p> Screen:{this.state.serveScreenNum}</p> */}
                 {this.renderStats()}
               </div>
             </div>

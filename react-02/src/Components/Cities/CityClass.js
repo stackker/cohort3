@@ -129,7 +129,7 @@ class Community {
     let sortResults = this.cityData.sort(
       (a, b) => parseFloat(Number(b.lat)) - parseFloat(Number(a.lat))
     );
-    let sortCity = sortResults[0];
+    // let sortCity = sortResults[0];
     return sortResults[0];
   }
 

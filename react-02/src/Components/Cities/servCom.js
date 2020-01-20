@@ -1,6 +1,6 @@
 // import { cutils, cfunctions } from "./cityfunctions.js";
 // import { Accounts, AccountController } from "/accounts.js";
-import { City, Community } from "./CityClass.js";
+import { City } from "./CityClass.js";
 
 async function postData(url = "", data = {}) {
   // Default options are marked with *
@@ -28,17 +28,17 @@ async function postData(url = "", data = {}) {
 const url = "http://localhost:5000/";
 
 async function updateServCity(city) {
-  let error;
+  // let error;
   try {
     let data = await postData(url + "update", city);
     if (data.status !== 200) {
-      throw "Server not updated";
+      throw new Error("Server not updated");
     } else {
       console.log(`Success:  ${city.key} updated`);
     }
     return data;
-  } catch {
-    console.log(error);
+  } catch (error) {
+    console.error(error);
   }
 }
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { Community } from "./CityClass.js";
 
 class CitiesDisplay extends React.Component {
   constructor(props) {
@@ -72,14 +71,14 @@ class CitiesDisplay extends React.Component {
 }
 
 class CitiesDisplayItems extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     return (
       <tr key>
-        <td>{this.props.index}</td>
+        {/* <td>{this.props.index}</td> */}
         <td>{this.props.city.key}</td>
         <td> {this.props.city.city}</td>
         <td>{this.props.city.population.toString()}</td>
