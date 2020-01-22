@@ -2,7 +2,7 @@ class ListNode {
   constructor(subject, amount) {
     this.nextNode = null;
     this.subject = subject;
-    this.amount = amount;
+    this.amount = Number(amount);
   }
   show() {
     return { subject: this.subject, amount: this.amount };
@@ -82,7 +82,7 @@ class LinkedList {
   add(subject, amount) {
     // const prevNode = this.current;
     const node = new ListNode(subject, amount);
-    this.listAmount += node.amount;
+    this.listAmount += Number(node.amount);
     if (!this.headNode) {
       // list is empty
       this.current = node;
@@ -102,7 +102,7 @@ class LinkedList {
     // only do something if list not empty
     if (this.headNode) {
       let marker = this.current;
-      this.listAmount -= marker.amount;
+      this.listAmount -= Number(marker.amount);
 
       // if deleting the head
       if (this.current === this.headNode) {

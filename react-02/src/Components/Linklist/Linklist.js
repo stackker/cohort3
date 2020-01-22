@@ -65,6 +65,12 @@ function LList() {
     console.log("Target: ", e.target.name);
     setCurrent(LLInst.last());
   };
+  const renderAmount = () => {
+    while (LLInst.headNode) {
+      let sumAmount = `Sum: ${LLInst.listAmount}`;
+      return sumAmount;
+    }
+  };
 
   const renderNodes = () => {
     const markCurrent = {
@@ -177,7 +183,10 @@ function LList() {
           </Button>
         </div>
 
-        <div id="idRightPanel">{renderNodes()}</div>
+        <div id="idRightPanel">
+          {renderNodes()}
+          {renderAmount()}
+        </div>
       </div>
     </section>
   );
