@@ -117,7 +117,8 @@ class Community {
 
   getMostSouthern() {
     // /Sort Latitude ascending
-    let sortResults = this.cityData.sort(
+    let tempCityData = Array.from(this.cityData);
+    let sortResults = tempCityData.sort(
       (a, b) => parseFloat(Number(a.lat)) - parseFloat(Number(b.lat))
     );
     return sortResults[0];
@@ -126,7 +127,10 @@ class Community {
   getMostNorthern() {
     // /Sort Latitude descending
 
-    let sortResults = this.cityData.sort(
+    // the original array gets sorted resulting in cities listing in southern descending as it isthe last sorted sequence. Hence deep copied to temp var.
+    let tempCityData = Array.from(this.cityData);
+
+    let sortResults = tempCityData.sort(
       (a, b) => parseFloat(Number(b.lat)) - parseFloat(Number(a.lat))
     );
     // let sortCity = sortResults[0];

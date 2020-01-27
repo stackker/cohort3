@@ -49,7 +49,7 @@ async function deleteServCity(key) {
 
 async function createServCity(city) {
   let data = await postData(url + "add", city);
-
+  console.log("createServCity", data);
   return data;
 }
 

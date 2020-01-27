@@ -5,22 +5,24 @@ import "./cities.css";
 import CityInputScreen from "./Cityscreens.js";
 import CitiesDisplay from "./CitiesDisplay.js";
 import { City, Community } from "./CityClass";
-// import * as server from "./servCom.js";
+import * as server from "./servCom.js";
+import Spinner from "react-bootstrap/Spinner";
 
 class CitiesData extends React.Component {
   constructor() {
     super();
     this.cityKey = null;
     this.MetroDataInst = new Community();
+    City: new City(); //Dummy creation
 
     this.state = {
       serveScreenNum: 0,
       // this.MetroDataInst = new Community();
       MetroDataState: this.MetroDataInst.cityData,
-      City: new City()
+      spinState: false
     };
   }
-  addCityFn = cityInfo => {
+  addCityFn = async cityInfo => {
     console.log(this.MetroDataInst);
     console.log("CKey", cityInfo, this.MetroDataInst.cityKey);
     if (isNaN(this.MetroDataInst.cityKey)) {
@@ -32,18 +34,27 @@ class CitiesData extends React.Component {
 
     this.cityKey += 1;
 
-    let { cityLat, cityLong, cityName, cityPop } = cityInfo;
+    let { cityName, cityLat, cityLong, cityPop } = cityInfo;
 
     console.log(cityName, cityLat, cityLong, cityPop, this.cityKey);
     // createCity adds the city to the MetroDataInst of community
+    let key = this.cityKey; // server API needs it explicitly to be named key
 
     const metroDataCopy = this.MetroDataInst.createCity(
-      this.cityKey,
+      key,
       cityName,
       cityLat,
       cityLong,
       cityPop
     );
+    let cityinfo = {
+      key: key,
+      city: cityName,
+      lat: cityLat,
+      long: cityLong,
+      population: cityPop
+    };
+    let cityServReturn = await server.createServCity(cityinfo);
 
     this.setState({
       MetroDataState: metroDataCopy
@@ -52,15 +63,35 @@ class CitiesData extends React.Component {
     this.setState({ serveScreenNum: 0 });
   };
 
-  // componentDidMount() {
-  //   // Sync Server Data into state
+  componentDidMount = async () => {
+    // Sync Server Data into state
+    //  "idcreateCity" has no relevance except that it was used for JS based development
+    // debugger;
+    this.setState({ spinState: true });
+    const MetroDataInstCopy = await server.syncServerCities(
+      "idcreateCity",
+      this.MetroDataInst
+    );
+    this.setState({ spinState: false });
+    console.log("After server Sync: ", MetroDataInstCopy);
 
-  //   this.setState({
-  //     MetroDataState: server.syncServerCities(
-  //       "idcreateCity",
-  //       this.MetroDataInst
-  //     )
-  //   });
+    if (!MetroDataInstCopy) {
+      this.setState({
+        MetroDataState: MetroDataInstCopy.cityData
+      });
+      this.setState({ serveScreenNum: 1 });
+    }
+  };
+
+  setSpinnerState = spinState => {
+    if (spinState) {
+      return (
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      );
+    }
+  };
 
   cancelScreenFn = () => {
     this.setState({ serveScreenNum: 0 });
@@ -89,7 +120,7 @@ class CitiesData extends React.Component {
   };
 
   render() {
-    // console.log("createCityScreen render", this.state.serveScreenNum);
+    console.log("createCityScreen render", this.state.MetroDataState);
     return (
       <div>
         <section id="idMetroSec" className="MetroData">
@@ -108,6 +139,7 @@ class CitiesData extends React.Component {
                 Create City
               </button>
               <div>
+                {this.setSpinnerState(this.state.spinState)}
                 <CitiesDisplay
                   MetroData={this.state.MetroDataState}
                   setNewPopulationIn={(cityKey, movedQty) => {
@@ -136,7 +168,9 @@ class CitiesData extends React.Component {
             </div>
 
             <div id="idDataPanel" className="rightPanel">
-              <div id="idCityInputForm" className="clInputForm">
+              <div id="idCityInputForm">
+                {/* <div id="idCityInputForm" 
+              className="clInputForm"> */}
                 <CityInputScreen
                   screenNum={this.state.serveScreenNum}
                   cancelScreenButn={() => {

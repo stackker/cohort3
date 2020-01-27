@@ -8,6 +8,7 @@ class CitiesDisplay extends React.Component {
     };
   }
   render() {
+    console.log("CDisplay-MetroData: ", this.props.MetroData);
     return (
       // if there are entries in the Community Instance , Display it.
 
@@ -29,7 +30,7 @@ class CitiesDisplay extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {console.log("tbody", this.props.MetroData, this.MetroDataInst)}
+              {/* {console.log("tbody", this.props.MetroData, this.MetroDataInst)} */}
               {this.props.MetroData.map((city, index) => {
                 return (
                   /*  The items should be seperate component as they need to be selected */
@@ -78,7 +79,6 @@ class CitiesDisplayItems extends React.Component {
   render() {
     return (
       <tr key>
-        {/* <td>{this.props.index}</td> */}
         <td>{this.props.city.key}</td>
         <td> {this.props.city.city}</td>
         <td>{this.props.city.population.toString()}</td>

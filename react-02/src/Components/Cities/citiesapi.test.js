@@ -1,6 +1,4 @@
-
-
-global.fetch = require('node-fetch');
+global.fetch = require("node-fetch");
 
 /*
     These are destructive tests. The URL will have its data
@@ -11,96 +9,90 @@ global.fetch = require('node-fetch');
     are appreciated.
 */
 
-const url = 'http://localhost:5000/';
+const url = "http://localhost:5000/";
 
-test('test that the fetch works?', async () => {
+test("test that the fetch works?", async () => {
+  const clients = [
+    { key: 1, name: "Larry" },
+    { key: 2, name: "Lorraine" },
+    { key: 3, city: "Calgary", population: 100000, lat: 51.05, long: -114.05 },
+    { key: 4, city: "Edmonton", population: 200000, lat: 53.55, long: -113.49 },
+    { key: 5, city: "Red Deer", population: 10000, lat: 52.28, long: -113.81 }
+  ];
 
-    const clients = [
-			
-        {key:1, name:"Larry"},
-				{key:2, name:"Lorraine"},
-				{key:3, city:"Calgary", population:100000 ,lat:51.05, long:-114.05},
-				{key:4, city:"Edmonton", population:200000 ,lat:53.55, long:-113.49},
-				{key:5, city:"Red Deer", population:10000 ,lat:52.28, long:-113.81}
-    ]
+  // Check that the server is running and clear any data
+  let data = await postData(url + "clear");
 
-    // Check that the server is running and clear any data
-    let data = await postData(url + 'clear');
+  data = await postData(url + "all");
+  expect(data.status).toEqual(200);
+  // expect(data.length).toBe(0);
 
-    data = await postData(url + 'all');
-    expect(data.status).toEqual(200);
-    // expect(data.length).toBe(0);
+  data = await postData(url + "add", clients[0]);
 
-		data = await postData(url + 'add', clients[0]);
-	
-    expect(data.status).toEqual(200);
+  expect(data.status).toEqual(200);
 
-    data = await postData(url + 'all');
-    expect(data.status).toEqual(200);
-    expect(data.length).toBe(1);
-    expect(data[0].name).toBe("Larry");
+  data = await postData(url + "all");
+  expect(data.status).toEqual(200);
+  expect(data.length).toBe(1);
+  expect(data[0].name).toBe("Larry");
 
-    // add a second with the same key which should be an error
-    data = await postData(url + 'add', clients[0]);
-    expect(data.status).toEqual(400);
+  // add a second with the same key which should be an error
+  data = await postData(url + "add", clients[0]);
+  expect(data.status).toEqual(400);
 
-    // add a second which should be ok
-    data = await postData(url + 'add', clients[1]);
-    expect(data.status).toEqual(200);
+  // add a second which should be ok
+  data = await postData(url + "add", clients[1]);
+  expect(data.status).toEqual(200);
 
-    data = await postData(url + 'all');
-    expect(data.status).toEqual(200);
-    expect(data.length).toBe(2);
-    expect(data[1].name).toBe("Lorraine");
+  data = await postData(url + "all");
+  expect(data.status).toEqual(200);
+  expect(data.length).toBe(2);
+  expect(data[1].name).toBe("Lorraine");
 
-    data = await postData(url + 'read', {key:1});
-    expect(data.status).toEqual(200);
-    expect(data.length).toBe(1);
-    expect(data[0].name).toBe("Larry");
+  data = await postData(url + "read", { key: 1 });
+  expect(data.status).toEqual(200);
+  expect(data.length).toBe(1);
+  expect(data[0].name).toBe("Larry");
 
-    data = await postData(url + 'update', {key:1, name:"George"});
-    expect(data.status).toEqual(200);
+  data = await postData(url + "update", { key: 1, name: "George" });
+  expect(data.status).toEqual(200);
 
-    data = await postData(url + 'read', {key:1});
-    expect(data.status).toEqual(200);
-    expect(data.length).toBe(1);
-    expect(data[0].name).toBe("George");
+  data = await postData(url + "read", { key: 1 });
+  expect(data.status).toEqual(200);
+  expect(data.length).toBe(1);
+  expect(data[0].name).toBe("George");
 
-		data = await postData(url + 'delete', {key:1});
-		data = await postData(url + 'delete', {key:2});
-    expect(data.status).toEqual(200);
+  data = await postData(url + "delete", { key: 1 });
+  data = await postData(url + "delete", { key: 2 });
+  expect(data.status).toEqual(200);
 
-    data = await postData(url + 'read', {key:0});
-		expect(data.status).toEqual(400);
-		
-		
-		data = await postData(url + 'add', clients[2]);
-		data = await postData(url + 'add', clients[3]);
-		data = await postData(url + 'add', clients[4]);
+  data = await postData(url + "read", { key: 0 });
+  expect(data.status).toEqual(400);
 
-	
+  data = await postData(url + "add", clients[2]);
+  data = await postData(url + "add", clients[3]);
+  data = await postData(url + "add", clients[4]);
 });
 
+async function postData(url = "", data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json"
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
 
-async function postData(url = '', data = {}) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-        method: 'POST',     // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors',       // no-cors, *cors, same-origin
-        cache: 'no-cache',  // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-            'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: 'follow',         // manual, *follow, error
-        referrer: 'no-referrer',    // no-referrer, *client
-        body: JSON.stringify(data)  // body data type must match "Content-Type" header
-    });
-
-    const json = await response.json();    // parses JSON response into native JavaScript objects
-    json.status = response.status;
-    json.statusText = response.statusText;
-    // console.log(json, typeof(json));
-    return json;
+  const json = await response.json(); // parses JSON response into native JavaScript objects
+  json.status = response.status;
+  json.statusText = response.statusText;
+  // console.log(json, typeof(json));
+  return json;
 }

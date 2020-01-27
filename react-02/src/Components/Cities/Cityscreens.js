@@ -15,7 +15,7 @@ class CityInputScreen extends React.Component {
     return (
       this.props.screenNum === 1 && (
         <fieldset className="card">
-          <legend>City Information</legend>
+          {/* <legend>City Information</legend> */}
           City Name :
           <input
             type="text"
@@ -24,7 +24,7 @@ class CityInputScreen extends React.Component {
             name="cityName"
             onBlur={this.makeObject}
           />
-          <br />
+          {/* <br /> */}
           City Population:
           <input
             type="text"
@@ -32,7 +32,7 @@ class CityInputScreen extends React.Component {
             name="cityPop"
             onBlur={this.makeObject}
           />
-          <br />
+          {/* <br /> */}
           Latitude :
           <input
             type="number"
@@ -40,7 +40,7 @@ class CityInputScreen extends React.Component {
             name="cityLat"
             onBlur={this.makeObject}
           />
-          <br />
+          {/* <br /> */}
           Longitude :
           <input
             type="number"
@@ -48,19 +48,25 @@ class CityInputScreen extends React.Component {
             name="cityLong"
             onBlur={this.makeObject}
           />
-          <br />
-          <button
-            className="add"
-            value="Add City"
-            onClick={() => {
-              this.props.addCityButn(this.cityInfo);
-            }}
-          >
-            Add City
-          </button>
-          <button className="del" onClick={this.props.cancelScreenButn}>
-            Cancel
-          </button>
+          {/* <br /> */}
+          <span>
+            <button
+              className="add"
+              value="Add City"
+              onClick={() => {
+                this.props.addCityButn(this.cityInfo);
+              }}
+            >
+              Add City
+            </button>
+            <button
+              style={{ marginLeft: 40 }}
+              className="del"
+              onClick={this.props.cancelScreenButn}
+            >
+              Cancel
+            </button>
+          </span>
         </fieldset>
       )
     );
