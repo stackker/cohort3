@@ -15,7 +15,7 @@ class Navbar extends React.Component {
     super(props);
 
     this.state = {
-      selApp: "idLinkedList" //home
+      selApp: "idCities" //home
     };
 
     // NOT REQD as they are defined as arrow Functons.. Just FYI
