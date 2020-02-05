@@ -1,0 +1,24 @@
+.App-header {
+  background-color: #282c34;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  text-align: center;
+  height: 400px;
+}
+
+.idtopPanel {
+  flex: 0.5;
+  /* height: 50%; */
+  width: 100%;
+  border: 1px solid rgb(77, 74, 74);
+}
+
+.idbotPanel {
+  flex: 2.5;
+  /* height: 50%; */
+  width: 100%;
+  border: 1px solid rgb(77, 74, 74);
+}

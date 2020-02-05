@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 
 class CitiesDisplay extends React.Component {
   constructor(props) {
@@ -7,8 +8,10 @@ class CitiesDisplay extends React.Component {
       entry: ""
     };
   }
+
   render() {
     console.log("CDisplay-MetroData: ", this.props.MetroData);
+
     return (
       // if there are entries in the Community Instance , Display it.
 
@@ -40,6 +43,8 @@ class CitiesDisplay extends React.Component {
                     city={city}
                     index={index}
                     entry={this.state.entry}
+                    butnState={this.state.butnState}
+                    butnChange={this.setButnState}
                     setEntryState={event => {
                       this.setState({ entry: event.target.value });
                       event.target.value = ""; //Need to find better way to clear field as the data can dissappear if we click anywhere other than the Movedin
@@ -47,6 +52,7 @@ class CitiesDisplay extends React.Component {
                     movedInFn={() => {
                       this.props.setNewPopulationIn(city.key, this.state.entry);
                       console.log(city.key, this.state.entry);
+
                       this.setState({ entry: "" }); //Cleared so that the next click will not add again on this or other lines
                     }}
                     movedOutFn={() => {
@@ -72,11 +78,36 @@ class CitiesDisplay extends React.Component {
 }
 
 class CitiesDisplayItems extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      // entry: "",
+      butnState: true
+    };
+  }
+  setButnState = event => {
+    console.log("setButnState :", this.state.entry);
+
+    if (event.target.value !== "") {
+      // debugger;
+      console.log("setButn:ET: ", this.state.entry);
+      return this.setState({ butnState: false }); // disabled = true
+    }
+  };
+
+  createMoveIn = event => {
+    console.log("createMoveIn:", event.nativeEvent);
+    this.setState({ butnState: true });
+    this.props.movedInFn();
+  };
+
+  createMoveOut = event => {
+    this.setState({ butnState: true });
+    this.props.movedOutFn();
+  };
 
   render() {
+    console.log("CDisplayItems-butnState: ", this.props.butnState);
     return (
       <tr key>
         <td>{this.props.city.key}</td>
@@ -89,25 +120,37 @@ class CitiesDisplayItems extends React.Component {
         <td>
           <input
             type="number"
+            placeholder=" Only + numbers"
+            min={1}
             name="entry"
             // ref={this.entry}
             onBlur={this.props.setEntryState}
+            onChange={this.setButnState}
           />
         </td>
         <td>
-          <button onClick={this.props.movedInFn}>Mvd In</button>
-        </td>
-        <td>
-          <button onClick={this.props.movedOutFn}>Mvd Out</button>
-        </td>
-        <td>
-          <button
-            onClick={this.props.deleteCityBut}
-            // this.props.deleteCityBut(this.props.city.key);
-            // }}
+          <Button
+            variant="primary"
+            size="sm"
+            disabled={this.state.butnState}
+            onClick={this.createMoveIn}
           >
-            Delete
-          </button>
+            Mvd In
+          </Button>
+        </td>
+        <td>
+          <Button
+            variant="secondary"
+            size="sm"
+            // disabled={true}
+            disabled={this.state.butnState}
+            onClick={this.createMoveOut}
+          >
+            Mvd Out
+          </Button>
+        </td>
+        <td>
+          <button onClick={this.props.deleteCityBut}>Delete</button>
         </td>
       </tr>
     );

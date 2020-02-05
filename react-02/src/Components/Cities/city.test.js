@@ -1,11 +1,13 @@
-import { City, Community } from "./city.js";
+import { City, Community } from "./CityClass.js";
+
+window.alert = jest.fn(); // else JEST gives wimdow.alert errors
 
 test("check test", () => {
   console.log("testing from city.test.js");
 });
 test("check Show Method", () => {
   let TestCity = new City(1, "MyCity", 21.245, -55.25, 99);
-  expect(TestCity.show()).toEqual("MyCity,21.245,-55.25,99");
+  expect(TestCity.show()).toEqual("1,MyCity,21.245,-55.25,99");
 });
 
 test("check howBig Method", () => {
@@ -46,8 +48,8 @@ test("Community:  createCity Method", () => {
   let MetroData = new Community();
   // let TestCity =  new City("MyCity", 21.245, -55.250, 100);
   // expect(MetroData.createCity("MyVillage", 21.245, -55.250, 100)).toEqual(["MyVillage", 21.245, -55.250, 100]);
-  MetroData.createCity(1, "MyVillage", 100, 21.245, -55.25);
-  expect(MetroData.createCity(2, "MyTown", 1020, 121.245, -65.25)).toEqual([
+  MetroData.createCity(1, "MyVillage", 21.245, -55.25, 100);
+  expect(MetroData.createCity(2, "MyTown", 121.245, -65.25, 1020)).toEqual([
     {
       key: 1,
       city: "MyVillage",
@@ -67,11 +69,11 @@ test("Community:  createCity Method", () => {
 test("Community: deleteCity Method", () => {
   let MetroData = new Community();
 
-  MetroData.createCity(1, "MyVillage", 100, 21.245, -55.25);
-  MetroData.createCity(2, "MyTown", 1020, 121.245, -65.25);
-  MetroData.createCity(3, "MyCity", 10200, 121.245, -25.25);
-  MetroData.deleteCity("MyTown");
-  expect(MetroData.deleteCity("MyTown")).toEqual([
+  MetroData.createCity(1, "MyVillage", 21.245, -55.25, 100);
+  MetroData.createCity(2, "MyTown", 121.245, -65.25, 1020);
+  MetroData.createCity(3, "MyCity", 121.245, -25.25, 10200);
+  // MetroData.deleteCity("MyTown");
+  expect(MetroData.deleteCity(2)).toEqual([
     {
       key: 1,
       city: "MyVillage",
@@ -92,9 +94,9 @@ test("Community: deleteCity Method", () => {
 test("check getPopulation Method", () => {
   let MetroData = new Community();
 
-  MetroData.createCity(1, "MyVillage", 100, 21.245, -55.25);
-  MetroData.createCity(2, "MyTown", 1000, 121.245, -65.25);
-  MetroData.createCity(3, "MyCity", 10000, 121.245, -25.25);
+  MetroData.createCity(1, "MyVillage", 21.245, -55.25, 100);
+  MetroData.createCity(2, "MyTown", 121.245, -65.25, 1000);
+  MetroData.createCity(3, "MyCity", 121.245, -25.25, 10000);
   // console.log(MetroData.getPopulation());
   expect(MetroData.getPopulation()).toEqual(11100);
 });
@@ -102,29 +104,42 @@ test("check getPopulation Method", () => {
 test("check getMostSouthern() method", () => {
   let MetroData = new Community();
 
-  MetroData.createCity(1, "MyVillage", 100, 21.245, -55.25);
-  MetroData.createCity(2, "MyTown", 1000, 121.245, -65.25);
-  MetroData.createCity(3, "MyCity", 10000, 121.245, -25.25);
-  MetroData.createCity(4, "NewYork", 100000, 80.245, 25.25);
-  MetroData.createCity(5, "Inuktituk", 100000, 80.245, 68.25);
-  expect(MetroData.getMostSouthern().city).toEqual("MyTown");
+  MetroData.createCity(1, "MyVillage", -21.245, -55.25, 100);
+  MetroData.createCity(2, "MyTown", 121.245, -65.25, 1000);
+  MetroData.createCity(3, "MyCity", 121.245, -25.25, 10000);
+  MetroData.createCity(4, "NewYork", 80.245, 25.25, 100000);
+  MetroData.createCity(5, "Inuktituk", 80.245, 68.25, 100000);
+  expect(MetroData.getMostSouthern().city).toEqual("MyVillage");
 });
 
 test("check getMostNorthern() method", () => {
   let MetroData = new Community();
 
-  MetroData.createCity(1, "MyVillage", 100, 21.245, -55.25);
-  MetroData.createCity(2, "MyTown", 1000, 121.245, -65.25);
-  MetroData.createCity(3, "MyCity", 10000, 121.245, -25.25);
-  MetroData.createCity(4, "NewYork", 100000, 80.245, 25.25);
-  MetroData.createCity(5, "Inuktituk", 100000, 80.245, 68.25);
+  MetroData.createCity(1, "MyVillage", 21.245, -55.25, 100);
+  MetroData.createCity(2, "MyTown", 12.245, -65.25, 1000);
+  MetroData.createCity(3, "MyCity", -11.45, -25.25, 10000);
+  MetroData.createCity(4, "NewYork", 78.245, 25.25, 100000);
+  MetroData.createCity(5, "Inuktituk", 80.245, 68.25, 100000);
   expect(MetroData.getMostNorthern().city).toEqual("Inuktituk");
 });
 
 test("check whichSphere ", () => {
   let MetroData = new Community();
-  MetroData.createCity(3, "MyCity", 10000, -121.245, -25.25);
+  MetroData.createCity(3, "MyCity", 10000, -21.245, -25.25);
   MetroData.createCity(4, "NewYork", 100000, 80.245, 25.25);
   expect(MetroData.whichSphere(3)).toEqual("Southern Hemisphere");
   expect(MetroData.whichSphere(4)).toEqual("Northern Hemisphere");
+});
+
+test("check getCityInfo ", () => {
+  let MetroData = new Community();
+  MetroData.createCity(3, "MyCity", -21.245, -25.25, 10000);
+  MetroData.createCity(4, "NewYork", 80.245, 25.25, 100000);
+  expect(MetroData.getCityInfo(3)[0]).toEqual({
+    key: 3,
+    city: "MyCity",
+    lat: -21.245,
+    long: -25.25,
+    population: 10000
+  });
 });

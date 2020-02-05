@@ -13,7 +13,7 @@ class CitiesData extends React.Component {
     super();
     this.cityKey = null;
     this.MetroDataInst = new Community();
-    City: new City(); //Dummy creation
+    this.City = new City(); //Dummy creation
 
     this.state = {
       serveScreenNum: 0,
@@ -57,10 +57,11 @@ class CitiesData extends React.Component {
     let cityServReturn = await server.createServCity(cityinfo);
 
     this.setState({
-      MetroDataState: metroDataCopy
+      MetroDataState: metroDataCopy,
+      serveScreenNum: 0
     });
 
-    this.setState({ serveScreenNum: 0 });
+    // this.setState({ serveScreenNum: 0 });
   };
 
   componentDidMount = async () => {
@@ -72,14 +73,14 @@ class CitiesData extends React.Component {
       "idcreateCity",
       this.MetroDataInst
     );
-    this.setState({ spinState: false });
+    this.setState({ spinState: false }); //To be removed after the await is fulfilled
     console.log("After server Sync: ", MetroDataInstCopy);
 
     if (!MetroDataInstCopy) {
       this.setState({
-        MetroDataState: MetroDataInstCopy.cityData
+        MetroDataState: MetroDataInstCopy.cityData,
+        serveScreenNum: 1
       });
-      this.setState({ serveScreenNum: 1 });
     }
   };
 
@@ -142,24 +143,33 @@ class CitiesData extends React.Component {
                 {this.setSpinnerState(this.state.spinState)}
                 <CitiesDisplay
                   MetroData={this.state.MetroDataState}
-                  setNewPopulationIn={(cityKey, movedQty) => {
+                  setNewPopulationIn={async (cityKey, movedQty) => {
+                    this.City = this.MetroDataInst.getCityInfo(cityKey)[0];
+                    this.City.population = this.City.movedin(movedQty);
+                    await server.updateServCity(this.City);
                     this.setState({
-                      MetroDataState: this.MetroDataInst.postDeposit(
-                        cityKey,
-                        movedQty
-                      )
+                      MetroDataState: this.MetroDataInst.cityData,
+                      entry: ""
                     });
                   }}
-                  setNewPopulationOut={(cityKey, movedQty) => {
+                  setNewPopulationOut={async (cityKey, movedQty) => {
+                    this.City = this.MetroDataInst.getCityInfo(cityKey)[0];
+                    this.City.population = this.City.movedOut(movedQty);
+                    await server.updateServCity(this.City);
+                    console.log("Citypop: ", this.City.population);
+
                     this.setState({
-                      MetroDataState: this.MetroDataInst.postWithdrawal(
-                        cityKey,
-                        movedQty
-                      )
+                      MetroDataState: this.MetroDataInst.cityData,
+                      entry: ""
                     });
                   }}
-                  deleteCityFn={cityKey => {
+                  deleteCityFn={async cityKey => {
+                    this.setState({ spinState: true });
+                    await server.deleteServCity(cityKey);
                     this.setState({
+                      spinState: false,
+
+                      // MetroDataState: this.MetroDataInst.cityData
                       MetroDataState: this.MetroDataInst.deleteCity(cityKey)
                     });
                   }}

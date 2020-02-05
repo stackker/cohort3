@@ -1,6 +1,6 @@
-global.fetch = require("node-fetch");
-
 import * as server from "./servCom.js";
+
+global.fetch = require("node-fetch");
 
 const url = "http://localhost:5000/";
 
@@ -19,6 +19,11 @@ test("Testing from citiesFetch ", () => {
   console.log("printed from  citiesFetch");
 });
 
+test("Clear Server, so data can be reused", async () => {
+  let data = await postData(url + "clear");
+  expect(data.status).toEqual(200);
+});
+
 test("local fetch works?", async () => {
   let data = await postData(url + "add", clients[0]);
   expect(data.status).toEqual(200);
@@ -30,9 +35,16 @@ test("server  fetch add?", async () => {
 });
 
 test("server  fetch update?", async () => {
+ city = {
+    key: 7,
+    city: "Moose Jaw",
+    population: "23",
+    lat: "2",
+    long: "3"
+  };
   let data = await server.updateServCity(city);
   expect(data.status).toEqual(200);
-});
+}, 10000);
 
 async function postData(url = "", data = {}) {
   // Default options are marked with *

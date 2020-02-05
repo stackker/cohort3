@@ -7,10 +7,18 @@ class City {
     this.long = Number(long);
   }
   show() {
-    return `${this.city},${this.population},${this.lat},${this.long}`;
+    return `${this.key},${this.city},${this.population},${this.lat},${this.long}`;
   }
   movedin(movedInVal) {
-    return (this.population += Number(movedInVal));
+    if (Number(movedInVal) <= 0) {
+      let error = "Moved In Numbers must be greater than Zero";
+      alert(error);
+      console.log(error);
+      return this.population;
+    }
+    {
+      return (this.population += Number(movedInVal));
+    }
   }
 
   movedOut(movedOutVal) {
@@ -85,7 +93,7 @@ class Community {
       // console.log("inCreateDep Meth:", key, changeQty);
       // debugger;
       if (key === eachCity.key) {
-        console.log("in postWithdrawal Meth:", "Key found");
+        // console.log("in postWithdrawal Meth:", "Key found");
         eachCity.movedOut(Number(changeQty));
         postedCity = eachCity;
         break;
@@ -96,7 +104,7 @@ class Community {
   }
 
   createCity(cityKey, cityName, cityLat, cityLong, cityPop) {
-    console.log("from method createCity");
+    // console.log("from method createCity");
     let ACity = new City(cityKey, cityName, cityPop, cityLat, cityLong);
     this.cityData.push(ACity);
     this.cityKey = cityKey; // added for react  code. else  the key is not allocated
@@ -105,9 +113,10 @@ class Community {
 
   deleteCity(cityKey) {
     this.cityData = this.cityData.filter(City => {
+      // console.log("City.key:", City.key, "cityKey: ", cityKey);
       return City.key !== cityKey;
     });
-    console.log("Instance :", this.citiesData);
+    // console.log("Instance :", this.cityData);
     return this.cityData;
   }
 

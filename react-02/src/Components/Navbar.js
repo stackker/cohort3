@@ -4,11 +4,13 @@ import aperture from "../Icons/tic-tac-toe-svgrepo-com.svg";
 import accounts from "../Icons/piggy-bank-svgrepo-com.svg";
 import cities from "../Icons/building-svgrepo-com.svg";
 import linklist from "../Icons/link-building-svgrepo-com.svg";
+import queue from "../Icons/queue.svg";
 
 import Home from "./Home.js";
 import Game from "./TicTac/Game.js";
 import Cities from "./Cities/Cities.js";
 import LList from "./Linklist/Linklist.js";
+import Queue from "./Queue/Queue.js";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -47,6 +49,10 @@ class Navbar extends React.Component {
     if (this.state.selApp === "idLinkedList") {
       // console.log("Execution chk Cities", this.state.selApp);
       return <LList />;
+    }
+    if (this.state.selApp === "idqueue") {
+      // console.log("Execution chk Cities", this.state.selApp);
+      return <Queue />;
     }
   };
 
@@ -102,6 +108,16 @@ class Navbar extends React.Component {
             alt="logo"
             className={
               this.state.selApp === "idLinkedList"
+                ? "App-logo-selected "
+                : "App-logo"
+            }
+          />
+          <img
+            src={queue}
+            id="idqueue"
+            alt="logo-queue"
+            className={
+              this.state.selApp === "idqueue"
                 ? "App-logo-selected "
                 : "App-logo"
             }

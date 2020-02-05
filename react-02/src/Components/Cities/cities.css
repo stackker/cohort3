@@ -74,11 +74,13 @@ input:required {
 
 #idPanelContainer {
   display: flex;
+  height: 100%;
 }
 
 #idLeftPanel {
   flex: 1;
-  min-height: 500px;
+  min-height: 100%;
+  /* min-height: 500px; */
   height: auto;
   border: 2px solid rgb(77, 74, 74);
   background-color: rgb(220, 220, 220);
