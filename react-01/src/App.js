@@ -6,8 +6,6 @@ import MyComponent, { MyComp2 } from "./components/MyComponent.js";
 import EvenComponent from "./components/EvenComponent.js";
 import OddComponent from "./components/OddComponent.js";
 
-
-
 // function App() {
 class App extends React.Component {
   constructor(props) {
@@ -51,7 +49,7 @@ class App extends React.Component {
           ) : (
             <OddComponent countState={this.state.counterState} />
           )}
-          <MyComp2 />
+          {/* <MyComp2 /> */}
           <p>
             Edit <code>src/App.js</code> and save to reload: Edited.
           </p>
