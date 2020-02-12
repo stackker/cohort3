@@ -1,6 +1,6 @@
 
 --  determine top 5 most popular actor based on the rental frequency
-
+PSQL CONNECT TO "//localhost:5432/dvdrental" AS dvdrental USER postgres;
 drop view if exists
 public.top5_actor_popular ;
 
