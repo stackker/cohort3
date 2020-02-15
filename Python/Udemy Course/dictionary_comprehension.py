@@ -8,7 +8,7 @@ print('\033c')
 userInfo_list = [
     (0, "Bob", "welcome"),
     (1, "Chris", "pass32"),
-    (1, "Dufus", "biGMac24")
+    (2, "Dufus", "biGMac24")
 ]
 
 # assign each record to a key that we will use to search against
@@ -31,7 +31,7 @@ try:
     if pword_input == password:
         print(f"you are welcome, {user}")
     else:
-        print("Your username or password is incorrect")
+        print("Your  password is incorrect")
 
 
 except KeyError:
