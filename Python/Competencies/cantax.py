@@ -48,10 +48,11 @@ def calculateTax(year1, income, data):
                 print(f"{index}  , {slab_amt}  , {income_rem  }, {slab_tax}" )
             else: # is last record
                 print("Rem Inc:", income_rem)
-                slab_amt =  income_rem 
+                slab_amt = income_rem
+                slab_tax = calc_slab_tax(float(slab['rate']), slab_amt)
                 print(f"LAST:{index}  , {slab_amt}  , {income_rem  }, {slab_tax}" )
             total_tax += slab_tax
-        print("TOTAL: ",total_tax)
+        print("TOTAL: ",'{0:.2f}'.format(total_tax))
         return total_tax
 
     except:
@@ -81,6 +82,6 @@ def calculateTax(year1, income, data):
 
 # print(data)
 try:
-    print("Total Tax Due: ", calculateTax('2020', '100000', data))
+    print("Total Tax Due: ", '{0:.2f}'.format(calculateTax('2020', '100000', data)))
 except:
     print("Drat! Something went wrong!!")

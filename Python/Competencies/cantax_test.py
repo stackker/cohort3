@@ -27,11 +27,17 @@ def test_calc_slab_tax():
 def test_cantax():
     assert ct.calculateTax('2000', 1000, data) == 100
     assert ct.calculateTax('2000', '1000', data) == 100
+    assert ct.calculateTax('2000', '10000', data) == 1900
+    assert ct.calculateTax('2000', '50000', data) == 11900
+    assert ct.calculateTax('2000', '100000', data) == 31900
+    assert ct.calculateTax('2000', '200000', data) == 81900
 
-# def test_nonLoaded_year():
-#     with pytest.raises(Exception) as e:
-#         assert ct.calculateTax('200', 1000, data)
-#     assert str(e.value) == "Calculation Data for year 200 is not loaded"
-    
+def test_nonLoaded_year():
+    with pytest.raises(Exception) : # as e:
+        assert ct.calculateTax('200', 1000, data)
+    # assert("EValue: ",str(e.value)) 
+    #    
+    with pytest.raises(Exception, match = "200"):
+        assert ct.calculateTax('200', 1000, data)
 
 
