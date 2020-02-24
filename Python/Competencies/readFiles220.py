@@ -20,10 +20,12 @@ def countSearchString(searchString, fileNamePath):
         for lines in file_contents:
             # print("lines: ", lines)
             lineCount += 1
-            wordList = lines.strip().split()
+            wordList = lines.strip().split() # splits line on spaces
             # print("WordList: ", wordList)
             wordCount += len(wordList)
-            charCount += sum(len(word) for word in wordList)
+            # charCount += sum(len(word) for word in wordCount)
+            charCount += sum(len(line) for line in lines)  # using lines includes the spaces in char count, matches Wordprocessor counts
+            
 
         count_occurances = 0  #
         matches = regex.finditer(str(file_contents))
@@ -41,7 +43,7 @@ def countSearchString(searchString, fileNamePath):
 
 
 # ----------------------------------------------------
-# if this check is not there it will run the below portion inspite of Calling only the Func above in Test
+# if this check is not there it will run the below portion  inspite of Calling only the Func above in Test
 
 if __name__ == '__main__':
     fileNamePath= input('Enter File name + Path: ')
