@@ -10,5 +10,5 @@ def test_helloWorld():
     assert "Hello World from readFile220.test.py" == "Hello World from readFile220.test.py"
 
 def test_occurance():
-    assert regx("dog", './readFile220_test.py')== {'totalCharacters': 899, 'totalLines': 14, 'totalWords': 138, 'wordOccurs': 3}
-    assert regx("Lorem", './readFile220_test.py')=={'totalCharacters': 899, 'totalLines': 14, 'totalWords': 138, 'wordOccurs': 2}
+    assert regx("dog", './readFile220_test.py')== {'totalCharacters': 1043, 'totalLines': 14, 'totalWords': 138, 'wordOccurs': 3}
+    assert regx("Lorem", './readFile220_test.py')=={'totalCharacters': 1043, 'totalLines': 14, 'totalWords': 138, 'wordOccurs': 2}
