@@ -8,6 +8,7 @@ import queue from "../Icons/queue.svg";
 
 import Home from "./Home.js";
 import Game from "./TicTac/Game.js";
+import Accounts from "./accounts/accounts.js";
 import Cities from "./Cities/Cities.js";
 import LList from "./Linklist/Linklist.js";
 import Queue from "./Queue/Queue.js";
@@ -41,6 +42,10 @@ class Navbar extends React.Component {
     if (this.state.selApp === "idTic") {
       console.log("Execution chk Game:", this.state.selApp);
       return <Game />;
+    }
+    if (this.state.selApp === "idAcc") {
+      console.log("Execution chk Accounts:", this.state.selApp);
+      return <Accounts />;
     }
     if (this.state.selApp === "idCities") {
       // console.log("Execution chk Cities", this.state.selApp);
@@ -84,7 +89,7 @@ class Navbar extends React.Component {
           />
           <img
             src={accounts}
-            id="idaccounts"
+            id="idAcc"
             alt="logo"
             className={
               this.state.selApp === "idAccounts"
