@@ -15,8 +15,7 @@ class City {
       alert(error);
       console.log(error);
       return this.population;
-    }
-    {
+    } else {
       return (this.population += Number(movedInVal));
     }
   }
@@ -60,6 +59,10 @@ class City {
     } else {
       return "City";
     }
+  }
+
+  whichSphere() {
+    return parseFloat(this.lat) >= 0 ? "Northern" : "Southern";
   }
 }
 
@@ -146,15 +149,13 @@ class Community {
     return sortResults[0];
   }
 
-  whichSphere(key) {
+  whichSphere1(key) {
     debugger;
     let myCity = this.cityData.filter(city => {
       return city.key === key;
     });
     //[0] as it is always a one element array
-    return parseFloat(myCity[0].long) >= 0
-      ? "Northern Hemisphere"
-      : "Southern Hemisphere";
+    return parseFloat(myCity[0].long) >= 0 ? "Northern" : "Southern";
   }
 
   getCityInfo(cityKey) {

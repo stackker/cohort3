@@ -79,7 +79,7 @@ async function syncServerCities(panelId, CommunityArr) {
     // let newCard = cfunctions.addCity(panelId, cityCard);
   }
   console.log("syncServerCities returned :", CommunityArr);
-  return CommunityArr;
+  return serverCity;
 }
 
 export { createServCity, syncServerCities, updateServCity, deleteServCity };

@@ -127,8 +127,8 @@ test("check whichSphere ", () => {
   let MetroData = new Community();
   MetroData.createCity(3, "MyCity", 10000, -21.245, -25.25);
   MetroData.createCity(4, "NewYork", 100000, 80.245, 25.25);
-  expect(MetroData.whichSphere(3)).toEqual("Southern Hemisphere");
-  expect(MetroData.whichSphere(4)).toEqual("Northern Hemisphere");
+  expect(MetroData.whichSphere1(3)).toEqual("Southern Hemisphere");
+  expect(MetroData.whichSphere1(4)).toEqual("Northern Hemisphere");
 });
 
 test("check getCityInfo ", () => {

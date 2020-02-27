@@ -30,6 +30,7 @@ class CitiesDisplay extends React.Component {
                 <th>Moved Ins </th>
                 <th>Moved Outs</th>
                 <th>Delete City</th>
+                <th>Hemisphere</th>
               </tr>
             </thead>
             <tbody>
@@ -65,6 +66,9 @@ class CitiesDisplay extends React.Component {
                     }}
                     deleteCityBut={() => {
                       this.props.deleteCityFn(city.key);
+                    }}
+                    whichSphere={() => {
+                      this.props.whichSphere(city.key);
                     }}
                   />
                 );
@@ -120,7 +124,7 @@ class CitiesDisplayItems extends React.Component {
         <td>
           <input
             type="number"
-            placeholder=" Only + numbers"
+            placeholder=" Only (+)numbers"
             min={1}
             name="entry"
             // ref={this.entry}
@@ -152,6 +156,7 @@ class CitiesDisplayItems extends React.Component {
         <td>
           <button onClick={this.props.deleteCityBut}>Delete</button>
         </td>
+        <td>{this.props.city.whichSphere()}</td>
       </tr>
     );
   }

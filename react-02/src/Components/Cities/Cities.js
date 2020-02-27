@@ -19,6 +19,7 @@ class CitiesData extends React.Component {
       serveScreenNum: 0,
       // this.MetroDataInst = new Community();
       MetroDataState: this.MetroDataInst.cityData,
+      serverSync: true,
       spinState: false
     };
   }
@@ -54,7 +55,9 @@ class CitiesData extends React.Component {
       long: cityLong,
       population: cityPop
     };
-    let cityServReturn = await server.createServCity(cityinfo);
+    if (this.state.serverSync === true) {
+      await server.createServCity(cityinfo);
+    }
 
     this.setState({
       MetroDataState: metroDataCopy,
@@ -69,16 +72,29 @@ class CitiesData extends React.Component {
     //  "idcreateCity" has no relevance except that it was used for JS based development
     // debugger;
     this.setState({ spinState: true });
-    const MetroDataInstCopy = await server.syncServerCities(
-      "idcreateCity",
-      this.MetroDataInst
-    );
-    this.setState({ spinState: false }); //To be removed after the await is fulfilled
-    console.log("After server Sync: ", MetroDataInstCopy);
+    // let MetroDataInstCopy;
 
-    if (!MetroDataInstCopy) {
+    if (this.state.serverSync === true) {
+      try {
+        let syncData = await server.syncServerCities(
+          "idcreateCity",
+          this.MetroDataInst
+        );
+        // debugger;
+        if (syncData.status !== 200) {
+          throw "Server Status :" + syncData.status;
+        }
+      } catch (error) {
+        alert("Server not Responding. Refresh to Reload \n" + error);
+        this.setState({ serverSync: false }); //To be removed after the await is fulfilled
+        // console.log("After server Sync: ", syncData);
+      }
+    }
+    this.setState({ spinState: false });
+
+    if (!this.MetroDataInst.cityData) {
       this.setState({
-        MetroDataState: MetroDataInstCopy.cityData,
+        MetroDataState: this.MetroDataInst.cityData,
         serveScreenNum: 1
       });
     }
@@ -146,7 +162,10 @@ class CitiesData extends React.Component {
                   setNewPopulationIn={async (cityKey, movedQty) => {
                     this.City = this.MetroDataInst.getCityInfo(cityKey)[0];
                     this.City.population = this.City.movedin(movedQty);
-                    await server.updateServCity(this.City);
+                    if (this.state.serverSync === true) {
+                      await server.updateServCity(this.City);
+                    }
+
                     this.setState({
                       MetroDataState: this.MetroDataInst.cityData,
                       entry: ""
@@ -155,8 +174,10 @@ class CitiesData extends React.Component {
                   setNewPopulationOut={async (cityKey, movedQty) => {
                     this.City = this.MetroDataInst.getCityInfo(cityKey)[0];
                     this.City.population = this.City.movedOut(movedQty);
-                    await server.updateServCity(this.City);
-                    console.log("Citypop: ", this.City.population);
+                    if (this.state.serverSync === true) {
+                      await server.updateServCity(this.City);
+                      console.log("Citypop: ", this.City.population);
+                    }
 
                     this.setState({
                       MetroDataState: this.MetroDataInst.cityData,
@@ -164,11 +185,14 @@ class CitiesData extends React.Component {
                     });
                   }}
                   deleteCityFn={async cityKey => {
-                    this.setState({ spinState: true });
-                    await server.deleteServCity(cityKey);
+                    if (this.state.serverSync === true) {
+                      this.setState({ spinState: true });
+                      await server.deleteServCity(cityKey);
+                      this.setState({
+                        spinState: false
+                      });
+                    }
                     this.setState({
-                      spinState: false,
-
                       // MetroDataState: this.MetroDataInst.cityData
                       MetroDataState: this.MetroDataInst.deleteCity(cityKey)
                     });
