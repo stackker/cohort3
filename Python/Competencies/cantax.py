@@ -57,31 +57,15 @@ def calculateTax(year1, income, data):
 
     except:
          print(f"Calculation Data for year {year1} is not loaded")
-      
-   
-                
-        # print(len(slabs))
-        # print(index, slab)
-        # if tax_yr == year1:
-        #     print(tax_yr)
-        #     print("slabs:",slabs)
-        # else:
-        #     print("else: ", tax_yr)
-        #     print(data[year1])
-            
-        
+    
             
 
 
    
-        
- 
-        
-        
-# return total_tax
+if __name__ == '__main__':
 
 # print(data)
-try:
-    print("Total Tax Due: ", '{0:.2f}'.format(calculateTax('2020', '100000', data)))
-except:
-    print("Drat! Something went wrong!!")
+    try:
+        print("Total Tax Due: ", '{0:.2f}'.format(calculateTax('2020', '100000', data)))
+    except:
+        print("Drat! Something went wrong!!")

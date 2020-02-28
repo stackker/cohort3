@@ -2,8 +2,6 @@
 print('\033c')
 
 
-
-
 def countSearchString(searchString, fileNamePath):
     """ Takes Regex search Inputs """
     import re 

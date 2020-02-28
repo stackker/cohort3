@@ -8,4 +8,5 @@ def test_helloWorld():
     assert "Hello World from readFile220.test.py" == "Hello World from readFile220.test.py"
 
 def test_listing():
-    assert dS('/home/sj/code/cohort3/Python')  == True 
+    with pytest.raises(Exception,  match = "Unreachable"):
+        assert dS('/home/sj/code/cohort3/Python/Competencies1')

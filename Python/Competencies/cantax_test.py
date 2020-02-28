@@ -37,7 +37,7 @@ def test_nonLoaded_year():
         assert ct.calculateTax('200', 1000, data)
     # assert("EValue: ",str(e.value)) 
     #    
-    with pytest.raises(Exception, match = "200"):
-        assert ct.calculateTax('200', 1000, data)
+    with pytest.raises(Exception, match = "2021"):
+        assert ct.calculateTax('2021', 1000, data)
 
 
