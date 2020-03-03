@@ -1,0 +1,20 @@
+--------------------
+Dimension	Counts
+--------------------
+CLASS:
+Residential	208
+Industrial	42
+Major Park	4
+Residual Sub Area	49
+--------------------
+SECTOR: 
+CENTRE	62
+SOUTH	58
+NORTHEAST	44
+NORTHWEST	30
+NORTH	30
+SOUTHEAST	23
+EAST	23
+WEST	33
+--------------------
+Row Count:	303
