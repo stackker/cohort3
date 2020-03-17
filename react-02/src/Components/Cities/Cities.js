@@ -82,7 +82,7 @@ class CitiesData extends React.Component {
         );
         // debugger;
         if (syncData.status !== 200) {
-          throw "Server Status :" + syncData.status;
+          throw Error("Server Status :" + syncData.status);
         }
       } catch (error) {
         alert("Server not Responding. Refresh to Reload \n" + error);

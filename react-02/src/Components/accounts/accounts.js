@@ -26,7 +26,7 @@ class Accounts extends Component {
     //minor validition
     //get values from inputs
     //call pojo create handler
-    if (this.state.nameInput != "") {
+    if (this.state.nameInput !== "") {
       this.accountManager.createAccount(
         this.state.nameInput,
         this.state.startingBalanceInput
