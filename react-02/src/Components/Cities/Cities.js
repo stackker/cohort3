@@ -185,6 +185,7 @@ class CitiesData extends React.Component {
                     });
                   }}
                   deleteCityFn={async cityKey => {
+                    // debugger;
                     if (this.state.serverSync === true) {
                       this.setState({ spinState: true });
                       await server.deleteServCity(cityKey);

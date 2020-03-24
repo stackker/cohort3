@@ -43,7 +43,7 @@ async function updateServCity(city) {
 }
 
 async function deleteServCity(key) {
-  let data = await postData(url + "delete", { key: key });
+  let data = await postData(url + "delete", { key:key });
   return data;
 }
 

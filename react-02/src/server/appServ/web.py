@@ -1,7 +1,7 @@
 #
 # See README.md for instructions
 #
-import os
+import os,shutil
 import json
 import traceback
 from flask import Flask, jsonify, request, render_template
@@ -28,19 +28,29 @@ def dict_factory(cursor, row):
 
 def run_query(query):
 	try:
+		# Init the DB cities 
 		connection = sqlite3.connect("cities.db")
-		connection.cursor().execute("""SELECT name FROM sqlite_master 
-										# WHERE type='table' AND name='cities';""")
+		Cursor = connection.cursor()
+		initQ = Cursor.execute("""SELECT name FROM sqlite_master WHERE type='table' AND name='cities'; """)
+		if ((len(initQ.fetchall())) == 0 ): # is a list with zero entries?
+			# create the cities table in cities DB created with the connect()
+			print("Table cities not found. Creating table/DB 'cities'...")
+			createDBCities() 
+
+			# Same test exists in createdb.py as initializer
+
 	except :
-		print("Table cities not found. Creating table 'cities'...")
-		createDBCities()
+		#Dont do anything here, The main query is executed in finally 
+		# as the first query to the database is what creates the DB and then
+		# runs the actual fetch all for the first
+		pass
 
 	finally:
 		connection = sqlite3.connect("cities.db")
 		connection.row_factory = dict_factory
 		cursor = connection.cursor()
 		cursor.execute(query)
-		# connection.commit()
+		connection.commit()
 		rows = cursor.fetchall()
 		connection.close()
 		return rows
@@ -62,7 +72,6 @@ def all():
 		# print(rows)
 		response = {'Cities': rows, 'Status' : 0 }
 	except:
-
 		response = {'Cities': rows,'Status': -1}
 	
 	# data = response
@@ -72,14 +81,10 @@ def all():
 	# print(list(data.values()))
 	# return jsonify(list(data.values())),200
 
-	
-
-
 firstKeyType = None
 @app.route("/add", methods = ['POST'])
 def add():
 	global data, firstKeyType
-
 	content = request.get_json()
 
 	if 'key' not in content:
@@ -98,26 +103,39 @@ def add():
 		return jsonify({"msg":"You can not add '" + str(key) + "' again."}), 400
 	
 	data[key] = content
+	print("content", content)
 
-	return jsonify({}), 200
+
+	try:
+		query = "INSERT INTO cities (city, population, lat,long) VALUES (content['city'], content['population'], content['lat'], content['long'])"
+		run_query(query)
+		response = {"msg": str(key) + content['city']+ "Added",'Status': 200}
+	except:
+		response = {"msg": 'City:'+ content['city'] + "NOT Created ",'Status': 400}
+
+	return jsonify(response),200
 
 
 @app.route("/delete", methods = ['POST'])
 def delete():
 	global data
-
 	content = request.get_json()
-
 	if 'key' not in content:
-		return jsonify({"msg":"There must be a 'key' attribute"}), 400
-
+		response = {"msg":"There must be a 'key' attribute", "Status":400}
 	key = content['key']
 
 	if key not in data:
-		return jsonify({"msg":"You can not delete '" + str(key) + "', it does not exist."}), 400
+		response = {"msg": str(key) + ",  does not exist.",'Status': 400}
 
-	del data[key]
-	return jsonify({}), 200
+	try:
+		query = "DELETE FROM cities WHERE key =" + str(key)
+		run_query(query)
+		response = {"msg": 'City with key: '+ str(key) +': Deleted'}
+	except :
+		response = {"msg": 'Could not delete City with key: '+ str(key)}
+	print(response)
+	# del data[key]
+	return jsonify(response)
 
 
 @app.route("/read", methods = ['POST'])
@@ -199,4 +217,4 @@ def test():
 
 if __name__ == '__main__':
 	print("--- Starting", __file__)
-	app.run(debug=True, use_reloader=True)
+	app.run(host = '0.0.0.0',debug=True, use_reloader=True)
