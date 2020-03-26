@@ -42,7 +42,7 @@ def run_query(query):
 	except :
 		#Dont do anything here, The main query is executed in finally 
 		# as the first query to the database is what creates the DB and then
-		# runs the actual fetch all for the first
+		# runs the actual fetch all for the first and subsequent calls
 		pass
 
 	finally:
@@ -107,13 +107,14 @@ def add():
 
 
 	try:
-		query = "INSERT INTO cities (city, population, lat,long) VALUES (content['city'], content['population'], content['lat'], content['long'])"
-		run_query(query)
-		response = {"msg": str(key) + content['city']+ "Added",'Status': 200}
+		query = "INSERT INTO cities ('city', 'population', 'lat', 'long') VALUES(" +  '"'+ content['city'] +'"' +","+ str(content['population'])+","+  str(content['lat'])+"," +  str(content['long'])+");" 
+		# print("QUERY:",query)
+		rows = run_query(query)
+		response = {"msg": str(key) + content['city']+ " Added",'status': 200 ,'rows':rows}
 	except:
-		response = {"msg": 'City:'+ content['city'] + "NOT Created ",'Status': 400}
+		response = {"msg": 'City:'+ content['city'] + "NOT Created ",'status': 400 ,'rows':rows}
 
-	return jsonify(response),200
+	return jsonify(response),response['status']
 
 
 @app.route("/delete", methods = ['POST'])
@@ -160,17 +161,27 @@ def update():
 	global data
 
 	content = request.get_json()
+	print('Content: ', content)
 
 	if 'key' not in content:
-		return jsonify({"msg":"There must be a 'key' attribute"}), 400
+		return jsonify({"msg":"There must be a 'key' attribute"}), 401
 
 	key = content['key']
-
-	if key not in data:
-		return jsonify({"msg":"You can not update '" + str(key) + "', it does not exist."}), 400
+		
+	# if key not in data:
+	# 	return jsonify({"msg":"You can not update '" + str(key) + "', it does not exist."}), 402
 
 	data[key] = content
-	return jsonify({}), 200
+	try:
+		query = "UPDATE cities SET population  = " + str(content['population'])+ " WHERE key = " + str(content['key'])
+		# query = "UPDATE cities SET population  = " + str(pop) + " WHERE key =" + str(key)
+		rows = run_query(query)         
+		response = {'msg': content["city"]+ ' Updated.' ,'status' : 200,'rows':rows}
+	except Exception as error:
+		print("error :" ,error)
+		response = {'msg': content["city"]+ ' Error updating.' ,'status' : 400, 'rows':rows}
+	print('response:',response)
+	return jsonify(response), response["status"]
 
 
 @app.route("/load", methods = ['GET'])
