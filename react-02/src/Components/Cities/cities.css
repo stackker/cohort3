@@ -39,6 +39,12 @@ button {
 .add {
   border: 1px solid green;
 }
+.del {
+  border: 2px solid red;
+}
+.rand {
+  border: 1px solid blue;
+}
 #addBef {
   border: 2px solid green;
 }
@@ -47,9 +53,6 @@ button {
 }
 
 #delete {
-  border: 2px solid red;
-}
-#del {
   border: 2px solid red;
 }
 

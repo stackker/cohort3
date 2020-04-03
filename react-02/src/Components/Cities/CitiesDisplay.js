@@ -10,7 +10,7 @@ class CitiesDisplay extends React.Component {
   }
 
   render() {
-    console.log("CDisplay-MetroData: ", this.props.MetroData);
+    //consolelog("CDisplay-MetroData: ", this.props.MetroData);
 
     return (
       // if there are entries in the Community Instance , Display it.
@@ -34,7 +34,7 @@ class CitiesDisplay extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {/* {console.log("tbody", this.props.MetroData, this.MetroDataInst)} */}
+              {/* {//consolelog("tbody", this.props.MetroData, this.MetroDataInst)} */}
               {this.props.MetroData.map((city, index) => {
                 return (
                   /*  The items should be seperate component as they need to be selected */
@@ -52,7 +52,7 @@ class CitiesDisplay extends React.Component {
                     }}
                     movedInFn={() => {
                       this.props.setNewPopulationIn(city.key, this.state.entry);
-                      console.log(city.key, this.state.entry);
+                      //consolelog(city.key, this.state.entry);
 
                       this.setState({ entry: "" }); //Cleared so that the next click will not add again on this or other lines
                     }}
@@ -61,7 +61,7 @@ class CitiesDisplay extends React.Component {
                         city.key,
                         this.state.entry
                       );
-                      console.log(city.key, this.state.entry);
+                      //consolelog(city.key, this.state.entry);
                       this.setState({ entry: "" }); //Cleared so that the next click will not remove again on this or other lines
                     }}
                     deleteCityBut={() => {
@@ -90,17 +90,17 @@ class CitiesDisplayItems extends React.Component {
     };
   }
   setButnState = event => {
-    console.log("setButnState :", this.state.entry);
+    //consolelog("setButnState :", this.state.entry);
 
     if (event.target.value !== "") {
       // debugger;
-      console.log("setButn:ET: ", this.state.entry);
+      //consolelog("setButn:ET: ", this.state.entry);
       return this.setState({ butnState: false }); // disabled = true
     }
   };
 
   createMoveIn = event => {
-    console.log("createMoveIn:", event.nativeEvent);
+    //consolelog("createMoveIn:", event.nativeEvent);
     this.setState({ butnState: true });
     this.props.movedInFn();
   };
@@ -111,7 +111,7 @@ class CitiesDisplayItems extends React.Component {
   };
 
   render() {
-    console.log("CDisplayItems-butnState: ", this.props.butnState);
+    //consolelog("CDisplayItems-butnState: ", this.props.butnState);
     return (
       <tr key>
         <td>{this.props.city.key}</td>

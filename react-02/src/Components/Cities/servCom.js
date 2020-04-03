@@ -34,11 +34,11 @@ async function updateServCity(city) {
     if (data.status !== 200) {
       throw new Error("Server not updated");
     } else {
-      console.log(`Success:  ${city.key} updated`);
+      //consolelog(`Success:  ${city.key} updated`);
     }
     return data;
   } catch (error) {
-    console.error(error);
+    //consoleerror(error);
   }
 }
 
@@ -49,19 +49,19 @@ async function deleteServCity(key) {
 
 async function createServCity(city) {
   let data = await postData(url + "add", city);
-  console.log("createServCity", data);
+  //consolelog("createServCity", data);
   return data;
 }
 
 async function syncServerCities(panelId, CommunityArr) {
   let serverCity = await postData(url + "all");
-  console.log("syncServerCities :", serverCity);
+  //consolelog("syncServerCities :", serverCity);
 
   // sort ascending , so that the highest key is avln in the city Array
   let sortedServerCity = serverCity.sort(
     (a, b) => Number(a.key) - Number(b.key)
   );
-  console.log("syncServerCities sorted :", sortedServerCity);
+  //consolelog("syncServerCities sorted :", sortedServerCity);
 
   for (let card of sortedServerCity) {
     let cityCard = new City(
@@ -78,7 +78,7 @@ async function syncServerCities(panelId, CommunityArr) {
     // Add to HTML Display
     // let newCard = cfunctions.addCity(panelId, cityCard);
   }
-  console.log("syncServerCities returned :", CommunityArr);
+  //consolelog("syncServerCities returned :", CommunityArr);
   return serverCity;
 }
 

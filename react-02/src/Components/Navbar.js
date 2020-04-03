@@ -27,7 +27,7 @@ class Navbar extends React.Component {
   }
 
   selectApp = event => {
-    console.log("selectApp: ", event.target);
+    //consolelog("selectApp: ", event.target);
     // setApp.target.id.active();
     this.setState({
       selApp: event.target.id
@@ -36,19 +36,19 @@ class Navbar extends React.Component {
 
   showApp = () => {
     if (this.state.selApp === "idLogo") {
-      console.log("Execution chk Home:", this.state.selApp);
+      //consolelog("Execution chk Home:", this.state.selApp);
       return <Home />;
     }
     if (this.state.selApp === "idTic") {
-      console.log("Execution chk Game:", this.state.selApp);
+      //consolelog("Execution chk Game:", this.state.selApp);
       return <Game />;
     }
     if (this.state.selApp === "idAcc") {
-      console.log("Execution chk Accounts:", this.state.selApp);
+      //consolelog("Execution chk Accounts:", this.state.selApp);
       return <Accounts />;
     }
     if (this.state.selApp === "idCities") {
-      // console.log("Execution chk Cities", this.state.selApp);
+      // //consolelog("Execution chk Cities", this.state.selApp);
       return <Cities />;
     }
     if (this.state.selApp === "idLinkedList") {

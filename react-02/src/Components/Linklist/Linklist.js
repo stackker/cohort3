@@ -38,31 +38,31 @@ function LList() {
   };
 
   const handleFirst = e => {
-    console.log("Target: ", e.target.name);
+    //consolelog("Target: ", e.target.name);
     // LLInst.first();
     setCurrent(LLInst.first());
-    console.log("First/Current ", LLInst.current);
+    //consolelog("First/Current ", LLInst.current);
   };
 
   const handlePrevious = e => {
-    console.log("Target: ", e.target.name);
+    //consolelog("Target: ", e.target.name);
     setCurrent(LLInst.prev());
-    console.log("Prev/Current ", LLInst.current);
+    //consolelog("Prev/Current ", LLInst.current);
   };
 
   const handleDelete = e => {
-    console.log("Target: ", e.target.name);
+    //consolelog("Target: ", e.target.name);
     setCurrent(LLInst.delete());
   };
 
   const handleNext = e => {
-    console.log("Target: ", e.target.name);
+    //consolelog("Target: ", e.target.name);
     setCurrent(LLInst.next());
-    console.log("Next: ", LLInst.current);
+    //consolelog("Next: ", LLInst.current);
   };
 
   const handleLast = e => {
-    console.log("Target: ", e.target.name);
+    //consolelog("Target: ", e.target.name);
     setCurrent(LLInst.last());
   };
   const renderAmount = () => {

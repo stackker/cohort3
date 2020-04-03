@@ -75,7 +75,7 @@ class Accounts extends Component {
     }
   };
   renderStats = () => {
-    console.log(":", this.accountManager.accountList.length);
+    //consolelog(":", this.accountManager.accountList.length);
     if (this.accountManager.accountList.length !== 0) {
       return (
         <div>

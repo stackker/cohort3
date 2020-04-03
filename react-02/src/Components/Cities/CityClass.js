@@ -13,7 +13,7 @@ class City {
     if (Number(movedInVal) <= 0) {
       let error = "Moved In Numbers must be greater than Zero";
       alert(error);
-      console.log(error);
+      //consolelog(error);
       return this.population;
     } else {
       return (this.population += Number(movedInVal));
@@ -25,7 +25,7 @@ class City {
     if (Number(movedOutVal) <= 0) {
       let error = "Moved Out Numbers must be greater than Zero";
       alert(error);
-      console.log(error);
+      //consolelog(error);
       // throw (error);
       return this.population;
     } else {
@@ -36,7 +36,7 @@ class City {
         // alert(`Residents remaining cannot be less than Zero. Balance: ${this.population}`);
         let error = "Balance cannot not be less than 0";
         alert(error);
-        console.log(error);
+        //consolelog(error);
         this.population = originalpopulation; // restore previous state
         // throw (error)
         return this.population;
@@ -48,7 +48,7 @@ class City {
 
   howBig() {
     let pop = this.population;
-    if (pop >= 1 && pop <= 100) {
+    if (pop >= 0 && pop <= 100) {
       return "Hamlet";
     } else if (pop > 100 && pop < 1000) {
       return "Village";
@@ -76,16 +76,16 @@ class Community {
     let postedCity;
 
     for (let eachCity of this.cityData) {
-      console.log("inCreateDep Meth:", eachCity);
-      console.log("inCreateDep inputs :", key, changeQty);
+      //consolelog("inCreateDep Meth:", eachCity);
+      //consolelog("inCreateDep inputs :", key, changeQty);
       // debugger;
       if (key === eachCity.key) {
-        console.log("inCreateDep Meth:", true);
+        //consolelog("inCreateDep Meth:", true);
         eachCity.movedin(Number(changeQty));
         postedCity = eachCity;
         break;
       }
-      console.log("inCreateDep Meth:", postedCity);
+      //consolelog("inCreateDep Meth:", postedCity);
     }
     return this.cityData;
   }
@@ -93,7 +93,7 @@ class Community {
   postWithdrawal(key, changeQty) {
     let postedCity;
     for (let eachCity of this.cityData) {
-      // console.log("inCreateDep Meth:", key, changeQty);
+      // //consolelog("inCreateDep Meth:", key, changeQty);
       // debugger;
       if (key === eachCity.key) {
         // console.log("in postWithdrawal Meth:", "Key found");
@@ -101,7 +101,7 @@ class Community {
         postedCity = eachCity;
         break;
       }
-      console.log("inCreateDep Meth:", postedCity);
+      //consolelog("inCreateDep Meth:", postedCity);
     }
     return this.cityData;
   }

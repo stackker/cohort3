@@ -1,14 +1,14 @@
 import { ListNode, LinkedList } from "./LLfunctions.js";
 //
 test("Test ll Functions: ", () => {
-  console.log("Hello from ll functions test");
+  //consolelog("Hello from ll functions test");
   let llist = new LinkedList();
   llist.add("One", 100);
   llist.add("Two", 200);
   llist.add("Three", 300);
   expect(llist.current.subject).toBe("Three");
   expect(llist.listAmount).toBe(600);
-  console.log("Original List");
+  //consolelog("Original List");
   llist.showList();
   llist.first();
   expect(llist.current.subject).toBe("One");
@@ -48,7 +48,7 @@ test("Test ll Functions: ", () => {
   llist.prev();
   llist.prev();
   expect(llist.current.subject).toBe("One");
-  console.log("After Insertions");
+  //consolelog("After Insertions");
   llist.showList(); // get a visual on status
   expect(llist.headNode.subject).toBe("One");
 
@@ -67,7 +67,7 @@ test("Test ll Functions: ", () => {
   llist.delete();
   expect(llist.headNode.subject).toBe("Six");
 
-  console.log("After Deletions");
+  //consolelog("After Deletions");
   llist.showList();
 
   //Test for deleting End Node
@@ -76,6 +76,6 @@ test("Test ll Functions: ", () => {
   llist.delete();
   expect(llist.current.subject).toBe("Three");
   expect(llist.listAmount).toBe(1100);
-  console.log("After last Deletions");
+  //consolelog("After last Deletions");
   llist.showList();
 });

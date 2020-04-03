@@ -7,7 +7,7 @@ const cfunctions = {
 
 
 	createCityForm: (returnToID, buttonClickd, acctName) => {
-		console.log("createForm.buttonClick: ", buttonClickd)
+		//consolelog("createForm.buttonClick: ", buttonClickd)
 
 		// Need to keep it seperate as number of input fields are different
 		switch (buttonClickd.className) {
@@ -15,7 +15,7 @@ const cfunctions = {
 
 				// console.log("fromID Add: ", fromID)
 
-				console.log("createForm.addCard case: ", buttonClickd);
+				//consolelog("createForm.addCard case: ", buttonClickd);
 				//Create a Div to hold contents of the form
 				let formDiv = document.createElement("form");
 				formDiv.className = "card";
@@ -186,7 +186,7 @@ const cfunctions = {
 		let cType = cityCard.howBig();
 		let cText = ` Lat: ${lat}, Long: ${long}, Type: ${cType}`;
 
-		console.log("from createCard: ", cityCard);
+		//consolelog("from createCard: ", cityCard);
 		let div = document.createElement("div");
 		div.setAttribute("count", cityCard.key);
 		div.className = "card";
@@ -268,7 +268,7 @@ const cfunctions = {
 			contentArr.push(itemColln.getAttribute(searchAttib));
 		};
 
-		console.log("contentArray", contentArr);
+		//consolelog("contentArray", contentArr);
 		return contentArr;
 	},
 
@@ -285,14 +285,14 @@ const cutils = {
 	recoverAccName(eventTargetID, cityData) {
 		debugger;
 		//let str = eventTarget.id;
-		console.log(eventTargetID);
+		//consolelog(eventTargetID);
 		let key = eventTargetID.slice(5);
-		console.log("key: ", key, key.length);
+		//consolelog("key: ", key, key.length);
 		let city1 = cityData.filter(function (city) {
-			console.log(city.key);
+			//consolelog(city.key);
 			return Number(city.key) === Number(key);
 		});
-		console.log(city1);
+		//consolelog(city1);
 		return city1[0];
 	},
 

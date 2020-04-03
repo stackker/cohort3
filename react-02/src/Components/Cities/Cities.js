@@ -24,8 +24,8 @@ class CitiesData extends React.Component {
     };
   }
   addCityFn = async cityInfo => {
-    console.log(this.MetroDataInst);
-    console.log("CKey", cityInfo, this.MetroDataInst.cityKey);
+    let { cityName, cityLat, cityLong, cityPop } = cityInfo;
+    
     if (isNaN(this.MetroDataInst.cityKey)) {
       //If Data exists on Server it is not NaN;
       this.cityKey = 0;
@@ -35,9 +35,6 @@ class CitiesData extends React.Component {
 
     this.cityKey += 1;
 
-    let { cityName, cityLat, cityLong, cityPop } = cityInfo;
-
-    console.log(cityName, cityLat, cityLong, cityPop, this.cityKey);
     // createCity adds the city to the MetroDataInst of community
     let key = this.cityKey; // server API needs it explicitly to be named key
 
@@ -87,7 +84,7 @@ class CitiesData extends React.Component {
       } catch (error) {
         alert("Server not Responding. Refresh to Reload \n" + error);
         this.setState({ serverSync: false }); //To be removed after the await is fulfilled
-        // console.log("After server Sync: ", syncData);
+        // //consolelog("After server Sync: ", syncData);
       }
     }
     this.setState({ spinState: false });
@@ -137,12 +134,15 @@ class CitiesData extends React.Component {
   };
 
   render() {
-    console.log("createCityScreen render", this.state.MetroDataState);
+    //consolelog("createCityScreen render", this.state.MetroDataState);
     return (
       <div>
         <section id="idMetroSec" className="MetroData">
-          <h1> Metro Data </h1>
-
+          <span >
+            {/* <h5>Select DataBase</h5> */}
+            <h1> Metro Data </h1>
+            {/* <h5>Select Language</h5> */}
+          </span>
           <div id="idCityContainer">
             <div id="idCityPanel" className="leftPanel">
               Cities
@@ -176,7 +176,7 @@ class CitiesData extends React.Component {
                     this.City.population = this.City.movedOut(movedQty);
                     if (this.state.serverSync === true) {
                       await server.updateServCity(this.City);
-                      console.log("Citypop: ", this.City.population);
+                      //consolelog("Citypop: ", this.City.population);
                     }
 
                     this.setState({
