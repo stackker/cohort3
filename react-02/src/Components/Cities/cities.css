@@ -85,7 +85,7 @@ input:required {
   flex-basis: auto;
   justify-content:space-evenly; */
   display:grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr; 
   align-items: center;
   
   

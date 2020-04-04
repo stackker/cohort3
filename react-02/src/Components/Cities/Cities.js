@@ -21,6 +21,14 @@ class CitiesData extends React.Component {
       {id:3, dbVal:'Serverless Lambda Fn'},
       {id:4, dbVal:'NoSQL MongoDB'},
     ]
+    this.lang = [
+      {id:'en_CA', langText:'English'},
+      {id:'hi_IN', langText:'Hindi'},
+      {id:'it_IT', langText:'Italian'},
+      {id:'ch_Zh', langText:'Chinese'},
+      {id:'es_Mx', langText:'Spanish'},
+
+    ]
 
     this.state = {
       serveScreenNum: 0,
@@ -159,9 +167,19 @@ class CitiesData extends React.Component {
             </select>
             </label>
             
+            <h1> Metro Data </h1>
+            <label><h5>Select Language:</h5>
+            <select>
+              
+                {this.lang.map(eachLang =>(
+                  <option key = {eachLang.id} value = {eachLang.langText}>
+                    {eachLang.langText}
+                  </option>
+                ))}
+
+            </select>
+              </label>   
             
-            <h1> Metro Data </h1>    
-            <h5>Select Language:</h5>
           </div>  
           {/* </span> */}
           <div id="idCityContainer">
