@@ -79,7 +79,20 @@ input:required {
   display: flex;
   height: 100%;
 }
+#idTitle{
+  /* display: flex;
+  flex-direction: row;
+  flex-basis: auto;
+  justify-content:space-evenly; */
+  display:grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  
+  
+  /* grid-template-rows: 1fr,1fr,1fr; */
+  
 
+}
 #idLeftPanel {
   flex: 1;
   min-height: 100%;
@@ -208,12 +221,12 @@ input:required {
 
 /* ______  Cities ____________ */
 
-.MetroData {
+/* .MetroData {
   text-align: center;
   padding-top: 5px;
   margin-top: 0px;
   height: 150%;
-}
+} */
 
 #idCityContainer {
   display: flex;

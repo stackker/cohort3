@@ -15,6 +15,13 @@ class CitiesData extends React.Component {
     this.MetroDataInst = new Community();
     this.City = new City(); //Dummy creation
 
+    this.host=[
+      {id:1, dbVal:'In Api'},
+      {id:2, dbVal:'SQLite3'},
+      {id:3, dbVal:'Serverless Lambda Fn'},
+      {id:4, dbVal:'NoSQL MongoDB'},
+    ]
+
     this.state = {
       serveScreenNum: 0,
       // this.MetroDataInst = new Community();
@@ -138,11 +145,25 @@ class CitiesData extends React.Component {
     return (
       <div>
         <section id="idMetroSec" className="MetroData">
-          <span >
-            {/* <h5>Select DataBase</h5> */}
-            <h1> Metro Data </h1>
-            {/* <h5>Select Language</h5> */}
-          </span>
+          {/* <span > */}
+          <div id = "idTitle">
+            <label><h5>Select DataBase:</h5>
+              <select>
+              
+                {this.host.map(db =>(
+                  <option key = {db.id} value = {db.dbVal}>
+                    {db.dbVal}
+                  </option>
+                ))}
+
+            </select>
+            </label>
+            
+            
+            <h1> Metro Data </h1>    
+            <h5>Select Language:</h5>
+          </div>  
+          {/* </span> */}
           <div id="idCityContainer">
             <div id="idCityPanel" className="leftPanel">
               Cities
